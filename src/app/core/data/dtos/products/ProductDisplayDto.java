@@ -12,7 +12,7 @@ import java.sql.Date;
  *
  * @author Khang
  */
-public class ProductDisplayTableDto {
+public class ProductDisplayDto {
     private String name;
     private BigDecimal price;
     private Date createdDate;

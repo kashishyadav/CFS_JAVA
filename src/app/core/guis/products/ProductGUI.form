@@ -2,7 +2,7 @@
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <NonVisualComponents>
-    <Component class="base.guis.controls.core.AppCrudToolBar" name="appCrudToolBar1">
+    <Component class="app.common.controls.AppCrudToolBar" name="appCrudToolBar1">
     </Component>
   </NonVisualComponents>
   <AuxValues>
@@ -50,7 +50,7 @@
                       </Group>
                       <EmptySpace min="0" pref="248" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="tableView" alignment="1" max="32767" attributes="0"/>
+                  <Component id="dataTable" alignment="1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -81,7 +81,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="appCrudToolBar2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="tableView" pref="228" max="32767" attributes="0"/>
+              <Component id="dataTable" pref="228" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -128,9 +128,9 @@
         <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
-    <Component class="base.guis.controls.core.AppCrudToolBar" name="appCrudToolBar2">
+    <Component class="app.common.controls.AppCrudToolBar" name="appCrudToolBar2">
     </Component>
-    <Component class="base.guis.controls.core.DataTable" name="tableView">
+    <Component class="app.common.controls.DataTable" name="dataTable">
     </Component>
   </SubComponents>
 </Form>

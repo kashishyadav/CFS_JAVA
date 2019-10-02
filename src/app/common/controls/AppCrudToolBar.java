@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package base.guis.controls.core;
+package app.common.controls;
 
 import base.guis.controls.BaseComponent;
 
@@ -36,7 +36,6 @@ public class AppCrudToolBar extends BaseComponent {
         jButton1.setText("Xóa");
 
         jButton2.setText("Lưu");
-        jButton2.setActionCommand("Lưu");
 
         jButton3.setText("Làm mới");
 

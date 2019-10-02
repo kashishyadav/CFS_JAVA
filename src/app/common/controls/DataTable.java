@@ -3,12 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package base.guis.controls.core;
+package app.common.controls;
 
 import base.configurations.constants.ColorConstants;
+import base.data.entities.EntitySearchBase;
 import base.guis.controls.BaseComponent;
+import base.guis.controls.BaseEditPanel;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -20,11 +24,12 @@ import javax.swing.table.TableColumnModel;
  *
  * @author Khang
  */
-public class DataTable extends BaseComponent {
+public class DataTable extends BaseComponent implements ActionListener {
 
     /**
      * Creates new form DataTable
      */
+    BaseEditPanel editPanel;
     public DataTable() {
         
         initComponents();
@@ -38,7 +43,13 @@ public class DataTable extends BaseComponent {
        dataTable.setRowHeight(25);
        dataTable.setFillsViewportHeight(true);
        dataTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);   
+       
+       btnSearch.addActionListener(this);
 
+   }
+   
+   public void setEditPanel(BaseEditPanel editPanel){
+       this.editPanel = editPanel;
    }
   
    public JTable getTable(){
@@ -79,7 +90,7 @@ public class DataTable extends BaseComponent {
         btnLast = new javax.swing.JButton();
         btnNext = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        txtKeyword = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
@@ -120,7 +131,7 @@ public class DataTable extends BaseComponent {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jTextField1.setToolTipText("Nhập thông tin tìm kiếm");
+        txtKeyword.setToolTipText("Nhập thông tin tìm kiếm");
 
         btnSearch.setText("Tìm kiếm");
 
@@ -140,7 +151,7 @@ public class DataTable extends BaseComponent {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 35, Short.MAX_VALUE)
+                .addGap(0, 53, Short.MAX_VALUE)
                 .addComponent(btnFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -152,7 +163,7 @@ public class DataTable extends BaseComponent {
                 .addComponent(btnLast, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jScrollPaneTable, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTextField1)
+                .addComponent(txtKeyword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -166,7 +177,7 @@ public class DataTable extends BaseComponent {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1))
+                    .addComponent(txtKeyword))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPaneTable, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -193,6 +204,23 @@ public class DataTable extends BaseComponent {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPaneTable;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtKeyword;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==btnSearch){           
+           try{
+               btnSearch.setEnabled(false);
+               System.out.println("Search button active");
+               ((EntitySearchBase) this.editPanel.getFilterObj()).setKeyword(txtKeyword.getText());
+           }catch(Exception ex){
+               ex.printStackTrace();
+           }finally{
+              this.editPanel.Search(); 
+               btnSearch.setEnabled(true);
+           }
+            
+        }
+    }
 }

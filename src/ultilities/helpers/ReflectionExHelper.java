@@ -26,6 +26,7 @@ public class ReflectionExHelper {
                    }
                    //System.out.printf("%s - %s \n",columnName,value );
                }catch(Exception ex){
+                   ex.printStackTrace();
                    continue;
                }
            }
@@ -143,7 +144,7 @@ public class ReflectionExHelper {
                     fName =  String.format("p_%s",field.getName().substring(0, 1).toUpperCase() + field.getName().substring(1));
                 }
                 field.setAccessible(true);
-                System.out.println(fName+" - "+ field.get(obj));
+              //  System.out.println(fName+" - "+ field.get(obj));
                 map.put(fName,field.get(obj));
             } catch (IllegalAccessException e) {
                 e.printStackTrace();

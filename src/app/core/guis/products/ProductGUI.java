@@ -5,7 +5,7 @@
  */
 package app.core.guis.products;
 
-import app.core.data.dtos.products.ProductDisplayTableDto;
+import app.core.data.dtos.products.ProductDisplayDto;
 import app.core.data.dtos.products.ProductEntity;
 import app.core.modules.constants.StoreConstants;
 
@@ -29,22 +29,23 @@ public class ProductGUI extends BaseEditPanel {
     /**
      * Creates new form ProductGUI
      */
-    ProductEntity inputModel;
-    ProductDisplayTableDto displayDto;
+
     
     DefaultTableModel tableModel;
     StoreProvider<ProductEntity> storeProvider;
-    public ProductGUI() throws InstantiationException, IllegalAccessException {       
+    public ProductGUI() throws InstantiationException, IllegalAccessException {     
+        //current obj, search obj, display obj
+        super(new ProductEntity(),new ProductEntity(),new ProductDisplayDto());
         initComponents();
         init();
     }
-    private void init() throws InstantiationException, IllegalAccessException{
-        inputModel = new ProductEntity();
-        displayDto = new ProductDisplayTableDto();
+    private void init() throws InstantiationException, IllegalAccessException{      
+        dataTable.setEditPanel(this);       
         storeProvider = new StoreProvider(ProductEntity.class);
-        tableModel = (DefaultTableModel) tableView.getTable().getModel();
-      
+        tableModel = (DefaultTableModel) dataTable.getTable().getModel();      
         setTableModel();
+        
+        this.Search();
     }
   @Override
     public void setTableModel() {
@@ -52,19 +53,15 @@ public class ProductGUI extends BaseEditPanel {
         String[] headers = new String[]{"Tên sản phẩm","Gía","Ngày tạo","Người tạo"};
         tableModel.setColumnIdentifiers(headers);
         
-        TableColumnModel colModel = tableView.getTable().getColumnModel();
+        TableColumnModel colModel = dataTable.getTable().getColumnModel();
         colModel.getColumn(1).setCellRenderer(NumberRendererHelper.getCurrencyRenderer());
-        colModel.getColumn(2).setCellRenderer(FormatRenderHelper.getDateRenderer());        
-        tableModel.addRow(new Object[] { "data", "data2"});
-
-        
-       
-     this.Search();
+        colModel.getColumn(2).setCellRenderer(FormatRenderHelper.getDateRenderer());     
     }
-      @Override
+    
+   @Override
     public void Search() {        
         try {         
-            storeProvider.executeIntoDataTable(StoreConstants.PRODUCT_SEARCH(), inputModel,displayDto ,tableModel);
+            storeProvider.executeIntoDataTable(StoreConstants.PRODUCT_SEARCH(), this.getFilterObj(),this.getDisplayObj() ,tableModel);
         } catch (Exception ex) {
             Logger.getLogger(ProductGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -82,7 +79,7 @@ public class ProductGUI extends BaseEditPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        appCrudToolBar1 = new base.guis.controls.core.AppCrudToolBar();
+        appCrudToolBar1 = new app.common.controls.AppCrudToolBar();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -91,8 +88,8 @@ public class ProductGUI extends BaseEditPanel {
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        appCrudToolBar2 = new base.guis.controls.core.AppCrudToolBar();
-        tableView = new base.guis.controls.core.DataTable();
+        appCrudToolBar2 = new app.common.controls.AppCrudToolBar();
+        dataTable = new app.common.controls.DataTable();
 
         jLabel1.setText("jLabel1");
 
@@ -137,7 +134,7 @@ public class ProductGUI extends BaseEditPanel {
                                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(appCrudToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 248, Short.MAX_VALUE))
-                    .addComponent(tableView, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(dataTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -161,15 +158,16 @@ public class ProductGUI extends BaseEditPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(appCrudToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tableView, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                .addComponent(dataTable, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private base.guis.controls.core.AppCrudToolBar appCrudToolBar1;
-    private base.guis.controls.core.AppCrudToolBar appCrudToolBar2;
+    private app.common.controls.AppCrudToolBar appCrudToolBar1;
+    private app.common.controls.AppCrudToolBar appCrudToolBar2;
+    private app.common.controls.DataTable dataTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -178,7 +176,6 @@ public class ProductGUI extends BaseEditPanel {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
-    private base.guis.controls.core.DataTable tableView;
     // End of variables declaration//GEN-END:variables
 
   

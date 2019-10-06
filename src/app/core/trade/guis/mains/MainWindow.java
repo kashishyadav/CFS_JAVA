@@ -1,7 +1,7 @@
-package app.core.guis.mains;
+package app.core.trade.guis.mains;
 
 
-import app.core.guis.products.ProductGUI;
+import app.core.trade.guis.products.ProductGUI;
 import base.configurations.constants.SystemConstants;
 import base.guis.controls.BaseFrame;
 

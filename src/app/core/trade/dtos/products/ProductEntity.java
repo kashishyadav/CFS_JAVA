@@ -1,4 +1,4 @@
-package app.core.data.dtos.products;
+package app.core.trade.dtos.products;
 
 import base.data.entities.FullAuditEntity;
 import java.math.BigDecimal;
@@ -6,7 +6,8 @@ import java.math.BigDecimal;
 public class ProductEntity extends FullAuditEntity {
     public ProductEntity(){
         super();
-        status = "A";
+        price = new BigDecimal("0");
+        status = "A";      
     }
 
     private String code;

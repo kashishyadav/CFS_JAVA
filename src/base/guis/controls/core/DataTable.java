@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package app.common.controls;
+package base.guis.controls.core;
 
 import base.configurations.constants.ColorConstants;
 import base.data.entities.EntitySearchBase;
@@ -36,13 +36,20 @@ public class DataTable extends BaseComponent implements ActionListener {
         init();
     }
    private void init(){      
+       dataTable = new TableCustom();
        dataTable.getTableHeader().setFont(new Font("Segoe UI",Font.BOLD,12));
        dataTable.getTableHeader().setOpaque(false);
+       dataTable.setSelectionBackground(Color.decode(ColorConstants.SILVER_LIGHT));
+        dataTable.setSelectionForeground(Color.decode(ColorConstants.BLACK));
        dataTable.getTableHeader().setForeground(Color.WHITE);
        dataTable.getTableHeader().setBackground(Color.decode(ColorConstants.TABLE_HEADER_BACKGROUND));
+       
        dataTable.setRowHeight(25);
        dataTable.setFillsViewportHeight(true);
        dataTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);   
+       
+      
+       
        
        btnSearch.addActionListener(this);
 
@@ -67,6 +74,10 @@ public class DataTable extends BaseComponent implements ActionListener {
         }  
    }
    
+
+   public boolean isCellEditable(int row, int column) {                
+                return false;               
+        };
 
     
     
@@ -217,7 +228,7 @@ public class DataTable extends BaseComponent implements ActionListener {
            }catch(Exception ex){
                ex.printStackTrace();
            }finally{
-              this.editPanel.Search(); 
+              this.editPanel.search(); 
                btnSearch.setEnabled(true);
            }
             

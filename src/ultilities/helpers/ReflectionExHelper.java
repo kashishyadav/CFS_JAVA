@@ -21,10 +21,10 @@ public class ReflectionExHelper {
                    Class<?> type = field.getType();
                    if (isPrimitive(type)) {//check primitive type(Point 5)
                        Class<?> boxed = boxPrimitiveClass(type);//box if primitive(Point 6)
-                       value = boxed.cast(value);
-                       map.put(columnName,value);
+                       value = boxed.cast(value);                       
                    }
-                   //System.out.printf("%s - %s \n",columnName,value );
+                   map.put(columnName,value);
+                  // System.out.printf("%s - %s \n",columnName,value );
                }catch(Exception ex){
                    ex.printStackTrace();
                    continue;
@@ -86,7 +86,7 @@ public class ReflectionExHelper {
     }
 
     public static boolean isPrimitive(Class<?> type) {
-        return (type == int.class || type == long.class || type == double.class || type == float.class
+        return (type == int.class || type == long.class || type == double.class || type == float.class 
                 || type == boolean.class || type == byte.class || type == char.class || type == short.class);
     }
 

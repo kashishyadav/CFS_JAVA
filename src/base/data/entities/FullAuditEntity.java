@@ -7,6 +7,9 @@ import java.sql.Date;
 public class FullAuditEntity extends EntitySearchBase{
     public  FullAuditEntity(){
         super();
+        isDeleted = false;
+        createdDate = new Date(System.currentTimeMillis());
+        updatedDate = new Date(System.currentTimeMillis());
     }
 
 

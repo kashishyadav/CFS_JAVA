@@ -2,7 +2,7 @@ package base.applications.intfs;
 
 import base.data.entities.FullAuditEntity;
 
-public interface IBaseService {
-    void SetInsAudit(FullAuditEntity entity);
-    void SetUpdAudit(FullAuditEntity entity);
+public interface IBaseService<T,TDisplay> extends ICrudService {
+    void setInsAudit(FullAuditEntity entity);
+    void setUpdAudit(FullAuditEntity entity);
 }

@@ -2,41 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c06d495f-49b2-4412-8ad3-d8ee0ebe7fa4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/built-jar.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/built-jar.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/app/core/applications/impls/products/ProductService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/app/core/applications/infs/products/IProductService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/app/core/data/dtos/products/ProductDisplayTableDto.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/app/core/guis/products/ProductGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/app/core/guis/products/ProductGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/app/main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/app/main$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/app/main.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/app/main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/base/applications/imps/BaseService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/base/applications/imps/BaseService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/base/applications/intfs/IBaseService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/base/applications/intfs/IBaseService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/base/applications/intfs/ICrudService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/base/applications/intfs/ICrudService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/base/data/dal/ConnectionFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/base/data/dal/ConnectionFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/base/data/dtos/CallableParameter.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/base/data/dtos/CallableParameter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/base/data/dtos/PagedDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/base/data/dtos/PagedDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/base/data/dtos/SearchDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/base/data/dtos/SearchDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/base/data/entities/EntityBase.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/base/data/entities/EntityBase.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/base/data/entities/EntitySearchBase.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/base/data/entities/EntitySearchBase.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/base/data/entities/FullAuditEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/base/data/entities/FullAuditEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/base/data/enums/CallableType.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/base/data/enums/CallableType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/base/guis/controls/BaseEditPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/base/guis/controls/BaseEditPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/base/guis/controls/core/AppCrudToolBar.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/base/guis/controls/core/AppCrudToolBar.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/base/guis/controls/core/DataTable.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/base/guis/controls/core/DataTable.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/base/guis/controls/core/DataTable.form" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/base/guis/controls/core/DataTable.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/ultilities/common/CommonUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/ultilities/common/CommonUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/ultilities/factories/DateTimeFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/ultilities/factories/DateTimeFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/CFShop.jar" beforeDir="false" afterPath="$PROJECT_DIR$/dist/CFShop.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nbproject/private/private.xml" beforeDir="false" afterPath="$PROJECT_DIR$/nbproject/private/private.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/core/applications/impls/products/ProductService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/core/applications/infs/products/IProductService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/core/data/dtos/products/ProductDisplayTableDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/core/data/dtos/products/ProductDisplayDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/core/guis/products/ProductGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/core/guis/products/ProductGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/base/guis/controls/BaseEditPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/base/guis/controls/BaseEditPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/base/guis/controls/core/DataTable.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/base/guis/controls/core/DataTable.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/base/guis/controls/core/DataTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/base/guis/controls/core/DataTable.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -87,18 +54,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/base/guis/controls/core/DataTable.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
-              <caret line="44" column="4" selection-start-line="44" selection-start-column="4" selection-end-line="44" selection-end-column="4" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ultilities/helpers/ReflectionExHelper.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
@@ -138,11 +93,6 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/base/guis/controls/core/DataTable.form">
-          <provider selected="true" editor-type-id="ui-designer" />
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="Git.Settings">
@@ -159,7 +109,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="165" />
     <option name="y" value="70" />
     <option name="width" value="1750" />
@@ -255,16 +205,15 @@
       <updated>1569913652771</updated>
       <workItem from="1569913654229" duration="2946000" />
       <workItem from="1569920400746" duration="2496000" />
-      <workItem from="1569983816368" duration="1532000" />
+      <workItem from="1569983816368" duration="1676000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6974000" />
+    <option name="totallyTimeSpent" value="7118000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25637585" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />

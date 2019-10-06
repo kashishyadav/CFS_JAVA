@@ -1,22 +1,97 @@
 package base.applications.imps;
 
+import app.core.modules.constants.StoreConstants;
+import app.core.trade.applications.impls.products.ProductService;
 import base.applications.intfs.IBaseService;
+import base.data.dal.StoreProvider;
 import base.data.entities.FullAuditEntity;
+import java.lang.reflect.InvocationTargetException;
 import ultilities.factories.DateTimeFactory;
 
 import java.sql.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
-public class BaseService implements IBaseService {
+public class BaseService<T,TDisplay> implements IBaseService  {
+    
+    private StoreProvider<T> storeProvider;
+    private Class<T> tClazz;
+    Class<TDisplay> tDisplayClazz;
+    
+    public BaseService(Class<T> tClazz,  Class<TDisplay> tDisplayClazz){
+        super();
+        this.tClazz = tClazz;
+        this.tDisplayClazz = tDisplayClazz;
+        init();
+    }
+      private void init(){            
+     try {         
+             storeProvider = new StoreProvider(this.tClazz);
+        } catch (Exception ex) {
+            Logger.getLogger(ProductService.class.getName()).log(Level.SEVERE, null, ex);
+        }      
+    }
+    
+    
     @Override
-    public void SetInsAudit(FullAuditEntity entity) {
+    public void setInsAudit(FullAuditEntity entity) {
         Date curDate = DateTimeFactory.Instance().getCurrentDate();
         entity.setCreatedDate(curDate);
         entity.setUpdatedDate(curDate);
     }
 
     @Override
-    public void SetUpdAudit(FullAuditEntity entity) {
+    public void setUpdAudit(FullAuditEntity entity) {
         Date curDate = DateTimeFactory.Instance().getCurrentDate();
         entity.setUpdatedDate(curDate);
+    }
+
+    @Override
+    public Map save(String sp_name, Object entity) {
+        FullAuditEntity ent = (FullAuditEntity)entity;
+        if(ent.getId()==0){
+            this.setInsAudit(ent);
+        }else{
+            this.setUpdAudit(ent);
+        }
+        
+        //execute
+        Map<String,Object> result = new HashMap<String,Object>();
+         try {         
+           result =  storeProvider.executeToMap(sp_name, ent);
+        } catch (Exception ex) {
+            Logger.getLogger(ProductService.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+        return result;
+    }
+
+    @Override
+    public T getById(String sp_name, Object paramsObject) {            
+         try {         
+             T  tResultObj = (T) storeProvider.executeToObject(StoreConstants.PRODUCT_SEARCH(),paramsObject);
+             return tResultObj;
+        } catch (Exception ex) {
+            Logger.getLogger(ProductService.class.getName()).log(Level.SEVERE, null, ex);
+        }         
+        return null;
+    }
+
+    @Override
+    public void search(String sp_name, Object parametersObj, Object dislayDto, DefaultTableModel tableModel) {
+        try {         
+            storeProvider.executeIntoDataTable(StoreConstants.PRODUCT_SEARCH(),parametersObj,dislayDto ,tableModel);
+        } catch (Exception ex) {
+            Logger.getLogger(ProductService.class.getName()).log(Level.SEVERE, null, ex);
+        }         
+    }
+
+    @Override
+    public Map delete(String sp_name, Object entity) {
+         FullAuditEntity ent = (FullAuditEntity)entity;
+         ent.setDeleted(true);
+         return this.save(sp_name, ent);
     }
 }

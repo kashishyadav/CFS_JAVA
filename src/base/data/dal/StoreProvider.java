@@ -1,6 +1,7 @@
 package base.data.dal;
 
 import base.data.dtos.PagedDto;
+import base.data.dtos.ResultDto;
 import ultilities.helpers.ReflectionExHelper;
 
 
@@ -37,8 +38,9 @@ public class StoreProvider<T> {
         CallableStatement cstmt = ConnectionFactory.Instance().buildProcedureCallableStatement(sp_name,map);
         ResultSet resultSet = cstmt.executeQuery();
         while (resultSet.next()){
-            T obj =(T) this.tObject.getClass().getDeclaredConstructor().newInstance();
+            ResultDto obj =new ResultDto();
             ReflectionExHelper.loadResultSetIntoObject(resultSet,obj);
+            ReflectionExHelper.loadObjectIntoMap(obj,mapResult);
         }
         ConnectionFactory.Instance().closeConn(cstmt);
         return mapResult;
@@ -103,6 +105,7 @@ public class StoreProvider<T> {
         int counter =0;
         while (resultSet.next()){
             List rowData = new ArrayList();
+            rowData.add(counter+1);
             ReflectionExHelper.loadResultSetIntoRowData(resultSet,dislayDto,rowData);            
             tableModel.addRow(rowData.toArray());
             counter++;

@@ -11,8 +11,12 @@ package base.configurations.constants;
  */
 public class ColorConstants {
     public static final String TABLE_HEADER_BACKGROUND="#639BB7";
+     public static final String TABLE_HOVER_COLOR="#D2E2FC";
+
      public static final String WHITE="#FFFFFF";
      public static final String BLACK="#000000";
      public static final String SILVER_LIGHT="#F3F7FB";
-      public static final String APP_PRIMARY_COLOR="#248DC1";
+     public static final String APP_PRIMARY_COLOR="#248DC1";
+    
+     
 }

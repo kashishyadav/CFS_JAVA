@@ -12,11 +12,10 @@ import base.applications.imps.BaseService;
 
 
 import base.guis.controls.BaseEditPanel;
-import java.math.BigDecimal;
 
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
-import ultilities.Utils.MathUtils;
+import ultilities.utils.MathUtils;
 import ultilities.helpers.FormatRenderHelper;
 import ultilities.helpers.NumberRendererHelper;
 
@@ -52,7 +51,7 @@ public class ProductGUI extends BaseEditPanel {
                 StoreConstants.PRODUCT_INSORUPD(),
                 StoreConstants.PRODUCT_BYID());
         
-        this.search();
+        this.dataTable.onResetSearch();
     }
     
     @Override
@@ -70,7 +69,7 @@ public class ProductGUI extends BaseEditPanel {
 
         @Override
     public void bindingModelToView( ) {
-        System.out.println(txtPrice.getValue());
+        //System.out.println(txtPrice.getValue());
         ProductEntity obj = (ProductEntity) this.getCurrentObj();
         txtCode.setText(obj.getCode());
         txtName.setText(obj.getName());
@@ -96,7 +95,7 @@ public class ProductGUI extends BaseEditPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        dataTable = new app.common.controls.DataTableCustom();
+        dataTable = new app.common.controls.DataTable();
         appCrudToolBar = new app.common.controls.AppCrudToolBar();
         groupInformation = new app.common.controls.GroupBox();
         jLabel2 = new javax.swing.JLabel();
@@ -200,7 +199,7 @@ public class ProductGUI extends BaseEditPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private app.common.controls.AppCrudToolBar appCrudToolBar;
-    private app.common.controls.DataTableCustom dataTable;
+    private app.common.controls.DataTable dataTable;
     private app.common.controls.GroupBox groupInformation;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

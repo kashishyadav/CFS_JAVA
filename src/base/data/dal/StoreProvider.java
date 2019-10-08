@@ -2,6 +2,7 @@ package base.data.dal;
 
 import base.data.dtos.PagedDto;
 import base.data.dtos.ResultDto;
+import base.data.entities.EntitySearchBase;
 import ultilities.helpers.ReflectionExHelper;
 
 
@@ -95,7 +96,7 @@ public class StoreProvider<T> {
     }
 
     //storeName, filterParams, ObjectDislayInJTable, tableModel
-    public void executeIntoDataTable(String sp_name, Object parametersObj,Object dislayDto,DefaultTableModel tableModel) throws Exception{
+    public void executeIntoDataTablePaging(String sp_name, Object parametersObj,Object dislayDto,DefaultTableModel tableModel) throws Exception{
        if (tableModel.getRowCount() > 0) {
                     for (int i = tableModel.getRowCount() - 1; i > -1; i--) {
                         tableModel.removeRow(i);
@@ -114,7 +115,8 @@ public class StoreProvider<T> {
             tableModel.addRow(rowData.toArray());
             counter++;
         }
-                  
+        EntitySearchBase searchDto = (EntitySearchBase)parametersObj;
+        searchDto.setTotalCount(cstmt.getInt("p_TotalCount"));       
         ConnectionFactory.Instance().closeConn(cstmt);
         System.gc();
     }

@@ -4,7 +4,9 @@ import java.awt.*;
 
 public class SystemConstants {
     public final static int DEFAULT_OFFSET = 0;
-    public final static int DEFAULT_PAGESIZE = 20;
+    public final static int DEFAULT_PAGESIZE = 2;
+    public final static int DEFAULT_FIRSTROW = 0;
+      public final static int DEFAULT_LASTROW = 0;
     public final static int DEFAULT_SCREEN_WIDTH = 800;
     public final static int DEFAULT_SCREEN_HEIGHT = 600;
     public final static Dimension ClientSize = Toolkit.getDefaultToolkit().getScreenSize();

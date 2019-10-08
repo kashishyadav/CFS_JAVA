@@ -11,8 +11,6 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 
-
-
 public abstract class BaseEditPanel<T,TDisplay> extends BaseComponent implements IEditPanelUI  {
 
     public BaseEditPanel(T currentObj, T filterObj, TDisplay displayObj){
@@ -113,7 +111,7 @@ public abstract class BaseEditPanel<T,TDisplay> extends BaseComponent implements
      
      public void save(){
       Map<String,Object>  result =  this.appService.save(this.sp_insOrUpd,this.currentObj);
-      System.out.println(result.get("ErrorDesc"));
+     
      }
      
      public  void delete(){     

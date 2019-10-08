@@ -2,7 +2,7 @@ package app.core.modules.constants;
 
 public class StoreConstants {
     public static String PRODUCT_SEARCH(){
-        return "call PRODUCT_Search(:keyword,:offset,:pageSize,:sorting)";
+        return "call PRODUCT_Search(:keyword,:offset,:pageSize,:sorting,!totalCount)";
     }
     public static String PRODUCT_BYID(){
         return "call PRODUCT_ById(:id)";

@@ -47,7 +47,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="app.common.controls.DataTableCustom" name="dataTable">
+    <Component class="app.common.controls.DataTable" name="dataTable">
     </Component>
     <Component class="app.common.controls.AppCrudToolBar" name="appCrudToolBar">
     </Component>

@@ -1,11 +1,12 @@
 package base.data.dal;
 
-import base.data.dtos.CallableParameter;
-import base.data.enums.CallableType;
 
+import base.data.dtos.CallableParameter;
 import java.sql.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
 
 public class ConnectionFactory {
     private static ConnectionFactory _instance;
@@ -85,6 +86,7 @@ public class ConnectionFactory {
         CallableStatement cs = null;
         try {
             Map<String,Object> paramMap=new LinkedHashMap<String,Object>();
+            List<CallableParameter> outParams = new ArrayList<CallableParameter>();   
             int leftParnPos=sql.indexOf("(");
             int rightParnPos=sql.indexOf(")");
             String paramStr="";
@@ -92,13 +94,20 @@ public class ConnectionFactory {
                 paramStr=sql.substring(leftParnPos+1,rightParnPos);
             }
             int oracleCursorIndex=-1,paramIndex=0;
+        
             String[] str=paramStr.split(",");
             for(String param:str){
                 paramIndex++;
                 param=param.trim();
-                if(param.toLowerCase().equals("oracle")){
+                if(param.toLowerCase().startsWith("!")){
                     sql=sql.replaceFirst(param, "?");
                     oracleCursorIndex=paramIndex;
+                    String paramName=param.substring(1,param.length());
+                     if(paramName.substring(0,1)!="p"){
+                        paramName =  String.format("p_%s",paramName.substring(0, 1).toUpperCase() + paramName.substring(1));
+                    }
+                    CallableParameter cp = new CallableParameter(paramName,pmap.get(paramName),true);
+                    outParams.add(cp);
                     continue;
                 }else if(!param.startsWith(":")){
                     continue;
@@ -133,8 +142,12 @@ public class ConnectionFactory {
                 }
                 index++;
             }
-            if(oracleCursorIndex>-1){
-                cs.registerOutParameter(oracleCursorIndex, -10);
+            if(outParams.size()>0){
+                
+                for(CallableParameter cp : outParams){                    
+                  cs.registerOutParameter(cp.getName(),cp.getOutValueType());
+                }
+                
             }
 
         } catch (SQLException e) {
@@ -161,11 +174,10 @@ public class ConnectionFactory {
 //        }
 //    }
 
-//    private  void PreparedStmtSetValue(CallableStatement cStmt, int idx, Object obj) throws SQLException {
+//    private  void CallableStmtSetValue(CallableStatement cStmt, int idx, Object obj) throws SQLException {
 //        if (obj instanceof String) {
 //            callableStatement.setString(idx, (String) obj);
-//        } else if(obj instanceof Integer){
-//            callableStatement.setInt(idx, (Integer) obj);
+//             callableStatement.setInt(idx, (Integer) obj);
 //        } else if(obj instanceof BigDecimal){
 //            callableStatement.setBigDecimal(idx, (BigDecimal) obj);
 //        } else if(obj instanceof Double){
@@ -177,7 +189,8 @@ public class ConnectionFactory {
 //        } else{
 //            callableStatement.setObject(idx, obj);
 //        }
-//    }
+//        } else if(obj instanceof Integer){
+//   }
 
 //    public void CloseConn(PreparedStatement pStmt) {
 //        try{

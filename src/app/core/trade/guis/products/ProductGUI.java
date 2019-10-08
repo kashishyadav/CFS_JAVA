@@ -9,15 +9,14 @@ import app.core.modules.constants.StoreConstants;
 import app.core.trade.dtos.products.ProductDisplayDto;
 import app.core.trade.dtos.products.ProductEntity;
 import base.applications.imps.BaseService;
-import base.applications.intfs.IBaseService;
 
-import base.data.dal.StoreProvider;
 
 import base.guis.controls.BaseEditPanel;
 import java.math.BigDecimal;
 
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import ultilities.Utils.MathUtils;
 import ultilities.helpers.FormatRenderHelper;
 import ultilities.helpers.NumberRendererHelper;
 
@@ -30,8 +29,7 @@ public class ProductGUI extends BaseEditPanel {
     /**
      * Creates new form ProductGUI
      */    
-   
-   IBaseService<ProductEntity,ProductDisplayDto> appService;
+     
 
     public ProductGUI() throws InstantiationException, IllegalAccessException {     
         //current obj, search obj, display obj
@@ -40,7 +38,7 @@ public class ProductGUI extends BaseEditPanel {
         init();
     }
     private void init() throws InstantiationException, IllegalAccessException{
-        appService = new BaseService(ProductEntity.class,ProductDisplayDto.class);
+        this.appService = new BaseService(ProductEntity.class,ProductDisplayDto.class);
         dataTable.setEditPanel(this);             
        
         this.tableModel = (DefaultTableModel) dataTable.getTable().getModel();   
@@ -72,10 +70,11 @@ public class ProductGUI extends BaseEditPanel {
 
         @Override
     public void bindingModelToView( ) {
+        System.out.println(txtPrice.getValue());
         ProductEntity obj = (ProductEntity) this.getCurrentObj();
         txtCode.setText(obj.getCode());
         txtName.setText(obj.getName());
-       // txtPrice.setText(BigDecimal.parse());
+        txtPrice.setValue(obj.getPrice());
         txtImage.setText(obj.getCode());
     }
 
@@ -84,7 +83,7 @@ public class ProductGUI extends BaseEditPanel {
       ProductEntity entity = (ProductEntity) this.getCurrentObj();
       entity.setCode(txtCode.getText());
       entity.setName(txtName.getText());
-      entity.setPrice(new BigDecimal(isNull(txtPrice.getText())?"0":txtPrice.getText()));
+      entity.setPrice(MathUtils.getBigDecimal(txtPrice.getValue()));
     }
     
 
@@ -97,17 +96,21 @@ public class ProductGUI extends BaseEditPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        dataTable = new base.guis.controls.core.DataTableCustom();
-        appCrudToolBar = new base.guis.controls.core.AppCrudToolBar();
-        groupInformation = new base.guis.controls.core.GroupBox();
+        dataTable = new app.common.controls.DataTableCustom();
+        appCrudToolBar = new app.common.controls.AppCrudToolBar();
+        groupInformation = new app.common.controls.GroupBox();
         jLabel2 = new javax.swing.JLabel();
-        txtPrice = new javax.swing.JTextField();
         txtImage = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtCode = new javax.swing.JTextField();
         txtName = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        try {
+            txtPrice = new app.common.controls.MoneyInput();
+        } catch (java.text.ParseException e1) {
+            e1.printStackTrace();
+        }
 
         jLabel2.setText("Tên sản phẩm:");
 
@@ -136,9 +139,9 @@ public class ProductGUI extends BaseEditPanel {
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(groupInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtImage)
-                    .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtImage, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                    .addComponent(txtPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         groupInformationLayout.setVerticalGroup(
             groupInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,8 +158,8 @@ public class ProductGUI extends BaseEditPanel {
                             .addComponent(jLabel2)))
                     .addGroup(groupInformationLayout.createSequentialGroup()
                         .addGroup(groupInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
+                            .addComponent(jLabel3)
+                            .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(groupInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -178,7 +181,7 @@ public class ProductGUI extends BaseEditPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(appCrudToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(groupInformation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 241, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -196,9 +199,9 @@ public class ProductGUI extends BaseEditPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private base.guis.controls.core.AppCrudToolBar appCrudToolBar;
-    private base.guis.controls.core.DataTableCustom dataTable;
-    private base.guis.controls.core.GroupBox groupInformation;
+    private app.common.controls.AppCrudToolBar appCrudToolBar;
+    private app.common.controls.DataTableCustom dataTable;
+    private app.common.controls.GroupBox groupInformation;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -206,7 +209,7 @@ public class ProductGUI extends BaseEditPanel {
     private javax.swing.JTextField txtCode;
     private javax.swing.JTextField txtImage;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtPrice;
+    private app.common.controls.MoneyInput txtPrice;
     // End of variables declaration//GEN-END:variables
 
     

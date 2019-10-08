@@ -23,9 +23,9 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="appCrudToolBar" min="-2" max="-2" attributes="0"/>
-                          <Component id="groupInformation" min="-2" max="-2" attributes="0"/>
+                          <Component id="groupInformation" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="241" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -47,11 +47,11 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="base.guis.controls.core.DataTableCustom" name="dataTable">
+    <Component class="app.common.controls.DataTableCustom" name="dataTable">
     </Component>
-    <Component class="base.guis.controls.core.AppCrudToolBar" name="appCrudToolBar">
+    <Component class="app.common.controls.AppCrudToolBar" name="appCrudToolBar">
     </Component>
-    <Container class="base.guis.controls.core.GroupBox" name="groupInformation">
+    <Container class="app.common.controls.GroupBox" name="groupInformation">
 
       <Layout>
         <DimensionLayout dim="0">
@@ -74,10 +74,10 @@
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="txtImage" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txtPrice" alignment="0" min="-2" pref="139" max="-2" attributes="0"/>
+                      <Component id="txtImage" pref="139" max="32767" attributes="0"/>
+                      <Component id="txtPrice" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="29" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -99,8 +99,8 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtPrice" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtPrice" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -119,8 +119,6 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="T&#xea;n s&#x1ea3;n ph&#x1ea9;m:"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtPrice">
         </Component>
         <Component class="javax.swing.JTextField" name="txtImage">
         </Component>
@@ -145,6 +143,8 @@
           <AccessibilityProperties>
             <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="LBL1"/>
           </AccessibilityProperties>
+        </Component>
+        <Component class="app.common.controls.MoneyInput" name="txtPrice">
         </Component>
       </SubComponents>
     </Container>

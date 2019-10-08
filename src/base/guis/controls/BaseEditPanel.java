@@ -3,9 +3,10 @@ package base.guis.controls;
 
 import base.applications.intfs.IBaseService;
 import base.data.entities.EntityBase;
-import base.guis.controls.core.GroupBox;
+import app.common.controls.GroupBox;
 import base.guis.infs.IEditPanelUI;
 import java.awt.Component;
+import java.util.Map;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,9 +30,10 @@ public abstract class BaseEditPanel<T,TDisplay> extends BaseComponent implements
     private String sp_insOrUpd;
     private String sp_getById;
     
+    
     protected DefaultTableModel tableModel;
     
-    private IBaseService<T,TDisplay> appService;
+    protected IBaseService<T,TDisplay> appService;
     
     
     private GroupBox groupInfomation;
@@ -40,12 +42,27 @@ public abstract class BaseEditPanel<T,TDisplay> extends BaseComponent implements
         this.groupInfomation=groupInfomation;
     }
 
+    public String getStoredProcedureSearch(){
+        return this.sp_search;
+    }
+    public String getStoredProcedureById(){
+        return this.sp_getById;
+    }
+    public String getStoredProcedureInsOrUpd(){
+        return this.sp_insOrUpd;
+    }
+    
+    public IBaseService<T,TDisplay> getAppService(){
+        return this.appService;
+    }
+    
     public T getCurrentObj() {
         return currentObj;
     }
 
-    public void setCurrentObj(T currentObj) {
+    public void setCurrentObj(T currentObj) {      
         this.currentObj = currentObj;
+         System.gc();
     }
 
     public TDisplay getDisplayObj() {
@@ -54,6 +71,7 @@ public abstract class BaseEditPanel<T,TDisplay> extends BaseComponent implements
 
     public void setDisplayObj(TDisplay displayObj) {
         this.displayObj = displayObj;
+         System.gc();
     }
 
     public T getFilterObj() {
@@ -62,6 +80,7 @@ public abstract class BaseEditPanel<T,TDisplay> extends BaseComponent implements
 
     public void setFilterObj(T searchObj) {
         this.filterObj = searchObj;
+         System.gc();
     }
 
      public void refreshEditForm(){
@@ -77,6 +96,7 @@ public abstract class BaseEditPanel<T,TDisplay> extends BaseComponent implements
      
      public  void setTableModel(DefaultTableModel tableModel){
          this.tableModel= tableModel;
+          System.gc();
      }
      public void setStoreProcedureNames(String sp_search, String sp_insOrUpd, String sp_getById){
          this.sp_search = sp_search;
@@ -92,7 +112,8 @@ public abstract class BaseEditPanel<T,TDisplay> extends BaseComponent implements
      }
      
      public void save(){
-         this.appService.save(this.sp_insOrUpd,this.currentObj);
+      Map<String,Object>  result =  this.appService.save(this.sp_insOrUpd,this.currentObj);
+      System.out.println(result.get("ErrorDesc"));
      }
      
      public  void delete(){     
@@ -100,6 +121,7 @@ public abstract class BaseEditPanel<T,TDisplay> extends BaseComponent implements
      }
      
      public T getById(int id){
+         ((EntityBase)this.getCurrentObj()).setId(id);  
          return (T) appService.getById(sp_getById, this.currentObj);
      }
 }

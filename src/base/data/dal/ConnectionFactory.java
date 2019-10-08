@@ -198,6 +198,7 @@ public class ConnectionFactory {
         try{
             if(cStmt != null) {
                 cStmt.close();
+                cStmt=null;
             }
             if (conn != null ) {
                 conn.close();

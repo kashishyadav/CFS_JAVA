@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package base.guis.controls.core;
+package app.common.controls;
 
 import base.data.entities.FullAuditEntity;
 import base.guis.controls.BaseComponent;
@@ -79,17 +79,25 @@ public class AppCrudToolBar extends BaseComponent  implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==btnRefresh){
-            this.editPanelFunctions.refreshEditForm();
-        }else if (e.getSource()==btnSave){
-            this.editPanelFunctions.bindingViewToModel();
-            this.editPanelFunctions.save();
-            this.editPanelFunctions.search();
-        }else if (e.getSource()==btnDelete){
-            this.editPanelFunctions.bindingViewToModel();
-            ((FullAuditEntity)this.editPanelFunctions.getCurrentObj()).setDeleted(true);
-            this.editPanelFunctions.save();
-            this.editPanelFunctions.search();
+        try{
+            btnSave.setEnabled(false);
+             if(e.getSource()==btnRefresh){
+                this.editPanelFunctions.refreshEditForm();
+             }else if (e.getSource()==btnSave){
+                this.editPanelFunctions.bindingViewToModel();
+                this.editPanelFunctions.save();
+                this.editPanelFunctions.search();
+              }else if (e.getSource()==btnDelete){
+                this.editPanelFunctions.bindingViewToModel();
+                ((FullAuditEntity)this.editPanelFunctions.getCurrentObj()).setDeleted(true);
+                this.editPanelFunctions.save();
+                this.editPanelFunctions.search();
+              }
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }finally{
+              btnSave.setEnabled(true);
         }
+      
     }
 }

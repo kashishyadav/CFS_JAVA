@@ -43,6 +43,7 @@ public class StoreProvider<T> {
             ReflectionExHelper.loadObjectIntoMap(obj,mapResult);
         }
         ConnectionFactory.Instance().closeConn(cstmt);
+         System.gc();
         return mapResult;
     }
 
@@ -55,6 +56,7 @@ public class StoreProvider<T> {
             ReflectionExHelper.loadResultSetIntoObject(resultSet,objResult);
         }
         ConnectionFactory.Instance().closeConn(cstmt);
+         System.gc();
         return objResult;
     }
 
@@ -70,6 +72,7 @@ public class StoreProvider<T> {
            list.add(item);
        }
        ConnectionFactory.Instance().closeConn(cstmt);
+        System.gc();
         return list;
     }
 
@@ -87,6 +90,7 @@ public class StoreProvider<T> {
         }
         pagedDto.setRowCount(counter);
         ConnectionFactory.Instance().closeConn(cstmt);
+        System.gc();
         return pagedDto;
     }
 
@@ -112,6 +116,7 @@ public class StoreProvider<T> {
         }
                   
         ConnectionFactory.Instance().closeConn(cstmt);
+        System.gc();
     }
 
     

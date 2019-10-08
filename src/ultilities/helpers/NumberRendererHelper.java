@@ -26,7 +26,8 @@ public class NumberRendererHelper extends FormatRenderHelper {
 	 */
 	public static NumberRendererHelper getCurrencyRenderer()
 	{
-		return new NumberRendererHelper( NumberFormat.getCurrencyInstance(new Locale("vi", "VN")) );
+		//return new NumberRendererHelper( NumberFormat.getCurrencyInstance(new Locale("vi", "VN")) );
+            return new NumberRendererHelper( FormatHelper.getCurrencyFormat());
 	}
 
 	/*

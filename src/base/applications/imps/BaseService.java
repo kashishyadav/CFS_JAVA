@@ -71,7 +71,7 @@ public class BaseService<T,TDisplay> implements IBaseService  {
     @Override
     public T getById(String sp_name, Object paramsObject) {            
          try {         
-             T  tResultObj = (T) storeProvider.executeToObject(StoreConstants.PRODUCT_SEARCH(),paramsObject);
+             T  tResultObj = (T) storeProvider.executeToObject(sp_name,paramsObject);
              return tResultObj;
         } catch (Exception ex) {
             Logger.getLogger(ProductService.class.getName()).log(Level.SEVERE, null, ex);
@@ -82,7 +82,7 @@ public class BaseService<T,TDisplay> implements IBaseService  {
     @Override
     public void search(String sp_name, Object parametersObj, Object dislayDto, DefaultTableModel tableModel) {
         try {         
-            storeProvider.executeIntoDataTable(StoreConstants.PRODUCT_SEARCH(),parametersObj,dislayDto ,tableModel);
+            storeProvider.executeIntoDataTable(sp_name,parametersObj,dislayDto ,tableModel);
         } catch (Exception ex) {
             Logger.getLogger(ProductService.class.getName()).log(Level.SEVERE, null, ex);
         }         

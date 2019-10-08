@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableCellRenderer;
  */
 public class FormatRenderHelper extends DefaultTableCellRenderer {
        private Format formatter;
-     
+       
 	/*
 	 *   Use the specified formatter to format the Object
 	 */
@@ -52,7 +52,8 @@ public class FormatRenderHelper extends DefaultTableCellRenderer {
 
         public static FormatRenderHelper getDateRenderer()
 	{
-		return new FormatRenderHelper( SimpleDateFormat.getDateInstance(DEFAULT,new Locale("vi","VN"))  );
+		//return new FormatRenderHelper( SimpleDateFormat.getDateInstance(DEFAULT,new Locale("vi","VN"))  );
+            return new FormatRenderHelper( FormatHelper.getSimpleDateFormat());
 	}
 	/*
 	 *  Use the default time formatter for the default locale

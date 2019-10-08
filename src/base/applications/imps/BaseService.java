@@ -1,11 +1,9 @@
 package base.applications.imps;
 
-import app.core.modules.constants.StoreConstants;
-import app.core.trade.applications.impls.products.ProductService;
+
 import base.applications.intfs.IBaseService;
 import base.data.dal.StoreProvider;
 import base.data.entities.FullAuditEntity;
-import java.lang.reflect.InvocationTargetException;
 import ultilities.factories.DateTimeFactory;
 
 import java.sql.Date;
@@ -31,7 +29,7 @@ public class BaseService<T,TDisplay> implements IBaseService  {
      try {         
              storeProvider = new StoreProvider(this.tClazz);
         } catch (Exception ex) {
-            Logger.getLogger(ProductService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(tClazz.getName()).log(Level.SEVERE, null, ex);
         }      
     }
     
@@ -63,7 +61,7 @@ public class BaseService<T,TDisplay> implements IBaseService  {
          try {         
            result =  storeProvider.executeToMap(sp_name, ent);
         } catch (Exception ex) {
-            Logger.getLogger(ProductService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(tClazz.getName()).log(Level.SEVERE, null, ex);
         }    
         return result;
     }
@@ -74,7 +72,7 @@ public class BaseService<T,TDisplay> implements IBaseService  {
              T  tResultObj = (T) storeProvider.executeToObject(sp_name,paramsObject);
              return tResultObj;
         } catch (Exception ex) {
-            Logger.getLogger(ProductService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(tClazz.getName()).log(Level.SEVERE, null, ex);
         }         
         return null;
     }
@@ -84,7 +82,7 @@ public class BaseService<T,TDisplay> implements IBaseService  {
         try {         
             storeProvider.executeIntoDataTable(sp_name,parametersObj,dislayDto ,tableModel);
         } catch (Exception ex) {
-            Logger.getLogger(ProductService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(tClazz.getName()).log(Level.SEVERE, null, ex);
         }         
     }
 

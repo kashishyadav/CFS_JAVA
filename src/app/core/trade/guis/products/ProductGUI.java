@@ -12,7 +12,6 @@ import base.applications.imps.BaseService;
 
 
 import base.guis.controls.BaseEditPanel;
-import java.math.BigDecimal;
 
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;

@@ -4,30 +4,20 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/E:/WORK/Java/CFS_JAVA/src/base/guis/controls/BaseEditPanel.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/guis/controls/core/DataTable.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/data/entities/EntityBase.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/applications/imps/CrudService.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/guis/controls/core/AppCrudToolBar.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/data/dtos/ResultDto.java</file>
+            <file>file:/E:/WORK/Java/CFS_JAVA/src/ultilities/helpers/FormatHelper.java</file>
             <file>file:/E:/WORK/Java/CFS_JAVA/src/ultilities/helpers/ReflectionExHelper.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/main.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/guis/infs/IEditPanelUI.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/core/trade/dtos/products/ProductEntity.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/data/entities/FullAuditEntity.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/core/trade/guis/products/ProductGUI.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/data/entities/EntitySearchBase.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/common/CommonMaster.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/applications/BaseAppService.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/guis/controls/core/GroupBox.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/configurations/constants/SystemConstants.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/applications/intfs/IBaseService.java</file>
             <file>file:/E:/WORK/Java/CFS_JAVA/src/base/data/dal/ConnectionFactory.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/guis/controls/core/TableCustom.java</file>
+            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/main.java</file>
+            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/guis/controls/BaseFrame.java</file>
+            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/core/modules/constants/StoreConstants.java</file>
+            <file>file:/E:/WORK/Java/CFS_JAVA/src/ultilities/Utils/MathUtils.java</file>
             <file>file:/E:/WORK/Java/CFS_JAVA/src/base/applications/imps/BaseService.java</file>
             <file>file:/E:/WORK/Java/CFS_JAVA/src/base/data/dal/StoreProvider.java</file>
+            <file>file:/E:/WORK/Java/CFS_JAVA/src/ultilities/helpers/NumberRendererHelper.java</file>
             <file>file:/E:/WORK/Java/CFS_JAVA/src/app/core/trade/guis/mains/MainWindow.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/guis/controls/core/DataTableCustom.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/core/trade/applications/impls/products/ProductService.java</file>
+            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/common/controls/DataTableCustom.java</file>
+            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/common/controls/MoneyInput.java</file>
+            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/common/CommonMaster.java</file>
         </group>
     </open-files>
 </project-private>

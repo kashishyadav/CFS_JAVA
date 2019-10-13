@@ -21,8 +21,7 @@ public class BaseComponent extends JPanel {
             if(((String)(obj)).equals(getEmptyText())){
                 return true;
             }
-        }
-        
+        }        
         return false;
     }
     

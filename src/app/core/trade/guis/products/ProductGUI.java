@@ -5,13 +5,21 @@
  */
 package app.core.trade.guis.products;
 
+import app.common.controls.Selector;
 import app.core.modules.constants.StoreConstants;
+import app.core.trade.dtos.productCategories.ProductCategoryDisplayDto;
+import app.core.trade.dtos.productCategories.ProductCategoryEntity;
 import app.core.trade.dtos.products.ProductDisplayDto;
 import app.core.trade.dtos.products.ProductEntity;
 import base.applications.imps.BaseService;
+import base.data.dal.StoreProvider;
 
 
 import base.guis.controls.BaseEditPanel;
+import base.infrastructures.ComponentRunnable;
+import java.sql.ResultSet;
+import java.util.List;
+import java.util.Map;
 
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -28,6 +36,7 @@ public class ProductGUI extends BaseEditPanel {
     /**
      * Creates new form ProductGUI
      */    
+     StoreProvider<ProductCategoryEntity> categoryProvider;
      
 
     public ProductGUI() throws InstantiationException, IllegalAccessException {     
@@ -38,6 +47,13 @@ public class ProductGUI extends BaseEditPanel {
     }
     private void init() throws InstantiationException, IllegalAccessException{
         this.appService = new BaseService(ProductEntity.class,ProductDisplayDto.class);
+        
+        //Selector(combobox) StoreProvider
+        this.categoryProvider = new StoreProvider(ProductCategoryEntity.class);
+        
+       // init Selector
+       initSelector();
+        
         dataTable.setEditPanel(this);             
        
         this.tableModel = (DefaultTableModel) dataTable.getTable().getModel();   
@@ -86,6 +102,31 @@ public class ProductGUI extends BaseEditPanel {
     }
     
 
+    public void initSelector(){
+        //default display member = id
+         this.getProductCategorySelector().setDisplayMember("name");
+         Runnable threadCategories =  new ComponentRunnable(this) {
+            
+            @Override
+            public void run() {
+                try{
+                    List<Map<String,Object>> categories = categoryProvider.executeToListMapProperties(
+                            StoreConstants.PRODUCTCATEGORY_SEARCH(), new ProductCategoryEntity());
+                    ((ProductGUI)this.getComponent()).getProductCategorySelector().setDataSource(categories);
+                    
+                }catch(Exception ex){
+                    ex.printStackTrace();
+                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                }finally{
+                    System.gc();
+                }
+            }
+        };
+       threadCategories.run();
+    }
+    public Selector getProductCategorySelector(){
+        return this.selectorCategory;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -106,10 +147,11 @@ public class ProductGUI extends BaseEditPanel {
         txtName = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         try {
-            txtPrice = new app.common.controls.MoneyInput();
+            txtPrice = new app.common.controls.DecimalInput();
         } catch (java.text.ParseException e1) {
             e1.printStackTrace();
         }
+        selectorCategory = new app.common.controls.Selector();
 
         jLabel2.setText("Tên sản phẩm:");
 
@@ -179,15 +221,23 @@ public class ProductGUI extends BaseEditPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(appCrudToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(groupInformation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 241, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(groupInformation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addComponent(selectorCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(groupInformation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(groupInformation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(selectorCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(appCrudToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
@@ -205,10 +255,11 @@ public class ProductGUI extends BaseEditPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private app.common.controls.Selector selectorCategory;
     private javax.swing.JTextField txtCode;
     private javax.swing.JTextField txtImage;
     private javax.swing.JTextField txtName;
-    private app.common.controls.MoneyInput txtPrice;
+    private app.common.controls.DecimalInput txtPrice;
     // End of variables declaration//GEN-END:variables
 
     

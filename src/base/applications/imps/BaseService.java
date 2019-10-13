@@ -92,4 +92,9 @@ public class BaseService<T,TDisplay> implements IBaseService  {
          ent.setDeleted(true);
          return this.save(sp_name, ent);
     }
+
+    @Override
+    public StoreProvider getStoreProvider() {
+        return this.storeProvider;
+    }
 }

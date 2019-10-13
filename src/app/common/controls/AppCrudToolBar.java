@@ -90,7 +90,7 @@ public class AppCrudToolBar extends BaseComponent  implements ActionListener{
               }else if (e.getSource()==btnDelete){
                 this.editPanelFunctions.bindingViewToModel();
                 ((FullAuditEntity)this.editPanelFunctions.getCurrentObj()).setDeleted(true);
-                this.editPanelFunctions.save();
+                this.editPanelFunctions.delete();
                 this.editPanelFunctions.search();
               }
         }catch(Exception ex){

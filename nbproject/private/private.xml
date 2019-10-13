@@ -4,32 +4,16 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/E:/WORK/Java/CFS_JAVA/src/base/guis/controls/BaseEditPanel.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/common/controls/DataTable.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/data/entities/EntityBase.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/ultilities/helpers/ReflectionExHelper.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/data/dtos/ResultDto.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/main.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/core/modules/constants/StoreConstants.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/data/entities/FullAuditEntity.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/core/trade/guis/products/ProductGUI.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/guis/controls/BaseControl.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/data/dtos/SearchDto.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/data/entities/EntitySearchBase.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/common/CommonMaster.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/configurations/constants/SystemStringConstants.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/ultilities/helpers/FormatHelper.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/data/dtos/PagedDto.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/data/dal/ConnectionFactory.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/core/trade/guis/productCategories/ProductCategoryGUI.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/guis/controls/BaseFrame.java</file>
+            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/mains/main.java</file>
             <file>file:/E:/WORK/Java/CFS_JAVA/src/base/guis/controls/BaseComponent.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/applications/imps/BaseService.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/data/dal/StoreProvider.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/ultilities/utils/MessageUtils.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/ultilities/helpers/NumberRendererHelper.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/ultilities/utils/MathUtils.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/core/trade/guis/mains/MainWindow.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/common/controls/MoneyInput.java</file>
+            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/common/controls/NumberInput.java</file>
+            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/configurations/constants/SystemStringConstants.java</file>
+            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/common/controls/DecimalInput.java</file>
+            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/configurations/constants/SystemConstants.java</file>
+            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/common/controls/Selector.java</file>
+            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/core/trade/guis/products/ProductGUI.java</file>
+            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/guis/infs/IEditPanelUI.java</file>
+            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/infrastructures/ComponentRunnable.java</file>
         </group>
     </open-files>
 </project-private>

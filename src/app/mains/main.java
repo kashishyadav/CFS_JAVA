@@ -1,6 +1,6 @@
-package app;
+package app.mains;
 
-import app.core.trade.guis.mains.MainWindow;
+import app.mains.MainWindow;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

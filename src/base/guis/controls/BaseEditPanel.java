@@ -4,11 +4,13 @@ package base.guis.controls;
 import base.applications.intfs.IBaseService;
 import base.data.entities.EntityBase;
 import app.common.controls.GroupBox;
+import base.configurations.constants.SystemStringConstants;
 import base.guis.infs.IEditPanelUI;
 import java.awt.Component;
 import java.util.Map;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import ultilities.utils.MessageUtils;
 
 
 public abstract class BaseEditPanel<T,TDisplay> extends BaseComponent implements IEditPanelUI  {
@@ -111,11 +113,20 @@ public abstract class BaseEditPanel<T,TDisplay> extends BaseComponent implements
      
      public void save(){
       Map<String,Object>  result =  this.appService.save(this.sp_insOrUpd,this.currentObj);
-     
+      if(!result.get("Result").equals("1")){
+          MessageUtils.showErrorMessage(this, (String)result.get("ErrorDesc"));
+      }else{
+          MessageUtils.showSuccessMessage(this, SystemStringConstants.STR_SAVE_SUCCESS);
+      }
      }
      
      public  void delete(){     
-      this.appService.delete(this.sp_insOrUpd,this.currentObj);
+      Map<String,Object>  result = this.appService.delete(this.sp_insOrUpd,this.currentObj);
+        if(!result.get("Result").equals("1")){
+           MessageUtils.showErrorMessage(this, (String)result.get("ErrorDesc"));
+       }else{
+           MessageUtils.showSuccessMessage(this, SystemStringConstants.STR_DEL_SUCCESS);
+       }
      }
      
      public T getById(int id){

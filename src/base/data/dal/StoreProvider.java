@@ -12,8 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Vector;
-import javax.swing.table.AbstractTableModel;
+
 import javax.swing.table.DefaultTableModel;
 
 public class StoreProvider<T> {
@@ -75,6 +74,33 @@ public class StoreProvider<T> {
        ConnectionFactory.Instance().closeConn(cstmt);
         System.gc();
         return list;
+    }
+    
+      public List<Map<String,Object>> executeToListMapProperties(String sp_name, Object parametersObj) throws Exception{
+        List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
+        Map<String,Object> map = ReflectionExHelper.reflectObjectToMap(parametersObj);
+        CallableStatement cstmt = ConnectionFactory.Instance().buildProcedureCallableStatement(sp_name,map);
+       ResultSet resultSet = cstmt.executeQuery();
+       T item = (T) this.tObject.getClass().getDeclaredConstructor().newInstance();          
+       while (resultSet.next()){        
+           Map<String,Object> mapProperties =  new HashMap<String,Object>();
+           ReflectionExHelper.loadResultSetIntoMapProperties(resultSet,item, mapProperties);
+           list.add(mapProperties);
+       }
+       ConnectionFactory.Instance().closeConn(cstmt);
+        System.gc();
+        return list;
+    }
+    
+    
+     public ResultSet executeToResultSet(String sp_name, Object parametersObj) throws Exception{
+        
+        Map<String,Object> map = ReflectionExHelper.reflectObjectToMap(parametersObj);
+        CallableStatement cstmt = ConnectionFactory.Instance().buildProcedureCallableStatement(sp_name,map);
+        ResultSet resultSet = cstmt.executeQuery(); 
+        ConnectionFactory.Instance().closeConn(cstmt);
+        System.gc();
+        return resultSet;
     }
 
     public PagedDto<T> executeToPagedDto(String sp_name, Object parametersObj) throws Exception{

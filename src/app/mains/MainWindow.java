@@ -1,6 +1,6 @@
-package app.core.trade.guis.mains;
+package app.mains;
 
-
+import app.core.trade.guis.productCategories.ProductCategoryGUI;
 import app.core.trade.guis.products.ProductGUI;
 import base.configurations.constants.SystemConstants;
 import base.guis.controls.BaseFrame;
@@ -11,11 +11,15 @@ public class MainWindow extends BaseFrame {
 
 
 ProductGUI productGUI;
+ProductCategoryGUI productCategoryGUI;
     public MainWindow() throws InstantiationException, IllegalAccessException{
        
 
         productGUI = new ProductGUI();
         productGUI.setVisible(true);
+        
+        productCategoryGUI = new ProductCategoryGUI();
+        productCategoryGUI.setVisible(true);
 
         this.setTitle("MainWindow");
         this.setContentPane(productGUI);

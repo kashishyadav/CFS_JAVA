@@ -26,22 +26,36 @@ public class ReflectionExHelper {
                    map.put(columnName,value);
                   // System.out.printf("%s - %s \n",columnName,value );
                }catch(Exception ex){
-                   ex.printStackTrace();
+                //   ex.printStackTrace();
                    continue;
                }
            }
        }
     }
+    public static void loadResultSetIntoMapProperties(ResultSet rst,Object object, Map<String,Object> mapProperties)
+            throws IllegalArgumentException, IllegalAccessException, SQLException {
+    	 List<Field> allFields = getFields(object);
+
+        for (Field field : allFields) {
+            field.setAccessible(true);
+            String columnName = field.getName();
+           try{
+               Object value = rst.getObject(columnName);
+               Class<?> type = field.getType();
+               if (isPrimitive(type)) {//check primitive type(Point 5)
+                   Class<?> boxed = boxPrimitiveClass(type);//box if primitive(Point 6)
+                   value = boxed.cast(value);
+               }
+               mapProperties.put(columnName, value);
+           }catch(Exception ex){
+             //  ex.printStackTrace();
+               continue;
+           }
+        }
+    }
 
     public static void loadResultSetIntoObject(ResultSet rst, Object object)
             throws IllegalArgumentException, IllegalAccessException, SQLException {
-//        Class<?> zclass = object.getClass();
-//
-//        Field[] baseFields = zclass.getSuperclass().getDeclaredFields();
-//        Field[] fields = zclass.getDeclaredFields();
-//        Field[] allFields = new Field[baseFields.length + fields.length];
-//        Arrays.setAll(allFields, i ->
-//                (i < baseFields.length ? baseFields[i] : fields[i - baseFields.length]));
     	 List<Field> allFields = getFields(object);
 
         for (Field field : allFields) {
@@ -56,6 +70,7 @@ public class ReflectionExHelper {
                }
                field.set(object, value);
            }catch(Exception ex){
+             //  ex.printStackTrace();
                continue;
            }
         }
@@ -79,7 +94,7 @@ public class ReflectionExHelper {
                rowData.add(value);
               // field.set(object, value);
            }catch(Exception ex){
-               ex.printStackTrace();
+             //  ex.printStackTrace();
                continue;
            }
         }
@@ -147,7 +162,7 @@ public class ReflectionExHelper {
               //  System.out.println(fName+" - "+ field.get(obj));
                 map.put(fName,field.get(obj));
             } catch (IllegalAccessException e) {
-                e.printStackTrace();
+             //   e.printStackTrace();
                 continue;
             }
         }

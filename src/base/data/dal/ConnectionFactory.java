@@ -132,7 +132,13 @@ public class ConnectionFactory {
                     Date date=(Date)value;
                     cs.setDate(index, new java.sql.Date(date.getTime()));
                 }else if(value instanceof Integer){
-                    cs.setInt(index, (Integer)value);
+                    if((Integer)value== 0)
+                    {
+                      cs.setObject(index, null);
+                    }else{
+                      cs.setInt(index, (Integer)value);
+                    }
+                   
                 }else if(value instanceof Float){
                     cs.setFloat(index, (Float)value);
                 }else if(value instanceof Double){
@@ -213,11 +219,11 @@ public class ConnectionFactory {
                 cStmt.close();
                 cStmt=null;
             }
-            if (conn != null ) {
-                conn.close();
-                conn = null;
-                System.out.println("Close Connection Successfully");
-            }
+//            if (conn != null ) {
+//                conn.close();
+//                conn = null;
+//                System.out.println("Close Connection Successfully");
+//            }
         }catch(Exception e){
            System.out.println(e.toString());
         }

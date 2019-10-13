@@ -12,4 +12,8 @@ public class StoreConstants {
                 ":image, :thumbnail, :note, :status, :isDeleted, :createdDate, :createdBy, " +
                 ":updatedDate, :updatedBy)";
     }
+    
+    public static String PRODUCTCATEGORY_SEARCH(){
+        return "call PRODUCTCATEGORY_SEARCH(:keyword,:offset,:pageSize,:sorting,!totalCount)";
+    }
 }

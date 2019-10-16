@@ -4,13 +4,19 @@ package base.guis.controls;
 import base.applications.intfs.IBaseService;
 import base.data.entities.EntityBase;
 import app.common.controls.GroupBox;
+import base.applications.imps.BaseService;
+import base.applications.intfs.IDataTableDisplayMethod;
 import base.configurations.constants.SystemStringConstants;
+import base.data.entities.EntitySearchBase;
 import base.guis.infs.IEditPanelUI;
+import base.infrastructures.ComponentRunnable;
 import java.awt.Component;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComponent;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.JTextComponent;
 import ultilities.utils.MessageUtils;
 
 
@@ -31,6 +37,7 @@ public abstract class BaseEditPanel<T,TDisplay> extends BaseComponent implements
     private String sp_insOrUpd;
     private String sp_getById;
     private JComponent idControl;
+    private IDataTableDisplayMethod dtDisplayMethod;
     
     protected DefaultTableModel tableModel;
     
@@ -100,6 +107,10 @@ public abstract class BaseEditPanel<T,TDisplay> extends BaseComponent implements
          System.gc();
     }
 
+    public void setDataTableDisplayMethod(IDataTableDisplayMethod dtDisplayMethod){
+        this.dtDisplayMethod = dtDisplayMethod;
+    }
+    
     public GroupBox getGroupInformation(){
         return this.groupInfomation;
     }
@@ -110,8 +121,8 @@ public abstract class BaseEditPanel<T,TDisplay> extends BaseComponent implements
          this.groupInfomation.setEditStatusTitle(SystemStringConstants.STR_ADD);
          Component[] components = this.groupInfomation.getComponents();
          for(Component c: components ){
-           if (c instanceof JTextField){
-               JTextField textfield = (JTextField) c;
+           if (c instanceof JTextComponent){
+               JTextComponent textfield = (JTextComponent) c;
                textfield.setText(this.getEmptyText());
            }
          }
@@ -127,11 +138,28 @@ public abstract class BaseEditPanel<T,TDisplay> extends BaseComponent implements
          this.sp_getById = sp_getById;
      }
      
-      public abstract void setTableColumns();
+     public abstract void setTableColumns();
      public abstract void bindingModelToView();
      public abstract void bindingViewToModel();    
      public void search(){
-        this.appService.search(sp_search, this.getFilterObj(), this.getDisplayObj(), this.tableModel);
+         new Thread(new  ComponentRunnable(this){
+               @Override
+               public void run() {
+                   try {
+                       BaseEditPanel tmpComponent = (BaseEditPanel)this.getComponent();
+                       tmpComponent.appService.search(sp_search, tmpComponent.getFilterObj(), tmpComponent.getDisplayObj(), tmpComponent.tableModel);
+                       if(tmpComponent.dtDisplayMethod!=null){
+                           EntitySearchBase searchDto =  ((EntitySearchBase) tmpComponent.getFilterObj());                          
+                           tmpComponent.dtDisplayMethod.setPageNumberLabel(searchDto.getOffset(), searchDto.getPageCount());
+                           tmpComponent.dtDisplayMethod.setTotalCountLabel(searchDto.getTotalCount());
+                           tmpComponent.dtDisplayMethod.setEnableSearchButton(true);
+                       }
+                   } catch (Exception ex) {
+                       Logger.getLogger(BaseService.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+               }
+               
+           }).start();     
      }
      
      public void save(){

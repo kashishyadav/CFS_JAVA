@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class SystemConstants {
     public final static int DEFAULT_OFFSET = 0;
-    public final static int DEFAULT_PAGESIZE = 20;
+    public final static int DEFAULT_PAGESIZE = 5;
     public final static int DEFAULT_FIRSTROW = 0;
     public final static int DEFAULT_LASTROW = 0;
     public final static int DEFAULT_SCREEN_WIDTH = 1200;

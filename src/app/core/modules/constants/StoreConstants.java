@@ -1,26 +1,24 @@
 package app.core.modules.constants;
 
 public class StoreConstants {
-    public static String ALLCODE_LSTBYCODE(){
-        return "call ALLCODE_LstByCode(:cdName)";
-    }
-    
-    public static String PRODUCT_SEARCH(){
-        return "call PRODUCT_Search(:keyword,:offset,:pageSize,:sorting,!totalCount)";
-    }
-    public static String PRODUCT_BYID(){
-        return "call PRODUCT_ById(:id)";
-    }
-    public static String PRODUCT_INSORUPD(){
-        return "call PRODUCT_InsOrUpd(:id, :code, :name, :price, :categoryId, :description, " +
-                ":image, :thumbnail, :note, :status, :isDeleted, :createdDate, :createdBy, " +
-                ":updatedDate, :updatedBy)";
-    }
-    
-    public static String PRODUCTCATEGORY_SEARCH(){
-        return "call PRODUCTCATEGORY_SEARCH(:keyword,:offset,:pageSize,:sorting,!totalCount)";
-    }
-     public static String PRODUCTCATEGORY_LST(){
-        return "call PRODUCTCATEGORY_Lst";
-    }
+
+    public static final String ALLCODE_LSTBYCODE = "call ALLCODE_LstByCode(:cdName)";
+
+    public static final String PRODUCT_SEARCH = "call PRODUCT_Search(:keyword,:offset,:pageSize,:sorting,!totalCount)";
+
+    public static final String PRODUCT_BYID = "call PRODUCT_ById(:id)";
+
+    public static final String PRODUCT_INSORUPD
+            = "call PRODUCT_InsOrUpd(:id, :code, :name, :price, :categoryId, :description, "
+            + ":image, :thumbnail, :note, :status, :isDeleted, :createdDate, :createdBy, "
+            + ":updatedDate, :updatedBy)";
+
+    public static final String PRODUCTCATEGORY_SEARCH
+            = "call PRODUCTCATEGORY_SEARCH(:keyword,:offset,:pageSize,:sorting,!totalCount)";
+    public static final String PRODUCTCATEGORY_LST
+            = "call PRODUCTCATEGORY_Lst";
+    public static final String PRODUCTCATEGORY_INSORUPD
+            = "call PRODUCTCATEGORY_INSORUPD(:id,:code,:name,:description,:image,:thumbnail,:isDeleted, :createdDate, :createdBy, "
+            + ":updatedDate, :updatedBy)";
+    public static final String PRODUCTCATEGORY_BYID = "call PRODUCTCATEGORY_ById(:id)";
 }

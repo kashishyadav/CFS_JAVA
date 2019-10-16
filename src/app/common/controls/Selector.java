@@ -5,10 +5,13 @@
  */
 package app.common.controls;
 
+import base.configurations.constants.ColorConstants;
 import base.configurations.constants.SystemStringConstants;
 import base.guis.controls.core.BaseCombobox;
+import java.awt.Color;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -29,103 +32,134 @@ public class Selector extends BaseCombobox implements ItemListener {
     protected Object _value = null;
     protected String _strDisplayMember = "id";
     protected String _strValueMember = "id";
-    
+
     protected Class<?> _valueType = int.class;
-    
-    protected boolean isNullableDisplay = false;
-    
-    
-    protected List<Map<String,Object>> dataSource;
-    
-   
+
+    protected boolean isNullableDisplay = true;
+
+    protected List<Map<String, Object>> dataSource;
+
     public Selector() {
         initComponents();
-        init(); 
+        init();
     }
-    private void init(){
-        model = new DefaultComboBoxModel(); 
-       
+
+    private void init() {
+        model = new DefaultComboBoxModel();
+
         this.setModel(model);
         this.addItemListener(this);
         setOpaque(true);
-        setFont(TextUtils.getSelectorFont());
-//        setBackground(Color.decode(ColorConstants.APP_COLOR));
+        //setFont(TextUtils.getSelectorFont());
+        setBackground(Color.decode(ColorConstants.APP_COLOR));
 //        setForeground(Color.WHITE);
     }
-    
-    public void setDisplayMember(String displayName){
+
+    public void setDisplayMember(String displayName) {
         this._strDisplayMember = displayName;
     }
-    
-    public void setValueMember(String valueName){
+
+    public void setValueMember(String valueName) {
         this._strValueMember = valueName;
     }
-    
-    public void setNullableDisplay(boolean isNullableDisplay){
+
+    public void setNullableDisplay(boolean isNullableDisplay) {
         this.isNullableDisplay = isNullableDisplay;
     }
-    
-    public void setValueType(Class<?> type){
+
+    public void setValueType(Class<?> type) {
         this._valueType = type;;
     }
-    
-     
-    
-    public void setDataSource(List<Map<String,Object>> dataSource){
+
+    public void setValue(Object value) {
+        if (value == null) {
+//            if (!this.isNullableDisplay) {
+//                this.isNullableDisplay = true;
+//            } else {
+//
+//            }
+//            this._value = value;
+//            this.setSelectedIndex(0);
+        } else {
+            boolean isFound = false;
+            for (int i = 0; i < this.dataSource.size(); i++) {
+                Object compareValue = this.dataSource.get(i).get(this._strValueMember);
+                if (compareValue instanceof String) {
+                    if (compareValue.equals(value)) {
+                        isFound = true;
+                        this._value = compareValue;
+                        this.setSelectedIndex(i);
+                        break;
+                    }
+                } else {
+                    if (compareValue == (value)) {
+                        isFound = true;
+                        this._value = compareValue;
+                        this.setSelectedIndex(i);
+                        break;
+                    }
+                }
+            }
+
+            if (!isFound) {
+                this._value = null;
+                this.setSelectedIndex(0);
+            }
+        }
+    }
+
+    public void setDataSource(List<Map<String, Object>> dataSource) {
         this.dataSource = dataSource;
         try {
-            
-                this.model.removeAllElements();
-                if(isNullableDisplay){
-                    this.dataSource.add(0, null);
-                    
+
+            this.model.removeAllElements();
+            if (isNullableDisplay) {
+                Map<String, Object> mapFirst = new HashMap<String, Object>();
+                mapFirst.put(this._strValueMember, null);
+                this.dataSource.add(0, mapFirst);
+
+            }
+            for (int i = 0; i < this.dataSource.size(); i++) {
+                if (i == 0 && this.isNullableDisplay) {
+                    this.model.addElement(SystemStringConstants.STR_NULL);
+                } else {
+                    this.model.addElement(this.dataSource.get(i).get(_strDisplayMember));
                 }
-                for(int i =0; i<this.dataSource.size();i++){
-                    if(i==0 && this.isNullableDisplay ){
-                        this.model.addElement(SystemStringConstants.STR_NULL);
-                    }else{
-                         this.model.addElement(this.dataSource.get(i).get(_strDisplayMember));
-                    }
-                   
-                }               
-            
+
+            }
+
         } catch (Exception ex) {
             ex.printStackTrace();
             Logger.getLogger(Selector.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
+        } finally {
             System.gc();
-        }       
-        
+        }
+
     }
-    
-     @Override
+
+    @Override
     public void itemStateChanged(ItemEvent e) {
-       if(e.getStateChange()==ItemEvent.SELECTED){
-          // System.out.println(this.getSelectedValue());
-       }
+        if (e.getStateChange() == ItemEvent.SELECTED) {
+           this._value = this.dataSource.get(this.getSelectedIndex()).get(this._strValueMember);
+        }
     }
-    
-    public Object getSelectedValue(){
-        Object rsValue = null;
-        int curIndex =  this.getSelectedIndex();
-        try{
-          if(isNullableDisplay && curIndex == 0){
-            if(this._valueType == int.class || this._valueType == Integer.class ){
-                 rsValue = 0;
-             }
-           }else{
-               rsValue = this.dataSource.get(curIndex).get(this._strValueMember);
-          }          
-         
-        }catch(Exception ex){
+
+    public Object getSelectedValue() {
+        Object rsValue = this._value;
+        int curIndex = this.getSelectedIndex();
+        try {
+            if (isNullableDisplay && curIndex == 0) {
+                if (this._valueType == int.class || this._valueType == Integer.class) {
+                    rsValue = 0;
+                }
+            } 
+
+        } catch (Exception ex) {
             ex.printStackTrace();
             throw ex;
         }
         return rsValue;
     }
-
-    
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -147,7 +181,6 @@ public class Selector extends BaseCombobox implements ItemListener {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

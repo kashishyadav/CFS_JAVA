@@ -22,7 +22,7 @@ ProductCategoryGUI productCategoryGUI;
         productCategoryGUI.setVisible(true);
 
         this.setTitle("MainWindow");
-        this.setContentPane(productGUI);
+        this.setContentPane(productCategoryGUI);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setBounds(SystemConstants.CENTER_POSX, SystemConstants.CENTER_POSY,
                 SystemConstants.DEFAULT_SCREEN_WIDTH, SystemConstants.DEFAULT_SCREEN_HEIGHT);

@@ -24,6 +24,7 @@ public class AllCodeSelector extends Selector {
      * Creates new form AllCodeSelector
      */
     public AllCodeSelector() {
+        super();
         initComponents();
         this._strDisplayMember="content";
         this._strValueMember="cdValue";
@@ -40,7 +41,7 @@ public class AllCodeSelector extends Selector {
                     StoreProvider<AllCodeEntity> storeProvider = new StoreProvider(AllCodeEntity.class);
                     
                     try {
-                       List<Map<String,Object>>  dataSrc=  storeProvider.executeToListMapProperties(StoreConstants.ALLCODE_LSTBYCODE(), allCode);
+                       List<Map<String,Object>>  dataSrc=  storeProvider.executeToListMapProperties(StoreConstants.ALLCODE_LSTBYCODE, allCode);
                      ((Selector)this.getComponent()).setDataSource(dataSrc);
                      dataSrc = null;
                     } catch (Exception ex) {

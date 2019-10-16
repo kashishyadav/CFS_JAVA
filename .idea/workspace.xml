@@ -2,15 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c06d495f-49b2-4412-8ad3-d8ee0ebe7fa4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/built-jar.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/built-jar.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/app/core/modules/constants/StoreConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/app/core/modules/constants/StoreConstants.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/base/applications/imps/BaseService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/base/applications/imps/BaseService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nbproject/private/private.xml" beforeDir="false" afterPath="$PROJECT_DIR$/nbproject/private/private.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/base/configurations/constants/SystemConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/base/configurations/constants/SystemConstants.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/base/data/dal/ConnectionFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/base/data/dal/ConnectionFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/base/data/dal/StoreProvider.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/base/data/dal/StoreProvider.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/base/data/dtos/CallableParameter.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/base/data/dtos/CallableParameter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/base/data/dtos/SearchDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/base/data/dtos/SearchDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/base/data/entities/EntitySearchBase.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/base/data/entities/EntitySearchBase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/base/data/entities/FullAuditEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/base/data/entities/FullAuditEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/base/guis/controls/BaseEditPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/base/guis/controls/BaseEditPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/ultilities/common/CommonUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/ultilities/common/CommonUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/ultilities/helpers/FormatRenderHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/ultilities/helpers/FormatRenderHelper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/ultilities/helpers/ReflectionExHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/ultilities/helpers/ReflectionExHelper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/CFShop.jar" beforeDir="false" afterPath="$PROJECT_DIR$/dist/CFShop.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/common/controls/AllCodeSelector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/common/controls/AllCodeSelector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/common/controls/DataTable.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/common/controls/DataTable.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/common/controls/DataTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/common/controls/DataTable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/common/controls/Selector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/common/controls/Selector.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/core/modules/constants/StoreConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/core/modules/constants/StoreConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/core/trade/dtos/productCategories/ProductCategoryEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/core/trade/dtos/productCategories/ProductCategoryEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/core/trade/dtos/products/ProductDisplayDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/core/trade/dtos/products/ProductDisplayDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/core/trade/guis/productCategories/ProductCategoryGUI.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/core/trade/guis/productCategories/ProductCategoryGUI.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/core/trade/guis/productCategories/ProductCategoryGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/core/trade/guis/productCategories/ProductCategoryGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/core/trade/guis/products/ProductGUI.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/core/trade/guis/products/ProductGUI.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/core/trade/guis/products/ProductGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/core/trade/guis/products/ProductGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/mains/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/mains/MainWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/base/applications/imps/BaseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/base/applications/imps/BaseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/base/configurations/constants/SystemConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/base/configurations/constants/SystemConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/base/data/dal/StoreProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/base/data/dal/StoreProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/base/data/entities/EntitySearchBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/base/data/entities/EntitySearchBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/base/data/entities/FullAuditEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/base/data/entities/FullAuditEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/base/guis/controls/BaseEditPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/base/guis/controls/BaseEditPanel.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,30 +48,20 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/base/base.java">
+        <entry file="file://$PROJECT_DIR$/src/base/guis/controls/BaseEditPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" selection-start-line="4" selection-end-line="4" />
+            <state relative-caret-position="432">
+              <caret line="27" column="38" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/base/guis/controls/BaseEditPanel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="20" column="38" selection-start-line="20" selection-start-column="38" selection-end-line="20" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/core/systems/dtos/allcodes/AllCodeEntity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="21" column="25" lean-forward="true" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
+            <state relative-caret-position="54">
+              <caret line="21" column="25" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
               <folding>
-                <element signature="e#0#459#0" expanded="true" />
                 <element signature="e#566#567#0" expanded="true" />
                 <element signature="e#592#593#0" expanded="true" />
                 <element signature="e#635#636#0" expanded="true" />
@@ -74,6 +88,57 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/core/trade/dtos/productCategories/ProductCategoryDisplayDto.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="14" column="31" lean-forward="true" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
+              <folding>
+                <element signature="e#0#381#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/app/core/trade/dtos/productCategories/ProductCategoryEntity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="234">
+              <caret line="16" column="30" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
+              <folding>
+                <element signature="e#453#454#0" expanded="true" />
+                <element signature="e#494#495#0" expanded="true" />
+                <element signature="e#529#530#0" expanded="true" />
+                <element signature="e#561#562#0" expanded="true" />
+                <element signature="e#591#592#0" expanded="true" />
+                <element signature="e#632#633#0" expanded="true" />
+                <element signature="e#667#668#0" expanded="true" />
+                <element signature="e#706#707#0" expanded="true" />
+                <element signature="e#743#744#0" expanded="true" />
+                <element signature="e#798#799#0" expanded="true" />
+                <element signature="e#847#848#0" expanded="true" />
+                <element signature="e#880#881#0" expanded="true" />
+                <element signature="e#911#912#0" expanded="true" />
+                <element signature="e#954#955#0" expanded="true" />
+                <element signature="e#991#992#0" expanded="true" />
+                <element signature="e#1028#1029#0" expanded="true" />
+                <element signature="e#1063#1064#0" expanded="true" />
+                <element signature="e#1114#1115#0" expanded="true" />
+                <element signature="e#1159#1160#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/core/trade/dtos/products/ProductEntity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="19" column="24" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="19" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/base/guis/gui.java">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
@@ -90,8 +155,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/base/data/dal/StoreProvider.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2196">
-              <caret line="123" column="63" selection-start-line="123" selection-start-column="63" selection-end-line="123" selection-end-column="63" />
+            <state relative-caret-position="2592">
+              <caret line="149" column="63" selection-start-line="149" selection-start-column="63" selection-end-line="149" selection-end-column="63" />
             </state>
           </provider>
         </entry>
@@ -132,6 +197,7 @@
         <option value="$PROJECT_DIR$/src/base/data/dtos/TableModelCustomDto.java" />
         <option value="$PROJECT_DIR$/src/base/guis/controls/BaseEditPanel.java" />
         <option value="$PROJECT_DIR$/src/app/core/systems/dtos/allcodes/AllCodeEntity.java" />
+        <option value="$PROJECT_DIR$/src/app/core/trade/dtos/productCategories/ProductCategoryEntity.java" />
       </list>
     </option>
   </component>
@@ -147,6 +213,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -178,7 +245,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="systems" type="462c0819:PsiDirectoryNode" />
+              <item name="trade" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="CFS_JAVA" type="b2602c69:ProjectViewProjectNode" />
@@ -186,7 +253,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="systems" type="462c0819:PsiDirectoryNode" />
+              <item name="trade" type="462c0819:PsiDirectoryNode" />
               <item name="dtos" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -195,15 +262,24 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="systems" type="462c0819:PsiDirectoryNode" />
+              <item name="trade" type="462c0819:PsiDirectoryNode" />
               <item name="dtos" type="462c0819:PsiDirectoryNode" />
-              <item name="allcodes" type="462c0819:PsiDirectoryNode" />
+              <item name="productCategories" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CFS_JAVA" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CFS_JAVA" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="trade" type="462c0819:PsiDirectoryNode" />
+              <item name="dtos" type="462c0819:PsiDirectoryNode" />
+              <item name="products" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -245,16 +321,18 @@
       <workItem from="1569920400746" duration="2496000" />
       <workItem from="1569983816368" duration="1676000" />
       <workItem from="1571109240451" duration="691000" />
+      <workItem from="1571220793742" duration="107000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7809000" />
+    <option name="totallyTimeSpent" value="7916000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25973153" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26308724" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -299,6 +377,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/base/guis/controls/BaseEditPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="27" column="38" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/base/guis/gui.java">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -311,8 +396,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/base/data/dal/StoreProvider.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2196">
-          <caret line="123" column="63" selection-start-line="123" selection-start-column="63" selection-end-line="123" selection-end-column="63" />
+        <state relative-caret-position="2592">
+          <caret line="149" column="63" selection-start-line="149" selection-start-column="63" selection-end-line="149" selection-end-column="63" />
         </state>
       </provider>
     </entry>
@@ -334,19 +419,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/base/guis/controls/BaseEditPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="20" column="38" selection-start-line="20" selection-start-column="38" selection-end-line="20" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/core/systems/dtos/allcodes/AllCodeEntity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="21" column="25" lean-forward="true" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
+        <state relative-caret-position="54">
+          <caret line="21" column="25" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
           <folding>
-            <element signature="e#0#459#0" expanded="true" />
             <element signature="e#566#567#0" expanded="true" />
             <element signature="e#592#593#0" expanded="true" />
             <element signature="e#635#636#0" expanded="true" />
@@ -367,6 +444,51 @@
             <element signature="e#1141#1142#0" expanded="true" />
             <element signature="e#1185#1186#0" expanded="true" />
             <element signature="e#1222#1223#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/core/trade/dtos/productCategories/ProductCategoryDisplayDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="14" column="31" lean-forward="true" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#381#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/core/trade/dtos/products/ProductEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="19" column="24" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="19" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/core/trade/dtos/productCategories/ProductCategoryEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="16" column="30" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
+          <folding>
+            <element signature="e#453#454#0" expanded="true" />
+            <element signature="e#494#495#0" expanded="true" />
+            <element signature="e#529#530#0" expanded="true" />
+            <element signature="e#561#562#0" expanded="true" />
+            <element signature="e#591#592#0" expanded="true" />
+            <element signature="e#632#633#0" expanded="true" />
+            <element signature="e#667#668#0" expanded="true" />
+            <element signature="e#706#707#0" expanded="true" />
+            <element signature="e#743#744#0" expanded="true" />
+            <element signature="e#798#799#0" expanded="true" />
+            <element signature="e#847#848#0" expanded="true" />
+            <element signature="e#880#881#0" expanded="true" />
+            <element signature="e#911#912#0" expanded="true" />
+            <element signature="e#954#955#0" expanded="true" />
+            <element signature="e#991#992#0" expanded="true" />
+            <element signature="e#1028#1029#0" expanded="true" />
+            <element signature="e#1063#1064#0" expanded="true" />
+            <element signature="e#1114#1115#0" expanded="true" />
+            <element signature="e#1159#1160#0" expanded="true" />
           </folding>
         </state>
       </provider>

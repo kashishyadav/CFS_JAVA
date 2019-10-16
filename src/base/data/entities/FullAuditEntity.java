@@ -1,7 +1,5 @@
 package base.data.entities;
 
-import base.configurations.constants.SystemConstants;
-
 import java.sql.Date;
 
 public class FullAuditEntity extends EntitySearchBase{

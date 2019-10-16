@@ -160,16 +160,19 @@ public class StoreProvider<T> {
             try (CallableStatement cstmt = ConnectionFactory.Instance().buildProcedureCallableStatement(conn, sp_name, map)) {
                 ResultSet resultSet = cstmt.executeQuery();
 
+                EntitySearchBase searchDto = (EntitySearchBase) parametersObj;
+                searchDto.setTotalCount(cstmt.getInt("p_TotalCount"));     
+                
+                int curPage = searchDto.getOffset();
                 int counter = 0;
                 while (resultSet.next()) {
                     List rowData = new ArrayList();
-                    rowData.add(counter + 1);
+                    rowData.add((counter + 1)+curPage);
                     ReflectionExHelper.loadResultSetIntoRowData(resultSet, dislayDto, rowData);
                     tableModel.addRow(rowData.toArray());
                     counter++;
                 }
-                EntitySearchBase searchDto = (EntitySearchBase) parametersObj;
-                searchDto.setTotalCount(cstmt.getInt("p_TotalCount"));
+                           
                 ConnectionFactory.Instance().closeCStmt(cstmt);
 
             }

@@ -88,4 +88,15 @@ public class EntitySearchBase extends EntityBase {
     {
         this.pageCount = pageCount;
     }
+    
+    public int getCurrentPage(){
+        int currentPage = 1;
+        if(this.pageCount>0){
+            currentPage = this.offset/pageCount + 1;
+            if(currentPage>pageCount) currentPage = pageCount;
+        }else{
+            currentPage = 1;
+        }
+        return currentPage;
+    }
 }

@@ -14,7 +14,6 @@ import app.core.trade.dtos.products.ProductEntity;
 import base.applications.imps.BaseService;
 import base.data.dal.StoreProvider;
 
-
 import base.guis.controls.BaseEditPanel;
 import base.infrastructures.ComponentRunnable;
 import java.util.List;
@@ -34,104 +33,109 @@ public class ProductGUI extends BaseEditPanel {
 
     /**
      * Creates new form ProductGUI
-     */    
-     StoreProvider<ProductCategoryEntity> categoryProvider;
-     
+     */
+    StoreProvider<ProductCategoryEntity> categoryProvider;
 
-    public ProductGUI() throws InstantiationException, IllegalAccessException {     
+    public ProductGUI() throws InstantiationException, IllegalAccessException {
         //current obj, search obj, display obj
-        super(new ProductEntity(),new ProductEntity(),new ProductDisplayDto());  
-        initComponents();       
+        super(new ProductEntity(), new ProductEntity(), new ProductDisplayDto());
+        initComponents();
         init();
     }
-    private void init() throws InstantiationException, IllegalAccessException{
-        this.appService = new BaseService(ProductEntity.class,ProductDisplayDto.class);
-        
-        //Selector(combobox) StoreProvider
-        this.categoryProvider = new StoreProvider(ProductCategoryEntity.class);
-        
-        //COMBOBOX
-       // init Selector
-       initSelector();
-       this.allCodeSelector1.loadListByCode("ORDER_STATUS");
-       // 
-       //
-       
-        dataTable.setEditPanel(this);           
-             
+
+    private void init() throws InstantiationException, IllegalAccessException {
+        this.appService = new BaseService(ProductEntity.class, ProductDisplayDto.class);
+
+        dataTable.setEditPanel(this);
+
         this.setIdControl(txtCode);
-        this.tableModel = (DefaultTableModel) dataTable.getTable().getModel();   
+        this.tableModel = (DefaultTableModel) dataTable.getTable().getModel();
         this.appCrudToolBar.setEditPanelUI(this);
-        this.setGroupInformation(this.gbInfo,PageConstants.PRODUCT);
+        this.setGroupInformation(this.gbInfo, PageConstants.PRODUCT);
         setTableColumns();
-        
+
         // set store procedure names
         this.setStoreProcedureNames(
-                StoreConstants.PRODUCT_SEARCH(),
-                StoreConstants.PRODUCT_INSORUPD(),
-                StoreConstants.PRODUCT_BYID());
-        
+                StoreConstants.PRODUCT_SEARCH,
+                StoreConstants.PRODUCT_INSORUPD,
+                StoreConstants.PRODUCT_BYID);
+
+        //COMBOBOX
+        //Selector(combobox) StoreProvider
+        this.categoryProvider = new StoreProvider(ProductCategoryEntity.class);
+        initSelector();
+        // 
+        //
         this.dataTable.onResetSearch();
     }
-    
+
     @Override
     public void setTableColumns() {
-                
-        String[] headers = new String[]{"STT","Id","Tên sản phẩm","Gía","Ngày tạo","Người tạo"};
-        tableModel.setColumnIdentifiers(headers); 
-      
+
+        String[] headers = new String[]{
+            //0     1       2           3       4       5           6
+            "STT", "Id", "Tên sản phẩm", "Gía", "Mô tả", "Ngày tạo", "Người tạo"};
+        tableModel.setColumnIdentifiers(headers);
+
         TableColumnModel colModel = dataTable.getTable().getColumnModel();
-      
+
         //format cho các cột
         colModel.getColumn(3).setCellRenderer(NumberRendererHelper.getCurrencyRenderer());
-        colModel.getColumn(4).setCellRenderer(FormatRenderHelper.getDateRenderer());     
+        colModel.getColumn(5).setCellRenderer(FormatRenderHelper.getDateRenderer());
     }
 
-        @Override
-    public void bindingModelToView( ) {
+    @Override
+    public void bindingModelToView() {
         //System.out.println(txtPrice.getValue());
-        ProductEntity obj = (ProductEntity) this.getCurrentObj();
-        txtCode.setText(obj.getCode());
-        txtName.setText(obj.getName());
-        txtPrice.setValue(obj.getPrice());
-        txtImage.setText(obj.getCode());
+        ProductEntity entity = (ProductEntity) this.getCurrentObj();
+        txtCode.setText(entity.getCode());
+        txtName.setText(entity.getName());
+        txtPrice.setValue(entity.getPrice());
+        txtDescription.setText(entity.getDescription());
+        allCodeSelectorStatus.setValue(entity.getStatus());
+        selectorCategory.setValue(entity.getCategoryId());
     }
 
     @Override
     public void bindingViewToModel() {
-      ProductEntity entity = (ProductEntity) this.getCurrentObj();
-      entity.setCode(txtCode.getText());
-      entity.setName(txtName.getText());
-      entity.setPrice(MathUtils.getBigDecimal(txtPrice.getValue()));
+        ProductEntity entity = (ProductEntity) this.getCurrentObj();
+        entity.setCode(txtCode.getText());
+        entity.setName(txtName.getText());
+        entity.setPrice(MathUtils.getBigDecimal(txtPrice.getValue()));
+        entity.setDescription(txtDescription.getText());
+        entity.setCategoryId((int) selectorCategory.getSelectedValue());
+        entity.setStatus((String) allCodeSelectorStatus.getSelectedValue());
     }
-    
 
-    public void initSelector(){
+    public void initSelector() {
         //default display member = id
-         this.getProductCategorySelector().setDisplayMember("name");
-         Runnable runnableCategories =  new ComponentRunnable(this) {
-            
+        this.getProductCategorySelector().setDisplayMember("name");
+        Runnable runnableCategories = new ComponentRunnable(this) {
+
             @Override
             public void run() {
-                try{
-                    List<Map<String,Object>> categories = categoryProvider.executeToListMapProperties(
-                            StoreConstants.PRODUCTCATEGORY_LST(), new ProductCategoryEntity());
-                    ((ProductGUI)this.getComponent()).getProductCategorySelector().setDataSource(categories);
-                    
-                }catch(Exception ex){
+                try {
+                    List<Map<String, Object>> categories = categoryProvider.executeToListMapProperties(
+                            StoreConstants.PRODUCTCATEGORY_LST, new ProductCategoryEntity());
+                    ((ProductGUI) this.getComponent()).getProductCategorySelector().setDataSource(categories);
+
+                } catch (Exception ex) {
                     ex.printStackTrace();
                     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                }finally{
+                } finally {
                     System.gc();
                 }
             }
         };
-        Thread threadCategories = new Thread(runnableCategories);  
-       threadCategories.start();
+        Thread threadCategories = new Thread(runnableCategories);
+        threadCategories.start();
+        this.allCodeSelectorStatus.loadListByCode("A_STATUS");
     }
-    public Selector getProductCategorySelector(){
+
+    public Selector getProductCategorySelector() {
         return this.selectorCategory;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -145,9 +149,7 @@ public class ProductGUI extends BaseEditPanel {
         appCrudToolBar = new app.common.controls.AppCrudToolBar();
         gbInfo = new app.common.controls.GroupBox();
         jLabel2 = new javax.swing.JLabel();
-        txtImage = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         txtCode = new javax.swing.JTextField();
         txtName = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -156,16 +158,29 @@ public class ProductGUI extends BaseEditPanel {
         } catch (java.text.ParseException e1) {
             e1.printStackTrace();
         }
+        jLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        allCodeSelectorStatus = new app.common.controls.AllCodeSelector();
         selectorCategory = new app.common.controls.Selector();
-        allCodeSelector1 = new app.common.controls.AllCodeSelector();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtDescription = new javax.swing.JTextArea();
 
         jLabel2.setText("Tên sản phẩm:");
 
-        jLabel3.setText("Gía: bán");
-
-        jLabel4.setText("Hình ảnh:");
+        jLabel3.setText("Gía bán:");
 
         jLabel1.setText("Mã sản phẩm:");
+
+        jLabel5.setText("Mô tả:");
+
+        jLabel4.setText("Loại:");
+
+        jLabel6.setText("Tình trạng:");
+
+        txtDescription.setColumns(20);
+        txtDescription.setRows(5);
+        jScrollPane1.setViewportView(txtDescription);
 
         javax.swing.GroupLayout gbInfoLayout = new javax.swing.GroupLayout(gbInfo);
         gbInfo.setLayout(gbInfoLayout);
@@ -173,22 +188,33 @@ public class ProductGUI extends BaseEditPanel {
             gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gbInfoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtName)
-                    .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtImage, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
-                    .addComponent(txtPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGroup(gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel1)
+                        .addComponent(jLabel2))
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
+                .addGroup(gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addGroup(gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(gbInfoLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(53, 53, 53)
+                        .addComponent(selectorCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(gbInfoLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1))
+                    .addGroup(gbInfoLayout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(allCodeSelectorStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2)))
+                .addContainerGap())
         );
         gbInfoLayout.setVerticalGroup(
             gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,16 +228,27 @@ public class ProductGUI extends BaseEditPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)))
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(gbInfoLayout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)))
                     .addGroup(gbInfoLayout.createSequentialGroup()
                         .addGroup(gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))))
-                .addContainerGap(15, Short.MAX_VALUE))
+                            .addComponent(jLabel4)
+                            .addComponent(selectorCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(allCodeSelectorStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         jLabel1.getAccessibleContext().setAccessibleName("LBL1");
@@ -227,38 +264,26 @@ public class ProductGUI extends BaseEditPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(appCrudToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(gbInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(33, 33, 33)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(selectorCategory, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                                    .addComponent(allCodeSelector1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(gbInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(gbInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(selectorCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(allCodeSelector1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
+                .addComponent(gbInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22)
                 .addComponent(appCrudToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addComponent(dataTable, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(dataTable, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private app.common.controls.AllCodeSelector allCodeSelector1;
+    private app.common.controls.AllCodeSelector allCodeSelectorStatus;
     private app.common.controls.AppCrudToolBar appCrudToolBar;
     private app.common.controls.DataTable dataTable;
     private app.common.controls.GroupBox gbInfo;
@@ -266,15 +291,14 @@ public class ProductGUI extends BaseEditPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
     private app.common.controls.Selector selectorCategory;
     private javax.swing.JTextField txtCode;
-    private javax.swing.JTextField txtImage;
+    private javax.swing.JTextArea txtDescription;
     private javax.swing.JTextField txtName;
     private app.common.controls.DecimalInput txtPrice;
     // End of variables declaration//GEN-END:variables
-
-    
-    
-
 
 }

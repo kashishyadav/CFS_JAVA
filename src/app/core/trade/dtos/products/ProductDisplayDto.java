@@ -16,6 +16,7 @@ public class ProductDisplayDto {
     private int id;
     private String name;
     private BigDecimal price;
+    private String description;
     private Date createdDate;
     private String createdBy;
 }

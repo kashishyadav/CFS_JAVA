@@ -28,8 +28,9 @@ CREATE TABLE `allcode` (
   `cdValue` varchar(256) CHARACTER SET utf8 DEFAULT NULL,
   `content` varchar(256) CHARACTER SET utf8 DEFAULT NULL,
   `cdType` varchar(256) CHARACTER SET utf8 DEFAULT NULL,
+  `priority` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +39,7 @@ CREATE TABLE `allcode` (
 
 LOCK TABLES `allcode` WRITE;
 /*!40000 ALTER TABLE `allcode` DISABLE KEYS */;
+INSERT INTO `allcode` VALUES (1,'ORDER_STATUS','N','Mới nhận',NULL,1),(2,'ORDER_STATUS','D','Đã xong',NULL,2);
 /*!40000 ALTER TABLE `allcode` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -170,7 +172,7 @@ CREATE TABLE `product` (
   `updatedDate` datetime DEFAULT NULL,
   `updatedBy` varchar(256) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -179,7 +181,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (1,'PDT001','CHICKEN BURGER',50000.00,NULL,'ABCD',NULL,NULL,NULL,'A',0,'2019-09-25 00:00:00','khangth','2019-09-25 00:00:00','khangth'),(3,'BUR001','2ERETRHT',20000.00,0,'','','','','A',0,'2019-10-08 00:00:00','','2019-10-08 00:00:00',''),(4,'DFG','ADSFDF',1234.00,0,'','','','','A',1,'2019-10-08 00:00:00','','2019-10-08 00:00:00',''),(5,'12344','dwwrfw',30000.00,0,'','','','','A',0,'2019-10-08 00:00:00','','2019-10-08 00:00:00','');
+INSERT INTO `product` VALUES (1,'PDT001','CHICKEN BURGER',50000.00,NULL,'ABCD',NULL,NULL,NULL,'A',0,'2019-09-25 00:00:00','khangth','2019-09-25 00:00:00','khangth'),(3,'BUR001','2ERETRHT',20000.00,0,'','','','','A',0,'2019-10-08 00:00:00','','2019-10-08 00:00:00',''),(4,'DFG','ADSFDF',1234.00,0,'','','','','A',1,'2019-10-08 00:00:00','','2019-10-08 00:00:00',''),(5,'12344','dwwrfwsdassda',30000.00,0,'','','','','A',1,'2019-10-12 00:00:00','','2019-10-12 00:00:00',''),(6,'ZZZ3aw','aa',12312321.00,0,'','','','','A',1,'2019-10-12 00:00:00','','2019-10-12 00:00:00',''),(7,'QWEQWa','ÃZ',200000.00,0,'','','','','A',1,'2019-10-12 00:00:00','','2019-10-12 00:00:00',''),(8,'ABCDa','DEFCD',231232131.00,NULL,'','','','','A',0,'2019-10-16 00:00:00','','2019-10-16 00:00:00',''),(9,'adsf2','adas',12312312.00,0,'','','','','A',1,'2019-10-12 00:00:00','','2019-10-12 00:00:00',''),(10,'EFE','DEF',20000.00,NULL,'','','','','A',0,'2019-10-16 00:00:00','','2019-10-16 00:00:00',''),(11,'ADC','ADC',123213.00,0,'','','','','A',0,'2019-10-12 00:00:00','','2019-10-12 00:00:00',''),(12,'','',20000.00,NULL,'','','','','A',0,'2019-10-16 00:00:00','','2019-10-16 00:00:00','');
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -203,7 +205,7 @@ CREATE TABLE `productcategory` (
   `updatedDate` datetime DEFAULT NULL,
   `updatedBy` varchar(256) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -212,6 +214,7 @@ CREATE TABLE `productcategory` (
 
 LOCK TABLES `productcategory` WRITE;
 /*!40000 ALTER TABLE `productcategory` DISABLE KEYS */;
+INSERT INTO `productcategory` VALUES (1,'BUR01','Đồ ăn nhanh','Danh mục đồ ăn nhanh, thưc phẩm',NULL,NULL,0,'2019-11-10 00:00:00','khangth','2019-11-10 00:00:00','khangth');
 /*!40000 ALTER TABLE `productcategory` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -320,17 +323,20 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `ALLCODE_InsOrUpd`(
 proc_label:BEGIN
 	DECLARE sErrorCode VARCHAR(20) DEFAULT '';
 	DECLARE `isRollback` BOOL DEFAULT 0;
-    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET `isRollback` = 1;
+        DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET `isRollback` = 1;
     
-    IF (`p_Code` IS NOT NULL AND `p_Code` <> '')
-	THEN
-		IF NOT EXISTS(SELECT * FROM `ALLCODE` A WHERE A.`code` = `p_Code` AND A.`isDeleted`<>1)
+         IF (`p_Id` IS NOT NULL AND `p_Id` <> 0)
+         THEN
+	  	IF (`p_Code` IS NOT NULL AND `p_Code` <> '')
 		THEN
-			SET sErrorCode = 'OBJ-03';           
+			IF NOT EXISTS(SELECT * FROM `ALLCODE` A WHERE A.`code` = `p_Code` AND A.`isDeleted`<>1)
+			THEN
+				SET sErrorCode = 'OBJ-03';           
+			END IF;		    
 		END IF;
-	ELSE
-		SET sErrorCode = 'OBJ-02'; 
-	END IF;
+        END IF;
+
+   
    
 	IF(sErrorCode<>'')
 	THEN
@@ -362,6 +368,64 @@ proc_label:BEGIN
         COMMIT;        
         SELECT '1' as Result, `p_Id` `Id`, '' ErrorDesc;
     END IF;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `ALLCODE_LstByCode` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ALLCODE_LstByCode`(
+IN `p_CdName` NVARCHAR(100)
+)
+proc_label:BEGIN
+	SELECT * FROM `ALLCODE` A WHERE A.`cdName` = `p_CdName`
+    ORDER BY A.`priority`;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `ALLCODE_Search` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ALLCODE_Search`(
+IN `p_Keyword` nvarchar(100),
+IN `p_Offset` int,
+IN `p_PageSize` int,
+IN `p_Sorting` varchar(100),
+OUT `p_TotalCount` int
+)
+proc_label:BEGIN	  
+	SELECT COUNT(*) INTO `p_TotalCount` FROM `ALLCODE` A WHERE
+		(A.`name` LIKE CONCAT('%',`p_Keyword`,'%') OR A.`name` IS NULL OR A.`name` = '')
+        AND (A.`isDeleted` = 0);   
+        
+    SELECT A.*
+		FROM `ALLCODE` A  
+		WHERE
+			(A.`name` LIKE CONCAT('%',`p_Keyword`,'%') OR A.`name` IS NULL OR A.`name` = '')
+        AND (A.`isDeleted` = 0)    
+	ORDER BY 
+		A.`CreatedDate` DESC
+	LIMIT `p_OFFSET`, `p_PageSize`;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -420,17 +484,20 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `CUSTOMER_InsOrUpd`(
 proc_label:BEGIN
 	DECLARE sErrorCode VARCHAR(20) DEFAULT '';
 	DECLARE `isRollback` BOOL DEFAULT 0;
-    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET `isRollback` = 1;
+        DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET `isRollback` = 1;
     
-    IF (`p_Code` IS NOT NULL AND `p_Code` <> '')
-	THEN
-		IF NOT EXISTS(SELECT * FROM `CUSTOMER` A WHERE A.`code` = `p_Code` AND A.`isDeleted`<>1)
+         IF (`p_Id` IS NOT NULL AND `p_Id` <> 0)
+         THEN
+	  	IF (`p_Code` IS NOT NULL AND `p_Code` <> '')
 		THEN
-			SET sErrorCode = 'OBJ-03';           
+			IF NOT EXISTS(SELECT * FROM `CUSTOMER` A WHERE A.`code` = `p_Code` AND A.`isDeleted`<>1)
+			THEN
+				SET sErrorCode = 'OBJ-03';           
+			END IF;		    
 		END IF;
-	ELSE
-		SET sErrorCode = 'OBJ-02'; 
-	END IF;
+        END IF;
+
+   
    
 	IF(sErrorCode<>'')
 	THEN
@@ -490,11 +557,16 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `CUSTOMER_Search`(
 IN `p_Keyword` nvarchar(100),
 IN `p_Offset` int,
 IN `p_PageSize` int,
-IN `p_Sorting` varchar(100)
+IN `p_Sorting` varchar(100),
+OUT `p_TotalCount` int
 )
 proc_label:BEGIN	  
+	SELECT COUNT(*) INTO `p_TotalCount` FROM `CUSTOMER` A WHERE
+		(A.`name` LIKE CONCAT('%',`p_Keyword`,'%') OR A.`name` IS NULL OR A.`name` = '')
+        AND (A.`isDeleted` = 0);   
+        
     SELECT A.*
-		FROM `customer` A  
+		FROM `CUSTOMER` A  
 		WHERE
 			(A.`name` LIKE CONCAT('%',`p_Keyword`,'%') OR A.`name` IS NULL OR A.`name` = '')
         AND (A.`isDeleted` = 0)    
@@ -559,17 +631,20 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `ORDERDETAIL_InsOrUpd`(
 proc_label:BEGIN
 	DECLARE sErrorCode VARCHAR(20) DEFAULT '';
 	DECLARE `isRollback` BOOL DEFAULT 0;
-    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET `isRollback` = 1;
+        DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET `isRollback` = 1;
     
-    IF (`p_Code` IS NOT NULL AND `p_Code` <> '')
-	THEN
-		IF NOT EXISTS(SELECT * FROM `ORDERDETAIL` A WHERE A.`code` = `p_Code` AND A.`isDeleted`<>1)
+         IF (`p_Id` IS NOT NULL AND `p_Id` <> 0)
+         THEN
+	  	IF (`p_Code` IS NOT NULL AND `p_Code` <> '')
 		THEN
-			SET sErrorCode = 'OBJ-03';           
+			IF NOT EXISTS(SELECT * FROM `ORDERDETAIL` A WHERE A.`code` = `p_Code` AND A.`isDeleted`<>1)
+			THEN
+				SET sErrorCode = 'OBJ-03';           
+			END IF;		    
 		END IF;
-	ELSE
-		SET sErrorCode = 'OBJ-02'; 
-	END IF;
+        END IF;
+
+   
    
 	IF(sErrorCode<>'')
 	THEN
@@ -609,6 +684,42 @@ proc_label:BEGIN
         COMMIT;        
         SELECT '1' as Result, `p_Id` `Id`, '' ErrorDesc;
     END IF;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `ORDERDETAIL_Search` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ORDERDETAIL_Search`(
+IN `p_Keyword` nvarchar(100),
+IN `p_Offset` int,
+IN `p_PageSize` int,
+IN `p_Sorting` varchar(100),
+OUT `p_TotalCount` int
+)
+proc_label:BEGIN	  
+	SELECT COUNT(*) INTO `p_TotalCount` FROM `ORDERDETAIL` A WHERE
+		(A.`name` LIKE CONCAT('%',`p_Keyword`,'%') OR A.`name` IS NULL OR A.`name` = '')
+        AND (A.`isDeleted` = 0);   
+        
+    SELECT A.*
+		FROM `ORDERDETAIL` A  
+		WHERE
+			(A.`name` LIKE CONCAT('%',`p_Keyword`,'%') OR A.`name` IS NULL OR A.`name` = '')
+        AND (A.`isDeleted` = 0)    
+	ORDER BY 
+		A.`CreatedDate` DESC
+	LIMIT `p_OFFSET`, `p_PageSize`;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -670,17 +781,20 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `ORDER_InsOrUpd`(
 proc_label:BEGIN
 	DECLARE sErrorCode VARCHAR(20) DEFAULT '';
 	DECLARE `isRollback` BOOL DEFAULT 0;
-    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET `isRollback` = 1;
+        DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET `isRollback` = 1;
     
-    IF (`p_Code` IS NOT NULL AND `p_Code` <> '')
-	THEN
-		IF NOT EXISTS(SELECT * FROM `ORDER` A WHERE A.`code` = `p_Code` AND A.`isDeleted`<>1)
+         IF (`p_Id` IS NOT NULL AND `p_Id` <> 0)
+         THEN
+	  	IF (`p_Code` IS NOT NULL AND `p_Code` <> '')
 		THEN
-			SET sErrorCode = 'OBJ-03';           
+			IF NOT EXISTS(SELECT * FROM `ORDER` A WHERE A.`code` = `p_Code` AND A.`isDeleted`<>1)
+			THEN
+				SET sErrorCode = 'OBJ-03';           
+			END IF;		    
 		END IF;
-	ELSE
-		SET sErrorCode = 'OBJ-02'; 
-	END IF;
+        END IF;
+
+   
    
 	IF(sErrorCode<>'')
 	THEN
@@ -743,11 +857,16 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `ORDER_Search`(
 IN `p_Keyword` nvarchar(100),
 IN `p_Offset` int,
 IN `p_PageSize` int,
-IN `p_Sorting` varchar(100)
+IN `p_Sorting` varchar(100),
+OUT `p_TotalCount` int
 )
 proc_label:BEGIN	  
+	SELECT COUNT(*) INTO `p_TotalCount` FROM `ORDER` A WHERE
+		(A.`name` LIKE CONCAT('%',`p_Keyword`,'%') OR A.`name` IS NULL OR A.`name` = '')
+        AND (A.`isDeleted` = 0);   
+        
     SELECT A.*
-		FROM `order` A  
+		FROM `ORDER` A  
 		WHERE
 			(A.`name` LIKE CONCAT('%',`p_Keyword`,'%') OR A.`name` IS NULL OR A.`name` = '')
         AND (A.`isDeleted` = 0)    
@@ -810,17 +929,20 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `PRODUCTCATEGORY_InsOrUpd`(
 proc_label:BEGIN
 	DECLARE sErrorCode VARCHAR(20) DEFAULT '';
 	DECLARE `isRollback` BOOL DEFAULT 0;
-    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET `isRollback` = 1;
+        DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET `isRollback` = 1;
     
-    IF (`p_Code` IS NOT NULL AND `p_Code` <> '')
-	THEN
-		IF NOT EXISTS(SELECT * FROM `PRODUCTCATEGORY` A WHERE A.`code` = `p_Code` AND A.`isDeleted`<>1)
+         IF (`p_Id` IS NOT NULL AND `p_Id` <> 0)
+         THEN
+	  	IF (`p_Code` IS NOT NULL AND `p_Code` <> '')
 		THEN
-			SET sErrorCode = 'OBJ-03';           
+			IF NOT EXISTS(SELECT * FROM `PRODUCTCATEGORY` A WHERE A.`code` = `p_Code` AND A.`isDeleted`<>1)
+			THEN
+				SET sErrorCode = 'OBJ-03';           
+			END IF;		    
 		END IF;
-	ELSE
-		SET sErrorCode = 'OBJ-02'; 
-	END IF;
+        END IF;
+
+   
    
 	IF(sErrorCode<>'')
 	THEN
@@ -864,6 +986,25 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `PRODUCTCATEGORY_Lst` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PRODUCTCATEGORY_Lst`()
+proc_label:BEGIN
+	SELECT * FROM `PRODUCTCATEGORY` A WHERE A.`isDeleted` = 0;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `PRODUCTCATEGORY_Search` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -878,11 +1019,16 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `PRODUCTCATEGORY_Search`(
 IN `p_Keyword` nvarchar(100),
 IN `p_Offset` int,
 IN `p_PageSize` int,
-IN `p_Sorting` varchar(100)
+IN `p_Sorting` varchar(100),
+OUT `p_TotalCount` int
 )
 proc_label:BEGIN	  
+	SELECT COUNT(*) INTO `p_TotalCount` FROM `PRODUCTCATEGORY` A WHERE
+		(A.`name` LIKE CONCAT('%',`p_Keyword`,'%') OR A.`name` IS NULL OR A.`name` = '')
+        AND (A.`isDeleted` = 0);   
+        
     SELECT A.*
-		FROM `productcategory` A  
+		FROM `PRODUCTCATEGORY` A  
 		WHERE
 			(A.`name` LIKE CONCAT('%',`p_Keyword`,'%') OR A.`name` IS NULL OR A.`name` = '')
         AND (A.`isDeleted` = 0)    
@@ -949,17 +1095,20 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `PRODUCT_InsOrUpd`(
 proc_label:BEGIN
 	DECLARE sErrorCode VARCHAR(20) DEFAULT '';
 	DECLARE `isRollback` BOOL DEFAULT 0;
-    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET `isRollback` = 1;
+        DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET `isRollback` = 1;
     
-    IF (`p_Code` IS NOT NULL AND `p_Code` <> '')
-	THEN
-		IF NOT EXISTS(SELECT * FROM `PRODUCT` A WHERE A.`code` = `p_Code` AND A.`isDeleted`<>1)
+         IF (`p_Id` IS NOT NULL AND `p_Id` <> 0)
+         THEN
+	  	IF (`p_Code` IS NOT NULL AND `p_Code` <> '')
 		THEN
-			SET sErrorCode = 'OBJ-03';           
+			IF NOT EXISTS(SELECT * FROM `PRODUCT` A WHERE A.`code` = `p_Code` AND A.`isDeleted`<>1)
+			THEN
+				SET sErrorCode = 'OBJ-03';           
+			END IF;		    
 		END IF;
-	ELSE
-		SET sErrorCode = 'OBJ-02'; 
-	END IF;
+        END IF;
+
+   
    
 	IF(sErrorCode<>'')
 	THEN
@@ -1021,11 +1170,16 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `PRODUCT_Search`(
 IN `p_Keyword` nvarchar(100),
 IN `p_Offset` int,
 IN `p_PageSize` int,
-IN `p_Sorting` varchar(100)
+IN `p_Sorting` varchar(100),
+OUT `p_TotalCount` int
 )
 proc_label:BEGIN	  
+	SELECT COUNT(*) INTO `p_TotalCount` FROM `PRODUCT` A WHERE
+		(A.`name` LIKE CONCAT('%',`p_Keyword`,'%') OR A.`name` IS NULL OR A.`name` = '')
+        AND (A.`isDeleted` = 0);   
+        
     SELECT A.*
-		FROM `product` A  
+		FROM `PRODUCT` A  
 		WHERE
 			(A.`name` LIKE CONCAT('%',`p_Keyword`,'%') OR A.`name` IS NULL OR A.`name` = '')
         AND (A.`isDeleted` = 0)    
@@ -1081,17 +1235,20 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `SYS_ERROR_InsOrUpd`(
 proc_label:BEGIN
 	DECLARE sErrorCode VARCHAR(20) DEFAULT '';
 	DECLARE `isRollback` BOOL DEFAULT 0;
-    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET `isRollback` = 1;
+        DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET `isRollback` = 1;
     
-    IF (`p_Code` IS NOT NULL AND `p_Code` <> '')
-	THEN
-		IF NOT EXISTS(SELECT * FROM `SYS_ERROR` A WHERE A.`code` = `p_Code` AND A.`isDeleted`<>1)
+         IF (`p_Id` IS NOT NULL AND `p_Id` <> 0)
+         THEN
+	  	IF (`p_Code` IS NOT NULL AND `p_Code` <> '')
 		THEN
-			SET sErrorCode = 'OBJ-03';           
+			IF NOT EXISTS(SELECT * FROM `SYS_ERROR` A WHERE A.`code` = `p_Code` AND A.`isDeleted`<>1)
+			THEN
+				SET sErrorCode = 'OBJ-03';           
+			END IF;		    
 		END IF;
-	ELSE
-		SET sErrorCode = 'OBJ-02'; 
-	END IF;
+        END IF;
+
+   
    
 	IF(sErrorCode<>'')
 	THEN
@@ -1122,6 +1279,42 @@ proc_label:BEGIN
         COMMIT;        
         SELECT '1' as Result, `p_Id` `Id`, '' ErrorDesc;
     END IF;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SYS_ERROR_Search` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SYS_ERROR_Search`(
+IN `p_Keyword` nvarchar(100),
+IN `p_Offset` int,
+IN `p_PageSize` int,
+IN `p_Sorting` varchar(100),
+OUT `p_TotalCount` int
+)
+proc_label:BEGIN	  
+	SELECT COUNT(*) INTO `p_TotalCount` FROM `SYS_ERROR` A WHERE
+		(A.`name` LIKE CONCAT('%',`p_Keyword`,'%') OR A.`name` IS NULL OR A.`name` = '')
+        AND (A.`isDeleted` = 0);   
+        
+    SELECT A.*
+		FROM `SYS_ERROR` A  
+		WHERE
+			(A.`name` LIKE CONCAT('%',`p_Keyword`,'%') OR A.`name` IS NULL OR A.`name` = '')
+        AND (A.`isDeleted` = 0)    
+	ORDER BY 
+		A.`CreatedDate` DESC
+	LIMIT `p_OFFSET`, `p_PageSize`;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1178,17 +1371,20 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `VOUCHER_InsOrUpd`(
 proc_label:BEGIN
 	DECLARE sErrorCode VARCHAR(20) DEFAULT '';
 	DECLARE `isRollback` BOOL DEFAULT 0;
-    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET `isRollback` = 1;
+        DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET `isRollback` = 1;
     
-    IF (`p_Code` IS NOT NULL AND `p_Code` <> '')
-	THEN
-		IF NOT EXISTS(SELECT * FROM `VOUCHER` A WHERE A.`code` = `p_Code` AND A.`isDeleted`<>1)
+         IF (`p_Id` IS NOT NULL AND `p_Id` <> 0)
+         THEN
+	  	IF (`p_Code` IS NOT NULL AND `p_Code` <> '')
 		THEN
-			SET sErrorCode = 'OBJ-03';           
+			IF NOT EXISTS(SELECT * FROM `VOUCHER` A WHERE A.`code` = `p_Code` AND A.`isDeleted`<>1)
+			THEN
+				SET sErrorCode = 'OBJ-03';           
+			END IF;		    
 		END IF;
-	ELSE
-		SET sErrorCode = 'OBJ-02'; 
-	END IF;
+        END IF;
+
+   
    
 	IF(sErrorCode<>'')
 	THEN
@@ -1243,16 +1439,21 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `VOUCHER_Search`(
-IN `p_Keyword` int,
+IN `p_Keyword` nvarchar(100),
 IN `p_Offset` int,
 IN `p_PageSize` int,
-IN `p_Sorting` varchar(100)
+IN `p_Sorting` varchar(100),
+OUT `p_TotalCount` int
 )
 proc_label:BEGIN	  
+	SELECT COUNT(*) INTO `p_TotalCount` FROM `VOUCHER` A WHERE
+		(A.`name` LIKE CONCAT('%',`p_Keyword`,'%') OR A.`name` IS NULL OR A.`name` = '')
+        AND (A.`isDeleted` = 0);   
+        
     SELECT A.*
-		FROM `voucher` A  
+		FROM `VOUCHER` A  
 		WHERE
-			(A.`name` = `p_Keyword` OR A.`name` IS NULL OR A.`name` = '')
+			(A.`name` LIKE CONCAT('%',`p_Keyword`,'%') OR A.`name` IS NULL OR A.`name` = '')
         AND (A.`isDeleted` = 0)    
 	ORDER BY 
 		A.`CreatedDate` DESC
@@ -1273,4 +1474,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-10-08 10:47:21
+-- Dump completed on 2019-10-16 13:41:01

@@ -7,6 +7,7 @@
 package app.common.controls;
 
 
+import base.configurations.constants.SystemStringConstants;
 import base.configurations.enums.PagingModes;
 import base.data.entities.EntitySearchBase;
 import base.guis.controls.BaseComponent;
@@ -61,8 +62,6 @@ public class DataTable extends BaseComponent implements ActionListener {
        return this.table;
    } 
    
-   
-   
    public void removeAllData(){
       DefaultTableModel tableModel =  (DefaultTableModel) getTable().getModel();
       if (tableModel.getRowCount() > 0) {
@@ -90,7 +89,7 @@ public class DataTable extends BaseComponent implements ActionListener {
         System.gc();
     }
     
-    private MouseAdapter _onMouseAdapter(){
+    protected MouseAdapter _onMouseAdapter(){
         return new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
             int row = getTable().getSelectedRow();
@@ -100,7 +99,8 @@ public class DataTable extends BaseComponent implements ActionListener {
                       
             editPanel.setCurrentObj(editPanel.getById(id));
             editPanel.bindingModelToView();
-            
+            editPanel.setEnableIdControl(false);
+            editPanel.getGroupInformation().setEditStatusTitle(SystemStringConstants.STR_EDIT);
             }
         }; 
     }

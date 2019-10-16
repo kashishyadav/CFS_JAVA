@@ -21,16 +21,17 @@ public class ConnectionFactory {
     private final  String USER_NAME = "root";
     private final  String PASSWORD = "";
 
-    Connection conn = null;
+    //Connection conn = null;
     boolean IsTransaction = false;
 
     public  Connection getConnection() {
+        Connection conn = null;
         try {
-            if(conn==null){
+           
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 conn = DriverManager.getConnection(DB_URL,USER_NAME,PASSWORD);
                 System.out.println("connect successfully!");
-            }
+           
         } catch (Exception ex) {
             System.out.println("connect failure!");
             ex.printStackTrace();
@@ -82,7 +83,7 @@ public class ConnectionFactory {
 //        }
 //    }
 
-    public  CallableStatement buildProcedureCallableStatement(String sql,Map<String, Object> pmap){
+    public  CallableStatement buildProcedureCallableStatement(Connection conn,String sql,Map<String, Object> pmap){
         CallableStatement cs = null;
         try {
             Map<String,Object> paramMap=new LinkedHashMap<String,Object>();
@@ -122,7 +123,7 @@ public class ConnectionFactory {
                 //System.out.println(paramName+" - "+ paramValue);
             }
             String procedure="{"+sql+"}";
-           cs= getConnection().prepareCall(procedure);
+           cs= conn.prepareCall(procedure);
             int index=1;
             for(String name:paramMap.keySet()){
                 Object value=paramMap.get(name);
@@ -213,20 +214,59 @@ public class ConnectionFactory {
 //        }
 //    }
 
-    public void closeConn(CallableStatement cStmt) {
-        try{
-            if(cStmt != null) {
-                cStmt.close();
-                cStmt=null;
-            }
+//    public void closeConn(CallableStatement cStmt) {
+//        try{
+//            if(cStmt != null) {
+//                cStmt.close();
+//                cStmt=null;
+//            }
 //            if (conn != null ) {
 //                conn.close();
 //                conn = null;
 //                System.out.println("Close Connection Successfully");
 //            }
+//        }catch(Exception e){
+//           System.out.println(e.toString());
+//        }
+//    }
+    public void closeConn(Connection conn) {
+        try{
+           
+            if (conn != null ) {
+                conn.close();
+                conn = null;
+                System.out.println("Close Connection Successfully");
+            }
+        }catch(Exception e){
+           System.out.println(e.toString());
+        }
+    }
+    
+    public void closeCStmt(CallableStatement cStmt) {
+        try{
+           
+            if(cStmt != null) {
+                cStmt.close();
+                cStmt=null;
+            }
         }catch(Exception e){
            System.out.println(e.toString());
         }
     }
 
+    public void closeConn(CallableStatement cStmt,Connection conn) {
+        try{
+            if(cStmt != null) {
+                cStmt.close();
+                cStmt=null;
+            }
+            if (conn != null ) {
+                conn.close();
+                conn = null;
+                System.out.println("Close Connection Successfully");
+            }
+        }catch(Exception e){
+           System.out.println(e.toString());
+        }
+    }
 }

@@ -24,9 +24,12 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="appCrudToolBar" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="groupInformation" min="-2" max="-2" attributes="0"/>
+                              <Component id="gbInfo" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                              <Component id="selectorCategory" min="-2" pref="168" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="selectorCategory" pref="168" max="32767" attributes="0"/>
+                                  <Component id="allCodeSelector1" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -42,11 +45,13 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                      <Component id="groupInformation" min="-2" max="-2" attributes="0"/>
+                      <Component id="gbInfo" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="selectorCategory" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="allCodeSelector1" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -63,7 +68,7 @@
     </Component>
     <Component class="app.common.controls.AppCrudToolBar" name="appCrudToolBar">
     </Component>
-    <Container class="app.common.controls.GroupBox" name="groupInformation">
+    <Container class="app.common.controls.GroupBox" name="gbInfo">
 
       <Layout>
         <DimensionLayout dim="0">
@@ -161,6 +166,8 @@
       </SubComponents>
     </Container>
     <Component class="app.common.controls.Selector" name="selectorCategory">
+    </Component>
+    <Component class="app.common.controls.AllCodeSelector" name="allCodeSelector1">
     </Component>
   </SubComponents>
 </Form>

@@ -5,6 +5,7 @@
  */
 package app.core.trade.guis.productCategories;
 
+import app.core.modules.constants.PageConstants;
 import app.core.modules.constants.StoreConstants;
 import app.core.trade.dtos.productCategories.ProductCategoryDisplayDto;
 import app.core.trade.dtos.productCategories.ProductCategoryEntity;
@@ -37,7 +38,7 @@ public class ProductCategoryGUI extends BaseEditPanel {
        
         this.tableModel = (DefaultTableModel) dataTable.getTable().getModel();   
         this.appCrudToolBar.setEditPanelUI(this);
-        this.setGroupInformation(this.groupInformation);
+        this.setGroupInformation(this.groupInformation,PageConstants.PRODUCTCATEGORY);
         setTableColumns();
         
         // set store procedure names

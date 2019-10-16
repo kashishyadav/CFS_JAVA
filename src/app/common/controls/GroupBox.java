@@ -5,7 +5,10 @@
  */
 package app.common.controls;
 
+import base.configurations.constants.AppStringConstants;
 import javax.swing.BorderFactory;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 
 /**
  *
@@ -16,14 +19,42 @@ public class GroupBox extends javax.swing.JPanel {
     /**
      * Creates new form GroupBox
      */
-    String titleName = "THÔNG TIN";
+    TitledBorder titleBorder;
+    String strPreTitle = AppStringConstants.GROUP_BOX_PRETITLE;    
+    String strTitleName = "";
+    String strEditStatus = "";
+    String strFullTitle = "";
     public GroupBox() {
         initComponents();
-        this.setBorder(BorderFactory.createTitledBorder(titleName));
+        //titleBorder = BorderFactory.createTitledBorder(strTitleName); 
+        //this.setBorder(null);
+        //this.setBorder(titleBorder);
+     
     }
 
     public void setTittle(String title){
-        this.titleName = title;
+        StringBuilder sb = new StringBuilder();
+        sb.append(strPreTitle).append(" ").append(title.toUpperCase());
+        this.strTitleName = sb.toString();
+        this.strFullTitle = this.strTitleName;
+        setTitleBorderBox(strFullTitle);
+        sb = null;
+        System.gc();
+    }
+    
+    public void setEditStatusTitle(String title){
+        StringBuilder sb = new StringBuilder();
+        sb.append(strTitleName).append(" | ").append(title);
+        this.strFullTitle = sb.toString();
+        setTitleBorderBox(strFullTitle);
+        sb = null;
+        System.gc();
+    }
+    
+    private void setTitleBorderBox(String title){
+        this.setBorder(null);
+        this.setBorder(BorderFactory.createTitledBorder(title));
+        System.gc();
     }
     /**
      * This method is called from within the constructor to initialize the form.

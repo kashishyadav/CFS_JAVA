@@ -80,7 +80,18 @@ public class BaseService<T,TDisplay> implements IBaseService  {
     @Override
     public void search(String sp_name, Object parametersObj, Object dislayDto, DefaultTableModel tableModel) {
         try {         
-            storeProvider.executeIntoDataTablePaging(sp_name,parametersObj,dislayDto ,tableModel);
+           Thread thread = new Thread(new Runnable(){
+               @Override
+               public void run() {
+                   try {
+                       storeProvider.executeIntoDataTablePaging(sp_name,parametersObj,dislayDto ,tableModel);
+                   } catch (Exception ex) {
+                       Logger.getLogger(BaseService.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+               }
+               
+           });
+           thread.start();
         } catch (Exception ex) {
             Logger.getLogger(tClazz.getName()).log(Level.SEVERE, null, ex);
         }         

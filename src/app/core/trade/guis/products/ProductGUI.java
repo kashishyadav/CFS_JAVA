@@ -6,8 +6,8 @@
 package app.core.trade.guis.products;
 
 import app.common.controls.Selector;
+import app.core.modules.constants.PageConstants;
 import app.core.modules.constants.StoreConstants;
-import app.core.trade.dtos.productCategories.ProductCategoryDisplayDto;
 import app.core.trade.dtos.productCategories.ProductCategoryEntity;
 import app.core.trade.dtos.products.ProductDisplayDto;
 import app.core.trade.dtos.products.ProductEntity;
@@ -17,7 +17,6 @@ import base.data.dal.StoreProvider;
 
 import base.guis.controls.BaseEditPanel;
 import base.infrastructures.ComponentRunnable;
-import java.sql.ResultSet;
 import java.util.List;
 import java.util.Map;
 
@@ -51,14 +50,19 @@ public class ProductGUI extends BaseEditPanel {
         //Selector(combobox) StoreProvider
         this.categoryProvider = new StoreProvider(ProductCategoryEntity.class);
         
+        //COMBOBOX
        // init Selector
        initSelector();
-        
-        dataTable.setEditPanel(this);             
+       this.allCodeSelector1.loadListByCode("ORDER_STATUS");
+       // 
+       //
        
+        dataTable.setEditPanel(this);           
+             
+        this.setIdControl(txtCode);
         this.tableModel = (DefaultTableModel) dataTable.getTable().getModel();   
         this.appCrudToolBar.setEditPanelUI(this);
-        this.setGroupInformation(this.groupInformation);
+        this.setGroupInformation(this.gbInfo,PageConstants.PRODUCT);
         setTableColumns();
         
         // set store procedure names
@@ -105,13 +109,13 @@ public class ProductGUI extends BaseEditPanel {
     public void initSelector(){
         //default display member = id
          this.getProductCategorySelector().setDisplayMember("name");
-         Runnable threadCategories =  new ComponentRunnable(this) {
+         Runnable runnableCategories =  new ComponentRunnable(this) {
             
             @Override
             public void run() {
                 try{
                     List<Map<String,Object>> categories = categoryProvider.executeToListMapProperties(
-                            StoreConstants.PRODUCTCATEGORY_SEARCH(), new ProductCategoryEntity());
+                            StoreConstants.PRODUCTCATEGORY_LST(), new ProductCategoryEntity());
                     ((ProductGUI)this.getComponent()).getProductCategorySelector().setDataSource(categories);
                     
                 }catch(Exception ex){
@@ -122,7 +126,8 @@ public class ProductGUI extends BaseEditPanel {
                 }
             }
         };
-       threadCategories.run();
+        Thread threadCategories = new Thread(runnableCategories);  
+       threadCategories.start();
     }
     public Selector getProductCategorySelector(){
         return this.selectorCategory;
@@ -138,7 +143,7 @@ public class ProductGUI extends BaseEditPanel {
 
         dataTable = new app.common.controls.DataTable();
         appCrudToolBar = new app.common.controls.AppCrudToolBar();
-        groupInformation = new app.common.controls.GroupBox();
+        gbInfo = new app.common.controls.GroupBox();
         jLabel2 = new javax.swing.JLabel();
         txtImage = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -152,6 +157,7 @@ public class ProductGUI extends BaseEditPanel {
             e1.printStackTrace();
         }
         selectorCategory = new app.common.controls.Selector();
+        allCodeSelector1 = new app.common.controls.AllCodeSelector();
 
         jLabel2.setText("Tên sản phẩm:");
 
@@ -161,48 +167,48 @@ public class ProductGUI extends BaseEditPanel {
 
         jLabel1.setText("Mã sản phẩm:");
 
-        javax.swing.GroupLayout groupInformationLayout = new javax.swing.GroupLayout(groupInformation);
-        groupInformation.setLayout(groupInformationLayout);
-        groupInformationLayout.setHorizontalGroup(
-            groupInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(groupInformationLayout.createSequentialGroup()
+        javax.swing.GroupLayout gbInfoLayout = new javax.swing.GroupLayout(gbInfo);
+        gbInfo.setLayout(gbInfoLayout);
+        gbInfoLayout.setHorizontalGroup(
+            gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gbInfoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(groupInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(groupInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtName)
                     .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
-                .addGroup(groupInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(groupInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtImage, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
                     .addComponent(txtPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
-        groupInformationLayout.setVerticalGroup(
-            groupInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(groupInformationLayout.createSequentialGroup()
+        gbInfoLayout.setVerticalGroup(
+            gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gbInfoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(groupInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(groupInformationLayout.createSequentialGroup()
-                        .addGroup(groupInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(gbInfoLayout.createSequentialGroup()
+                        .addGroup(gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(groupInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)))
-                    .addGroup(groupInformationLayout.createSequentialGroup()
-                        .addGroup(groupInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(gbInfoLayout.createSequentialGroup()
+                        .addGroup(gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(groupInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))))
                 .addContainerGap(15, Short.MAX_VALUE))
@@ -222,9 +228,11 @@ public class ProductGUI extends BaseEditPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(appCrudToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(groupInformation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(gbInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(33, 33, 33)
-                                .addComponent(selectorCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(selectorCategory, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                                    .addComponent(allCodeSelector1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -234,10 +242,12 @@ public class ProductGUI extends BaseEditPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addComponent(groupInformation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(gbInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(33, 33, 33)
-                        .addComponent(selectorCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(selectorCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(allCodeSelector1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(appCrudToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
@@ -248,9 +258,10 @@ public class ProductGUI extends BaseEditPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private app.common.controls.AllCodeSelector allCodeSelector1;
     private app.common.controls.AppCrudToolBar appCrudToolBar;
     private app.common.controls.DataTable dataTable;
-    private app.common.controls.GroupBox groupInformation;
+    private app.common.controls.GroupBox gbInfo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

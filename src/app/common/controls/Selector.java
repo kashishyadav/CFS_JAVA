@@ -5,15 +5,10 @@
  */
 package app.common.controls;
 
-import base.configurations.constants.ColorConstants;
 import base.configurations.constants.SystemStringConstants;
-import base.data.dal.StoreProvider;
 import base.guis.controls.core.BaseCombobox;
-import java.awt.Color;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -30,17 +25,17 @@ public class Selector extends BaseCombobox implements ItemListener {
     /**
      * Creates new form Selector
      */
-    private DefaultComboBoxModel model;
-    private Object _value = null;
-    private String _strDisplayMember = "id";
-    private String _strValueMember = "id";
+    protected DefaultComboBoxModel model;
+    protected Object _value = null;
+    protected String _strDisplayMember = "id";
+    protected String _strValueMember = "id";
     
-    private Class<?> _valueType = int.class;
+    protected Class<?> _valueType = int.class;
     
-    private boolean isNullableDisplay = true;
+    protected boolean isNullableDisplay = false;
     
     
-    private List<Map<String,Object>> dataSource;
+    protected List<Map<String,Object>> dataSource;
     
    
     public Selector() {

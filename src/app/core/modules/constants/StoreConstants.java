@@ -1,6 +1,10 @@
 package app.core.modules.constants;
 
 public class StoreConstants {
+    public static String ALLCODE_LSTBYCODE(){
+        return "call ALLCODE_LstByCode(:cdName)";
+    }
+    
     public static String PRODUCT_SEARCH(){
         return "call PRODUCT_Search(:keyword,:offset,:pageSize,:sorting,!totalCount)";
     }
@@ -15,5 +19,8 @@ public class StoreConstants {
     
     public static String PRODUCTCATEGORY_SEARCH(){
         return "call PRODUCTCATEGORY_SEARCH(:keyword,:offset,:pageSize,:sorting,!totalCount)";
+    }
+     public static String PRODUCTCATEGORY_LST(){
+        return "call PRODUCTCATEGORY_Lst";
     }
 }

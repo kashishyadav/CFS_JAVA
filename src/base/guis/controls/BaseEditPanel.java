@@ -8,6 +8,7 @@ import base.configurations.constants.SystemStringConstants;
 import base.guis.infs.IEditPanelUI;
 import java.awt.Component;
 import java.util.Map;
+import javax.swing.JComponent;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import ultilities.utils.MessageUtils;
@@ -29,7 +30,7 @@ public abstract class BaseEditPanel<T,TDisplay> extends BaseComponent implements
     private String sp_search;
     private String sp_insOrUpd;
     private String sp_getById;
-    
+    private JComponent idControl;
     
     protected DefaultTableModel tableModel;
     
@@ -38,9 +39,17 @@ public abstract class BaseEditPanel<T,TDisplay> extends BaseComponent implements
     
     private GroupBox groupInfomation;
     
-    public void setGroupInformation(GroupBox groupInfomation){
+     public void setEnableIdControl(boolean isEnable){
+       if(this.idControl!=null){
+           this.idControl.setEnabled(isEnable);
+       }
+   }
+   
+    public void setGroupInformation(GroupBox groupInfomation, String title){
         this.groupInfomation=groupInfomation;
+        this.groupInfomation.setTittle(title);
     }
+    
 
     public String getStoredProcedureSearch(){
         return this.sp_search;
@@ -55,14 +64,21 @@ public abstract class BaseEditPanel<T,TDisplay> extends BaseComponent implements
     public IBaseService<T,TDisplay> getAppService(){
         return this.appService;
     }
+    public JComponent getIdControl(){
+        return this.idControl;
+    }
     
     public T getCurrentObj() {
         return currentObj;
     }
+    
 
     public void setCurrentObj(T currentObj) {      
         this.currentObj = currentObj;
-         System.gc();
+    }
+    
+     public void setIdControl(JComponent idControl) {      
+        this.idControl = idControl;
     }
 
     public TDisplay getDisplayObj() {
@@ -73,6 +89,7 @@ public abstract class BaseEditPanel<T,TDisplay> extends BaseComponent implements
         this.displayObj = displayObj;
          System.gc();
     }
+    
 
     public T getFilterObj() {
         return filterObj;
@@ -83,8 +100,14 @@ public abstract class BaseEditPanel<T,TDisplay> extends BaseComponent implements
          System.gc();
     }
 
+    public GroupBox getGroupInformation(){
+        return this.groupInfomation;
+    }
+   
      public void refreshEditForm(){
          ((EntityBase) this.getCurrentObj()).setId(0);
+         this.setEnableIdControl(true);
+         this.groupInfomation.setEditStatusTitle(SystemStringConstants.STR_ADD);
          Component[] components = this.groupInfomation.getComponents();
          for(Component c: components ){
            if (c instanceof JTextField){

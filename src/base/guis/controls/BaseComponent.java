@@ -1,7 +1,9 @@
 package base.guis.controls;
 
 
+import java.time.LocalDate;
 import javax.swing.JPanel;
+import ultilities.factories.DateTimeFactory;
 
 public class BaseComponent extends JPanel {
     public BaseComponent(){
@@ -12,6 +14,10 @@ public class BaseComponent extends JPanel {
     public String getEmptyText(){
         stringBuilder.setLength(0);
         return stringBuilder.toString();
+    }
+    
+    public java.sql.Date getMinDate(){
+        return DateTimeFactory.Instance().getMinDate();
     }
     
     public boolean isNull(Object obj){

@@ -1,6 +1,7 @@
 package ultilities.helpers;
 
 
+import base.configurations.constants.SystemConstants;
 import java.text.DateFormat;
 import static java.text.DateFormat.DEFAULT;
 import java.text.DecimalFormat;
@@ -21,7 +22,7 @@ import java.util.Locale;
  */
 public class FormatHelper {
     public static NumberFormat getCurrencyUnitFormat(){
-        return NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
+        return NumberFormat.getCurrencyInstance(new Locale(SystemConstants.LANGUAGE_CODE_DEFAULT,SystemConstants.COUNTRY_CODE_DEFAULT));
     }
      public static NumberFormat getNumberFormat(){
         return  NumberFormat.getInstance();
@@ -31,7 +32,7 @@ public class FormatHelper {
     }
 
     public static DateFormat getSimpleDateFormat(){
-        return  SimpleDateFormat.getDateInstance(DEFAULT,new Locale("vi","VN"));
+        return  SimpleDateFormat.getDateInstance(DEFAULT,new Locale(SystemConstants.LANGUAGE_CODE_DEFAULT,SystemConstants.COUNTRY_CODE_DEFAULT));
     }
     
     public static DecimalFormat getCurrencyFormat(){

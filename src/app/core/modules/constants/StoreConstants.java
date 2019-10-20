@@ -21,4 +21,13 @@ public class StoreConstants {
             = "call PRODUCTCATEGORY_INSORUPD(:id,:code,:name,:description,:image,:thumbnail,:isDeleted, :createdDate, :createdBy, "
             + ":updatedDate, :updatedBy)";
     public static final String PRODUCTCATEGORY_BYID = "call PRODUCTCATEGORY_ById(:id)";
+
+    public static final String EMPLOYEE_SEARCH = "call EMPLOYEE_Search(:keyword,:offset,:pageSize,:sorting,!totalCount)";
+
+    public static final String EMPLOYEE_BYID = "call EMPLOYEE_ById(:id)";
+
+    public static final String EMPLOYEE_INSORUPD
+            = "call EMPLOYEE_InsOrUpd(:id, :code, :name, :birthday, :phoneNumber, :address, "
+            + ":isDeleted, :createdDate, :createdBy, "
+            + ":updatedDate, :updatedBy)";
 }

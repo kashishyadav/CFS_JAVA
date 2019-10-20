@@ -13,5 +13,7 @@ public class SystemConstants {
     public final static int CENTER_POSX = ClientSize.width/2 - DEFAULT_SCREEN_WIDTH/2;
     public final static int CENTER_POSY =  ClientSize.height/2 - DEFAULT_SCREEN_HEIGHT/2;;
     public final static String CURRENCY_FORMAT_STRING =  "%,.2f";
-    public final static String DATE_FORMAT_STRING =  "dd-MM-yyyy";
+    public final static String DATE_FORMAT_STRING =  "dd/MM/yyyy";
+    public final static String LANGUAGE_CODE_DEFAULT=  "vi";
+    public final static String COUNTRY_CODE_DEFAULT=  "VN";
 }

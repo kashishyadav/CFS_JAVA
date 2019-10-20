@@ -10,6 +10,9 @@ package app.core.modules.constants;
  * @author Khang
  */
 public class PageConstants {
-    public static final String PRODUCT = "Sản phẩm"; 
-    public static final String PRODUCTCATEGORY = "Loại sản phẩm"; 
+
+    public static final String PRODUCT = "Sản phẩm";
+    public static final String PRODUCTCATEGORY = "Loại sản phẩm";
+    public static final String EMPLOYEE = "Nhân viên";
+
 }

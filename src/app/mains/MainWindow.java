@@ -1,6 +1,7 @@
 package app.mains;
 
 import app.core.trade.guis.employees.EmployeeGUI;
+import app.core.trade.guis.orders.OrderGUI;
 import app.core.trade.guis.productCategories.ProductCategoryGUI;
 import app.core.trade.guis.products.ProductGUI;
 import base.configurations.constants.SystemConstants;
@@ -13,6 +14,7 @@ public class MainWindow extends BaseFrame {
     ProductGUI productGUI;
     ProductCategoryGUI productCategoryGUI;
     EmployeeGUI employeeGUI;
+    OrderGUI orderGUI;
 
     public MainWindow() throws InstantiationException, IllegalAccessException {
 
@@ -25,8 +27,11 @@ public class MainWindow extends BaseFrame {
         employeeGUI = new EmployeeGUI();
         employeeGUI.setVisible(true);
 
+        orderGUI = new OrderGUI();
+        orderGUI.setVisible(true);
+        
         this.setTitle("MainWindow");
-        this.setContentPane(employeeGUI);
+        this.setContentPane(orderGUI);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setBounds(SystemConstants.CENTER_POSX, SystemConstants.CENTER_POSY,
                 SystemConstants.DEFAULT_SCREEN_WIDTH, SystemConstants.DEFAULT_SCREEN_HEIGHT);

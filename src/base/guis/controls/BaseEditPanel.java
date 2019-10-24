@@ -4,6 +4,7 @@ import app.common.controls.DatePickerControl;
 import base.applications.intfs.IBaseService;
 import base.data.entities.EntityBase;
 import app.common.controls.GroupBox;
+import app.common.controls.ImagePicker;
 import base.applications.imps.BaseService;
 import base.applications.intfs.IDataTableDisplayMethod;
 import base.configurations.constants.SystemStringConstants;
@@ -135,9 +136,10 @@ public abstract class BaseEditPanel<T, TDisplay> extends BaseComponent implement
             if (c instanceof JTextComponent) {
                 JTextComponent textfield = (JTextComponent) c;
                 textfield.setText(this.getEmptyText());
-            } else if (c instanceof DatePickerControl) {
-                DatePickerControl datePicker = (DatePickerControl) c;
-                datePicker.setValue(null);
+            } else if (c instanceof DatePickerControl) {                
+                ((DatePickerControl)c).setValue(null);
+            } else if (c instanceof ImagePicker){
+                ((ImagePicker) c).setValue(null);
             }
         }
     }

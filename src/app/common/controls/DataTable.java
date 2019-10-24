@@ -36,6 +36,7 @@ public class DataTable extends BaseComponent implements ActionListener, IDataTab
     private String strPageNumber = "1/1";
 
     private boolean isFetching = false;
+    private boolean isEnableRowClick = true;
 
     public void setIdColumn(int idColumn) {
         this.idColumn = idColumn;
@@ -52,6 +53,7 @@ public class DataTable extends BaseComponent implements ActionListener, IDataTab
         this.CUR_PAGING_MODE = PagingModes.DEFAULT;
 
         getTable().addMouseListener(_onMouseAdapter());
+
         btnSearch.addActionListener(this);
         btnNext.addActionListener(this);
         btnPrevious.addActionListener(this);
@@ -68,6 +70,12 @@ public class DataTable extends BaseComponent implements ActionListener, IDataTab
         return this.table;
     }
 
+    public void hideColumnAt(int index) {
+        table.getColumnModel().getColumn(index).setMinWidth(0);
+        table.getColumnModel().getColumn(index).setMaxWidth(0);
+        table.getColumnModel().getColumn(index).setWidth(0);
+    }
+
     public void removeAllData() {
         DefaultTableModel tableModel = (DefaultTableModel) getTable().getModel();
         if (tableModel.getRowCount() > 0) {
@@ -75,6 +83,19 @@ public class DataTable extends BaseComponent implements ActionListener, IDataTab
                 tableModel.removeRow(i);
             }
         }
+    }
+
+    public void setVisibleFilter(boolean isVisible) {
+        this.txtKeyword.setVisible(isVisible);
+        this.btnSearch.setVisible(isVisible);
+    }
+
+    public void setVisiblePaging(boolean isVisible) {
+        this.pnlPaging.setVisible(isVisible);
+    }
+    
+     public void setEnableRowClick(boolean isEnable) {
+        this.isEnableRowClick = isEnable;
     }
 
     @Override
@@ -98,19 +119,21 @@ public class DataTable extends BaseComponent implements ActionListener, IDataTab
     protected MouseAdapter _onMouseAdapter() {
         return new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                if (!isFetching) {
-                    isFetching = true;
-                    int row = getTable().getSelectedRow();
+                if (isEnableRowClick) {
+                    if (!isFetching) {
+                        isFetching = true;
+                        int row = getTable().getSelectedRow();
 
-                    int id = (int) getTable().getValueAt(row, getIdColumn());
-                    //  System.out.println(id);             
+                        int id = (int) getTable().getValueAt(row, getIdColumn());
+                        //  System.out.println(id);             
 
-                    editPanel.setCurrentObj(editPanel.getById(id));
-                    editPanel.bindingModelToView();
-                    editPanel.setEnableIdControl(false);
-                    editPanel.getGroupInformation().setEditStatusTitle(SystemStringConstants.STR_EDIT);
-                    
-                    isFetching = false;
+                        editPanel.setCurrentObj(editPanel.getById(id));
+                        editPanel.bindingModelToView();
+                        editPanel.setEnableIdControl(false);
+                        editPanel.getGroupInformation().setEditStatusTitle(SystemStringConstants.STR_EDIT);
+
+                        isFetching = false;
+                    }
                 }
             }
         };
@@ -202,7 +225,7 @@ public class DataTable extends BaseComponent implements ActionListener, IDataTab
         txtKeyword = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new base.guis.controls.core.TableCustom();
-        jPanel4 = new javax.swing.JPanel();
+        pnlPaging = new javax.swing.JPanel();
         btnPrevious = new javax.swing.JButton();
         btnLast = new javax.swing.JButton();
         btnNext = new javax.swing.JButton();
@@ -293,11 +316,11 @@ public class DataTable extends BaseComponent implements ActionListener, IDataTab
 
         btnFirst.setText("<<");
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlPagingLayout = new javax.swing.GroupLayout(pnlPaging);
+        pnlPaging.setLayout(pnlPagingLayout);
+        pnlPagingLayout.setHorizontalGroup(
+            pnlPagingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPagingLayout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -310,13 +333,13 @@ public class DataTable extends BaseComponent implements ActionListener, IDataTab
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLast, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        pnlPagingLayout.setVerticalGroup(
+            pnlPagingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            .addGroup(pnlPagingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(btnFirst, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPagingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(btnNext, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnLast))
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -332,7 +355,7 @@ public class DataTable extends BaseComponent implements ActionListener, IDataTab
                 .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(69, 69, 69))
             .addComponent(jScrollPane1)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlPaging, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -343,7 +366,7 @@ public class DataTable extends BaseComponent implements ActionListener, IDataTab
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlPaging, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -363,10 +386,10 @@ public class DataTable extends BaseComponent implements ActionListener, IDataTab
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbPageNumber;
     private javax.swing.JLabel lbTotalCount;
+    private javax.swing.JPanel pnlPaging;
     private base.guis.controls.core.TableCustom table;
     private javax.swing.JTextField txtKeyword;
     // End of variables declaration//GEN-END:variables

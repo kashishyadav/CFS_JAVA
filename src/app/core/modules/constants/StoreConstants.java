@@ -27,7 +27,7 @@ public class StoreConstants {
     public static final String EMPLOYEE_BYID = "call EMPLOYEE_ById(:id)";
 
     public static final String EMPLOYEE_INSORUPD
-            = "call EMPLOYEE_InsOrUpd(:id, :code, :name, :birthday, :phoneNumber, :address, "
+            = "call EMPLOYEE_InsOrUpd(:id, :code, :name, :image, :birthday, :phoneNumber, :address, "
             + ":isDeleted, :createdDate, :createdBy, "
             + ":updatedDate, :updatedBy)";
 }

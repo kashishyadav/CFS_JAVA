@@ -21,6 +21,7 @@ public class EmployeeEntity extends FullAuditEntity {
      
      private String code;
      private String name;
+     private String image;
      private Date birthday;
      private String phoneNumber; 
      private String address;
@@ -41,6 +42,14 @@ public class EmployeeEntity extends FullAuditEntity {
           this.name = name;
      }
 
+     public String getImage() {
+          return image;
+     }
+
+     public void setImage(String image) {
+          this.image = image;
+     }
+     
      public Date getBirthday() {
           return birthday;
      }

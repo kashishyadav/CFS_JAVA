@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
 public class StoreProvider<T> {
 
     private T tObject;
+    private Class<T> tclass;
 
     private StoreProvider() {
 
@@ -25,6 +26,7 @@ public class StoreProvider<T> {
     public StoreProvider(Class<T> tclass)
             throws InstantiationException, IllegalAccessException {
         try {
+            this.tclass = tclass;
             this.tObject = (T) tclass.getDeclaredConstructor().newInstance();
         } catch (InvocationTargetException e) {
             e.printStackTrace();
@@ -161,24 +163,23 @@ public class StoreProvider<T> {
                 ResultSet resultSet = cstmt.executeQuery();
 
                 EntitySearchBase searchDto = (EntitySearchBase) parametersObj;
-                searchDto.setTotalCount(cstmt.getInt("p_TotalCount"));     
-                
+                searchDto.setTotalCount(cstmt.getInt("p_TotalCount"));
+
                 int curPage = searchDto.getOffset();
                 int counter = 0;
                 while (resultSet.next()) {
                     List rowData = new ArrayList();
-                    rowData.add((counter + 1)+curPage);
+                    rowData.add((counter + 1) + curPage);
                     ReflectionExHelper.loadResultSetIntoRowData(resultSet, dislayDto, rowData);
                     tableModel.addRow(rowData.toArray());
                     counter++;
                 }
-                           
+
                 ConnectionFactory.Instance().closeCStmt(cstmt);
 
             }
             ConnectionFactory.Instance().closeConn(conn);
             System.gc();
         }
-
     }
 }

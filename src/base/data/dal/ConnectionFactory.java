@@ -27,7 +27,7 @@ public class ConnectionFactory {
         minDate = DateTimeFactory.Instance().getMinDate();
     }
 
-    private final String DB_URL = "jdbc:mysql://localhost:3306/coffeeshopdb?characterEncoding=UTF-8";
+    private final String DB_URL = "jdbc:mysql://localhost:3306/coffeeshopdb?characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private final String USER_NAME = "root";
     private final String PASSWORD = "";
 

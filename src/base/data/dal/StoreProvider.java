@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -23,20 +25,31 @@ public class StoreProvider<T> {
 
     }
 
-    public StoreProvider(Class<T> tclass)
-            throws InstantiationException, IllegalAccessException {
+    public StoreProvider(Class<T> tclass){
+        
         try {
             this.tclass = tclass;
-            this.tObject = (T) tclass.getDeclaredConstructor().newInstance();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
+            try {
+                this.tObject = (T) tclass.getDeclaredConstructor().newInstance();
+            } catch (NoSuchMethodException ex) {
+                Logger.getLogger(StoreProvider.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SecurityException ex) {
+                Logger.getLogger(StoreProvider.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (InstantiationException ex) {
+            Logger.getLogger(StoreProvider.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(StoreProvider.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalArgumentException ex) {
+            Logger.getLogger(StoreProvider.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvocationTargetException ex) {
+            Logger.getLogger(StoreProvider.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
 
     }
 
-    public Map<String, Object> executeToMap(String sp_name, Object parametersObj) throws Exception {
+    public Map<String, Object> executeToMap(String sp_name, Object parametersObj) {
         Map<String, Object> mapResult = new HashMap<String, Object>();
         try (Connection conn = ConnectionFactory.Instance().getConnection()) {
             Map<String, Object> map = ReflectionExHelper.reflectObjectToMap(parametersObj);
@@ -48,9 +61,17 @@ public class StoreProvider<T> {
                     ReflectionExHelper.loadObjectIntoMap(obj, mapResult);
                 }
                 ConnectionFactory.Instance().closeCStmt(cstmt);
+            } catch (IllegalArgumentException ex) {
+                Logger.getLogger(StoreProvider.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IllegalAccessException ex) {
+                Logger.getLogger(StoreProvider.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                Logger.getLogger(StoreProvider.class.getName()).log(Level.SEVERE, null, ex);
             }
             ConnectionFactory.Instance().closeConn(conn);
             System.gc();
+        } catch (SQLException ex) {
+            Logger.getLogger(StoreProvider.class.getName()).log(Level.SEVERE, null, ex);
         }
         return mapResult;
     }

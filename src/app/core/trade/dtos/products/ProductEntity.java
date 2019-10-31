@@ -19,6 +19,15 @@ public class ProductEntity extends FullAuditEntity {
     private String thumbnail;
     private String note;
     private String status;
+    private boolean isSelected;
+    
+    public boolean getIsSelected() {
+        return isSelected;
+    }
+
+    public void setIsSelected(boolean isSelected) {
+        this.isSelected = isSelected;
+    }
 
     public String getCode() {
         return code;

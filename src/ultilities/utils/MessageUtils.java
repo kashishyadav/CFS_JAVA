@@ -6,7 +6,6 @@
 package ultilities.utils;
 
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**

@@ -13,7 +13,9 @@ import java.sql.Date;
  * @author Khang
  */
 public class ProductDisplayDto {
+
     private int id;
+    private String code;
     private String name;
     private BigDecimal price;
     private String description;

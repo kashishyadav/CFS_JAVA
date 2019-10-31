@@ -27,6 +27,15 @@ public class SystemConstants {
     public static final String DESKTOP_FOLDER_PATH = new StringBuilder(HOME_FOLDER_PATH).append("/Desktop").toString();
 
     public static final String STR_EMPLOYEES = new StringBuilder("Employees").toString();
+    public static final String STR_PRODUCTS = new StringBuilder("Products").toString();
+    public static final String STR_SYSTEMS = new StringBuilder("Systems").toString();
 
-    public static final ImageIcon IMGICON_NOIMAGE = new ImageIcon(new StringBuilder(DOMAIN_FOLDER).append("/no-image.png").toString());
+    public static final String NOIMAGE_PATH
+            = new StringBuilder(DOMAIN_FOLDER).append(IMG_SOURCE_FOLDER).append("/").append(STR_SYSTEMS).append("/no-image.png").toString();
+    public static final int IMG_ICON_LG_WIDTH = 128;
+    public static final int IMG_ICON_LG_HEIGHT = 128;
+    public static final int IMG_ICON_MD_WIDTH = 64;
+    public static final int IMG_ICON_MD_HEIGHT = 64;
+    public static final int IMG_ICON_SM_WIDTH = 32;
+    public static final int IMG_ICON_SM_HEIGHT = 32;
 }

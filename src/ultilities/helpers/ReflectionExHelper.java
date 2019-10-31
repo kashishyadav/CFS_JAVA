@@ -35,6 +35,36 @@ public class ReflectionExHelper {
         }
     }
 
+    public static void convertObjectIntoObject(Object targetObj, Object desObj) throws IllegalArgumentException, IllegalAccessException {
+        List<Field> targetFields = getFields(targetObj);
+        List<Field> desFields = getFields(desObj);
+        for (Field targetField : targetFields) {
+            targetField.setAccessible(true);
+            for (Field desField : desFields) {
+                desField.setAccessible(true);
+                if (desField.getName().equals(targetField.getName())) {
+                    Object value = targetField.get(targetObj);
+//                    Class<?> type = targetField.getType();
+//                    if (isPrimitive(type)) {//check primitive type(Point 5)
+//                        Class<?> boxed = boxPrimitiveClass(type);//box if primitive(Point 6)
+//                        value = boxed.cast(value);
+//                    }
+                    desField.set(desObj, value);
+                }
+            }
+
+        }
+    }
+
+    public static void loadObjIntoVector(Object object, Vector vec) throws IllegalArgumentException, IllegalAccessException {
+        List<Field> allFields = getFields(object);
+        for (Field field : allFields) {
+            field.setAccessible(true);
+            Object value = field.get(object);
+            vec.add(value);
+        }
+    }
+
     public static void loadResultSetIntoMapProperties(ResultSet rst, Object object, Map<String, Object> mapProperties)
             throws IllegalArgumentException, IllegalAccessException, SQLException {
         List<Field> allFields = getFields(object);
@@ -74,17 +104,17 @@ public class ReflectionExHelper {
                     if (value != null) {
                         Timestamp ts = (Timestamp) value;
                         field.set(object, new java.sql.Date(ts.getTime()));
-                    }else{
-                         field.set(object, null);
+                    } else {
+                        field.set(object, null);
                     }
 
                     continue;
                 }
                 field.set(object, value);
             } catch (Exception ex) {
-             //   ex.printStackTrace();
+                //   ex.printStackTrace();
                 //  throw ex;
-                  continue;
+                continue;
             }
         }
     }

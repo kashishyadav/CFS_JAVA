@@ -47,6 +47,8 @@ public class ProductCategoryGUI extends BaseEditPanel {
         this.appCrudToolBar.setEditPanelUI(this);
         this.setGroupInformation(this.groupInformation, PageConstants.PRODUCTCATEGORY);
         setTableColumns();
+        this.setIdControl(txtCode);
+        this.setIsAutoGenKey(true);
 
         // set store procedure names
         this.setStoreProcedureNames(
@@ -60,8 +62,9 @@ public class ProductCategoryGUI extends BaseEditPanel {
     @Override
     public void setTableColumns() {
 
-        String[] headers = new String[]{"STT", "Id", "Tên loại", "Mô tả"};
+        String[] headers = new String[]{"STT", "Id","Mã loại", "Tên loại", "Mô tả"};
         tableModel.setColumnIdentifiers(headers);
+        this.dataTable.hideColumnAt(1);
         TableColumnModel colModel = dataTable.getTable().getColumnModel();
 
     }
@@ -80,7 +83,7 @@ public class ProductCategoryGUI extends BaseEditPanel {
         ProductCategoryEntity entity = (ProductCategoryEntity) this.getCurrentObj();
         entity.setCode(txtCode.getText());
         entity.setName(txtName.getText());
-        entity.setDescription(txtDescription.getText());      
+        entity.setDescription(txtDescription.getText());
     }
 
     /**

@@ -11,6 +11,7 @@ package app.core.trade.dtos.productCategories;
  */
 public class ProductCategoryDisplayDto {
     private int id;
+    private String code;
     private String name;
     private String description;
 }

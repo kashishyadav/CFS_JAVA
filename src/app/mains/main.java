@@ -14,7 +14,7 @@ public class main {
                 public void run(){
                     try {
                         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                        MainWindow mainWindow = new MainWindow ();
+                        MainWindow mainWindow = MainWindow.getInstance();
                         mainWindow.setVisible(true);
                     } catch (Exception ex) {
                         Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);

@@ -35,7 +35,7 @@ public class AllCodeSelector extends Selector {
 
             @Override
             public void run() {
-                try {
+            
                     AllCodeEntity allCode = new AllCodeEntity();
                     allCode.setCdName(cdName);
                     StoreProvider<AllCodeEntity> storeProvider = new StoreProvider(AllCodeEntity.class);
@@ -52,11 +52,7 @@ public class AllCodeSelector extends Selector {
                     storeProvider = null;
                     System.gc();
                     
-                } catch (InstantiationException ex) {
-                    Logger.getLogger(AllCodeSelector.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IllegalAccessException ex) {
-                    Logger.getLogger(AllCodeSelector.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                
             }
         }).start();
     }

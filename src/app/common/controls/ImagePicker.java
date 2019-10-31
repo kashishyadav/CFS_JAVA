@@ -92,7 +92,7 @@ public class ImagePicker extends javax.swing.JPanel implements ActionListener {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(txtFilePath, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                .addComponent(txtFilePath, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnUpload, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(lbImageContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -147,7 +147,7 @@ public class ImagePicker extends javax.swing.JPanel implements ActionListener {
         if (!imagePath.isEmpty()) {
             ImageIcon MyImage = new ImageIcon(imagePath);
             Image img = MyImage.getImage();
-            Image newImg = img.getScaledInstance(lbImageContainer.getWidth(), lbImageContainer.getHeight(), Image.SCALE_SMOOTH);
+            Image newImg = img.getScaledInstance(lbImageContainer.getWidth()-5, lbImageContainer.getHeight()-5, Image.SCALE_SMOOTH);
             //ImageIcon image = new ImageIcon(newImg);
             return newImg;
         }

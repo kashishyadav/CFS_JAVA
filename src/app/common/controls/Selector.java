@@ -35,11 +35,12 @@ public class Selector extends BaseCombobox implements ItemListener {
 
     protected Class<?> _valueType = int.class;
 
-    protected boolean isNullableDisplay = true;
+    protected boolean isNullableDisplay = false;
 
     protected List<Map<String, Object>> dataSource;
 
     public Selector() {
+        super();
         initComponents();
         init();
     }

@@ -6,6 +6,7 @@
 package app.common.controls;
 
 import base.guis.controls.core.BaseFormattedField;
+import java.awt.ComponentOrientation;
 import ultilities.helpers.FormatHelper;
 
 /**
@@ -22,6 +23,7 @@ public class NumberInput extends BaseFormattedField  {
         initComponents();
         this.setValue(0);
         this.setText("0");
+        this.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
     }
 
     /**

@@ -5,20 +5,86 @@
  */
 package app.core.trade.guis.orders;
 
-import app.core.trade.guis.products.ProductListComponent;
+import app.core.modules.constants.PageConstants;
+import app.core.modules.constants.StoreConstants;
+import app.core.trade.dtos.orders.OrderDetailEntity;
+import app.core.trade.dtos.orders.OrderEntity;
+import app.core.trade.dtos.products.ProductEntity;
+import app.mains.MainWindow;
+import base.configurations.constants.SystemStringConstants;
+import base.data.dal.StoreProvider;
+import base.guis.controls.BaseComponent;
+import com.google.gson.Gson;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JDialog;
+import javax.swing.table.TableColumnModel;
+import ultilities.helpers.NumberRendererHelper;
+import ultilities.utils.MathUtils;
+import ultilities.utils.MessageUtils;
 
 /**
  *
  * @author Khang
  */
-public class OrderGUI extends javax.swing.JPanel {
+public class OrderGUI extends BaseComponent implements ActionListener {
 
     /**
      * Creates new form OrderGUI
      */
+    //List<OrderDetailEntity> curItems = null;
+    StoreProvider<OrderEntity> storeProvider;
+    Gson gson;
+    OrderEntity curOrder;
+
     public OrderGUI() {
         initComponents();
-       this.productListComponent1.setVisibleFilter(false);
+        init();
+    }
+
+    private void init() {
+        gson = new Gson();
+        curOrder = new OrderEntity();
+        storeProvider = new StoreProvider(OrderEntity.class);
+
+        //this.lvProducts.setVisibleFilter(false);
+        this.editTable1.setDisableEdit(true);
+        initTableDetail();
+
+        //curItems = new ArrayList<OrderDetailEntity>();
+        this.btnGetProducts.addActionListener(this);
+
+        this.editTable1.setVisibleButtonAdd(false);
+        this.editTable1.getButtonDelete().addActionListener(this);
+        this.editTable1.getButtonEdit().addActionListener(this);
+        this.btnCalculate.addActionListener(this);
+        this.btnSubmit.addActionListener(this);
+
+//        FocusAdapter focus = new ComponentFocusAdapter(this) {
+//            @Override
+//            public void focusLost(FocusEvent e) {
+//                System.out.println("leave");
+//              ((OrderGUI) getComponent()).onResetPrice();
+//            }
+//        };
+//
+//        this.txtDiscount.getSpinner().addFocusListener(focus);
+//        this.txtFee.addFocusListener(focus);
+    }
+
+    public void initTableDetail() {       
+        this.editTable1.setColumns("STT", "Mã SP", "Tên SP", "Gía", "Số lượng", "Thành tiền");
+        TableColumnModel colModel = this.editTable1.getTable().getColumnModel();
+        colModel.getColumn(3).setCellRenderer(NumberRendererHelper.getCurrencyRenderer());
+        colModel.getColumn(4).setCellRenderer(NumberRendererHelper.getIntegerRenderer());
+        colModel.getColumn(5).setCellRenderer(NumberRendererHelper.getCurrencyRenderer());
     }
 
     /**
@@ -30,27 +96,306 @@ public class OrderGUI extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        productListComponent1 = new app.core.trade.guis.products.ProductListComponent();
+        lvProducts = new app.core.trade.guis.products.ProductListComponent();
+        groupBox1 = new app.common.controls.GroupBox();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        try {
+            txtTotalValue = new app.common.controls.DecimalInput();
+        } catch (java.text.ParseException e1) {
+            e1.printStackTrace();
+        }
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        try {
+            txtFee = new app.common.controls.DecimalInput();
+        } catch (java.text.ParseException e1) {
+            e1.printStackTrace();
+        }
+        txtDiscount = new app.common.controls.JPercentField();
+        btnCalculate = new javax.swing.JButton();
+        btnSubmit = new javax.swing.JButton();
+        editTable1 = new app.common.controls.EditTable();
+        btnGetProducts = new javax.swing.JButton();
+
+        jLabel1.setText("Số phiếu:");
+
+        jLabel2.setText("Nhân viên:");
+
+        jLabel3.setText("Địa chỉ chi nhánh:");
+
+        jLabel4.setText("Số 123, phố Wall, quận Thủ Đức, HCM");
+
+        jLabel5.setText("Tổng giá trị thanh toán:");
+
+        jLabel6.setText("Tiền phí vận chuyển:");
+
+        jLabel7.setText("Tỷ lệ giảm giá:");
+
+        btnCalculate.setText("Tính");
+
+        javax.swing.GroupLayout groupBox1Layout = new javax.swing.GroupLayout(groupBox1);
+        groupBox1.setLayout(groupBox1Layout);
+        groupBox1Layout.setHorizontalGroup(
+            groupBox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(groupBox1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(groupBox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addGroup(groupBox1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4))
+                    .addGroup(groupBox1Layout.createSequentialGroup()
+                        .addGroup(groupBox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(groupBox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtTotalValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtFee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtDiscount, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCalculate, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        groupBox1Layout.setVerticalGroup(
+            groupBox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(groupBox1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(groupBox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(groupBox1Layout.createSequentialGroup()
+                        .addGroup(groupBox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18)
+                        .addGroup(groupBox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(txtFee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel7))
+                    .addComponent(txtDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(groupBox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtTotalValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCalculate))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        btnSubmit.setText("Lưu thông tin");
+
+        btnGetProducts.setText("Chọn ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(productListComponent1, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 336, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lvProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGetProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(editTable1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
+                    .addComponent(btnSubmit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(groupBox1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(productListComponent1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(groupBox1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(editTable1, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lvProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnGetProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private app.core.trade.guis.products.ProductListComponent productListComponent1;
+    private javax.swing.JButton btnCalculate;
+    private javax.swing.JButton btnGetProducts;
+    private javax.swing.JButton btnSubmit;
+    private app.common.controls.EditTable editTable1;
+    private app.common.controls.GroupBox groupBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private app.core.trade.guis.products.ProductListComponent lvProducts;
+    private app.common.controls.JPercentField txtDiscount;
+    private app.common.controls.DecimalInput txtFee;
+    private app.common.controls.DecimalInput txtTotalValue;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == btnGetProducts) {
+            onGetItems(this.lvProducts.getSelectedItems());
+        } else if (e.getSource() == this.editTable1.getButtonDelete()) {
+            onDeleteItem();
+        } else if (e.getSource() == this.editTable1.getButtonEdit()) {
+            onEditItem();
+        } else if (e.getSource() == btnSubmit) {
+            onSubmit();
+        } else {
+            this.onResetPrice();
+        }
+    }
+
+    public void onSubmit() {
+        if (this.curOrder.getDetails() != null && this.curOrder.getDetails().size() > 0) {
+            this.onResetPrice();
+            this.curOrder.setStrOrderDetails(gson.toJson(this.curOrder.getDetails()));       
+            System.out.println(this.curOrder.getStrOrderDetails());
+            Map<String, Object> results = storeProvider.executeToMap(StoreConstants.ORDER_INSORUPD, this.curOrder);
+            
+            if (!results.get("Result").equals("0")) {
+                MessageUtils.showSuccessMessage(this, SystemStringConstants.STR_SAVE_SUCCESS);
+            } else {
+                MessageUtils.showErrorMessage(this, (String) results.get("ErrorDesc"));
+            }
+        } else {
+            MessageUtils.showErrorMessage(this, SystemStringConstants.STR_ERROR_EMPTY_LIST);
+        }
+    }
+
+    public void onRefreshhForm() {
+        this.txtTotalValue.setValue(BigDecimal.ZERO);
+        this.txtFee.setValue(BigDecimal.ZERO);
+        this.txtDiscount.setValue(BigDecimal.ZERO);
+        if(this.curOrder.getDetails()!=null &&this.curOrder.getDetails().size()>0){
+            for(int i =0; i<this.curOrder.getDetails().size();i++){
+                 this.editTable1.getTableModel().removeRow(i);
+                this.curOrder.getDetails().remove(i);
+            }
+        }
+        
+        //this.curOrder.getDetails().removeAll(this.curOrder.getDetails());
+       
+        this.onResetPrice();
+    }
+
+    public void onEditItem() {
+        int rowIndex = this.editTable1.getCurrentSelectedRow();
+        if (rowIndex != -1) {
+            OrderDetailEntity item = this.curOrder.getDetails().get(rowIndex);
+            JDialog jd = new JDialog(MainWindow.getInstance(), PageConstants.EDIT_DETAIL);
+//            jd.add(new OrderDetailEditPanel(item, jd));
+//            jd.setModal(true);
+//            jd.setResizable(false);
+//            jd.setBounds(SystemConstants.CENTER_POSX + MainWindow.getInstance().getWidth() / 4,
+//                    SystemConstants.CENTER_POSY + +MainWindow.getInstance().getHeight() / 4, 479, 329);
+//            jd.setVisible(true);
+            this.showComponentDialog(new OrderDetailEditPanel(item, jd), jd);
+
+            this.onResetPrice();
+        }
+
+    }
+
+    public void onDeleteItem() {
+        int rowIndex = this.editTable1.getTable().getSelectedRow();
+
+        if (rowIndex != -1) {
+
+            this.editTable1.getTableModel().removeRow(rowIndex);
+            this.curOrder.getDetails().remove(rowIndex);
+
+            for (int i = 0; i < this.curOrder.getDetails().size(); i++) {
+                this.editTable1.getTableModel().setValueAt(i + 1, i, 0);
+            }
+            this.editTable1.setTotalCountLabel(this.curOrder.getDetails().size());
+        }
+        this.onResetPrice();
+    }
+
+    public void onGetItems(List<ProductEntity> items) {
+        //this.curOrder.getDetails().removeAll(this.curOrder.getDetails());
+        if (items != null && items.size() > 0) {
+            //this.editTable1.getTableModel().addRow(rowData);  
+            int curIndex = this.curOrder.getDetails().size() + 1;
+            boolean isInList;
+            for (ProductEntity pd : items) {
+                try {
+                    isInList = false;
+                    for (OrderDetailEntity ordIm : this.curOrder.getDetails()) {
+                        if (ordIm.getProductId() == pd.getId()) {
+                            isInList = true;
+                            break;
+                        }
+                    }
+
+                    if (!isInList) {
+                        OrderDetailEntity ordItem = new OrderDetailEntity();
+                        ordItem.setDataFromProduct(pd);
+                        this.curOrder.getDetails().add(ordItem);
+                        Vector displayRow = new Vector();
+                        displayRow.add(curIndex);
+                        ordItem.convertDataToVectorRowVector(displayRow);
+                        this.editTable1.getTableModel().addRow(displayRow);
+                        curIndex++;
+                    }
+
+                } catch (IllegalArgumentException ex) {
+                    Logger.getLogger(OrderGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        this.editTable1.setTotalCountLabel(this.curOrder.getDetails().size());
+        this.onResetPrice();
+    }
+
+    public void onResetPrice() {
+
+        this.curOrder.setTotalPrice(BigDecimal.ZERO);
+        this.curOrder.setDiscountPercent(this.txtDiscount.getValue());
+        this.curOrder.setFee(MathUtils.getBigDecimal(this.txtFee.getValue()));
+
+        if (this.curOrder.getDetails() != null) {
+            for (int i = 0; i < this.curOrder.getDetails().size(); i++) {
+                BigDecimal itemTotalPrice = this.curOrder.getDetails().get(i).getTotalPrice();
+                this.curOrder.setTotalPrice( this.curOrder.getTotalPrice().add(itemTotalPrice));
+               // totalValue = totalValue.add(itemTotalPrice);
+                this.editTable1.getTableModel().setValueAt(itemTotalPrice, i, 5);
+                this.editTable1.getTableModel().setValueAt(this.curOrder.getDetails().get(i).getQuantity(), i, 4);
+            }
+        }
+
+        this.curOrder.setPrice(this.curOrder.getTotalPrice());
+        this.curOrder.setTotalPrice( this.curOrder.getTotalPrice().add(this.curOrder.getFee()));
+       // totalValue = totalValue.add(fee);
+        BigDecimal amortValue = this.curOrder.getTotalPrice().multiply(this.curOrder.getDiscountPercent());
+        this.curOrder.setTotalPrice(this.curOrder.getTotalPrice().subtract(amortValue));
+        //totalValue = totalValue.subtract(amortValue);
+        if (this.curOrder.getTotalPrice().intValue() < 0) {
+            this.curOrder.setTotalPrice(BigDecimal.ZERO);
+            this.curOrder.setPrice(BigDecimal.ZERO);
+        }
+        this.txtTotalValue.setValue(this.curOrder.getTotalPrice());
+    }
+
 }

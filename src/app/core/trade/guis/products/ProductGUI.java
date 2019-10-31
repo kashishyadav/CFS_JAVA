@@ -12,12 +12,15 @@ import app.core.trade.dtos.productCategories.ProductCategoryEntity;
 import app.core.trade.dtos.products.ProductDisplayDto;
 import app.core.trade.dtos.products.ProductEntity;
 import base.applications.imps.BaseService;
+import base.configurations.constants.SystemConstants;
 import base.data.dal.StoreProvider;
 
 import base.guis.controls.BaseEditPanel;
 import base.infrastructures.ComponentRunnable;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -36,14 +39,15 @@ public class ProductGUI extends BaseEditPanel {
      */
     StoreProvider<ProductCategoryEntity> categoryProvider;
 
-    public ProductGUI() throws InstantiationException, IllegalAccessException {
+    public ProductGUI() {
         //current obj, search obj, display obj
         super(new ProductEntity(), new ProductEntity(), new ProductDisplayDto());
         initComponents();
         init();
     }
 
-    private void init() throws InstantiationException, IllegalAccessException {
+    private void init() {
+
         this.appService = new BaseService(ProductEntity.class, ProductDisplayDto.class);
 
         dataTable.setEditPanel(this);
@@ -53,6 +57,11 @@ public class ProductGUI extends BaseEditPanel {
         this.appCrudToolBar.setEditPanelUI(this);
         this.setGroupInformation(this.gbInfo, PageConstants.PRODUCT);
         setTableColumns();
+        this.setIdControl(txtCode);
+        this.setIsAutoGenKey(true);
+
+        //image picker folder
+        this.imagePicker.setCategoryFolderName(new StringBuilder(SystemConstants.STR_PRODUCTS).toString().toLowerCase());
 
         // set store procedure names
         this.setStoreProcedureNames(
@@ -64,9 +73,10 @@ public class ProductGUI extends BaseEditPanel {
         //Selector(combobox) StoreProvider
         this.categoryProvider = new StoreProvider(ProductCategoryEntity.class);
         initSelector();
-        // 
+        //
         //
         this.dataTable.onResetSearch();
+
     }
 
     @Override
@@ -74,14 +84,14 @@ public class ProductGUI extends BaseEditPanel {
 
         String[] headers = new String[]{
             //0     1       2           3       4       5           6
-            "STT", "Id", "Tên sản phẩm", "Gía", "Mô tả", "Ngày tạo", "Người tạo"};
+            "STT", "Id", "Mã sản phẩm", "Tên sản phẩm", "Gía", "Mô tả", "Ngày tạo", "Người tạo"};
         tableModel.setColumnIdentifiers(headers);
 
         TableColumnModel colModel = dataTable.getTable().getColumnModel();
-
+        this.dataTable.hideColumnAt(1);
         //format cho các cột
-        colModel.getColumn(3).setCellRenderer(NumberRendererHelper.getCurrencyRenderer());
-        colModel.getColumn(5).setCellRenderer(FormatRenderHelper.getDateRenderer());
+        colModel.getColumn(4).setCellRenderer(NumberRendererHelper.getCurrencyRenderer());
+        colModel.getColumn(6).setCellRenderer(FormatRenderHelper.getDateRenderer());
     }
 
     @Override
@@ -92,6 +102,7 @@ public class ProductGUI extends BaseEditPanel {
         txtName.setText(entity.getName());
         txtPrice.setValue(entity.getPrice());
         txtDescription.setText(entity.getDescription());
+        imagePicker.setValue(entity.getImage());
         allCodeSelectorStatus.setValue(entity.getStatus());
         selectorCategory.setValue(entity.getCategoryId());
     }
@@ -105,6 +116,7 @@ public class ProductGUI extends BaseEditPanel {
         entity.setDescription(txtDescription.getText());
         entity.setCategoryId((int) selectorCategory.getSelectedValue());
         entity.setStatus((String) allCodeSelectorStatus.getSelectedValue());
+        entity.setImage(imagePicker.getValue());
     }
 
     public void initSelector() {
@@ -165,6 +177,7 @@ public class ProductGUI extends BaseEditPanel {
         selectorCategory = new app.common.controls.Selector();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDescription = new javax.swing.JTextArea();
+        imagePicker = new app.common.controls.ImagePicker();
 
         jLabel2.setText("Tên sản phẩm:");
 
@@ -187,7 +200,7 @@ public class ProductGUI extends BaseEditPanel {
         gbInfoLayout.setHorizontalGroup(
             gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gbInfoLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jLabel1)
@@ -198,7 +211,7 @@ public class ProductGUI extends BaseEditPanel {
                     .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(gbInfoLayout.createSequentialGroup()
                         .addComponent(jLabel4)
@@ -260,11 +273,14 @@ public class ProductGUI extends BaseEditPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dataTable, javax.swing.GroupLayout.DEFAULT_SIZE, 772, Short.MAX_VALUE)
+                    .addComponent(dataTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(appCrudToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(gbInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(imagePicker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(gbInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -272,7 +288,9 @@ public class ProductGUI extends BaseEditPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(gbInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(gbInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(imagePicker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addComponent(appCrudToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -287,6 +305,7 @@ public class ProductGUI extends BaseEditPanel {
     private app.common.controls.AppCrudToolBar appCrudToolBar;
     private app.common.controls.DataTable dataTable;
     private app.common.controls.GroupBox gbInfo;
+    private app.common.controls.ImagePicker imagePicker;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -13,20 +13,41 @@ import java.math.BigInteger;
  * @author Khang
  */
 public class MathUtils {
-    public static BigDecimal getBigDecimal( Object value ) {
+
+    public static BigDecimal getBigDecimal(Object value) {
         BigDecimal ret = null;
-        if( value != null ) {
-            if( value instanceof BigDecimal ) {
+        if (value != null) {
+            if (value instanceof BigDecimal) {
                 ret = (BigDecimal) value;
-            } else if( value instanceof String ) {
-                ret = new BigDecimal( (String) value );
-            } else if( value instanceof BigInteger ) {
-                ret = new BigDecimal( (BigInteger) value );
-            } else if( value instanceof Number ) {
-                ret = new BigDecimal( ((Number)value).doubleValue() );
+            } else if (value instanceof String) {
+                ret = new BigDecimal((String) value);
+            } else if (value instanceof BigInteger) {
+                ret = new BigDecimal((BigInteger) value);
+            } else if (value instanceof Number) {
+                ret = new BigDecimal(((Number) value).doubleValue());
             } else {
-                throw new ClassCastException("Not possible to coerce ["+value+"] from class "+value.getClass()+" into a BigDecimal.");
+                throw new ClassCastException("Not possible to coerce [" + value + "] from class " + value.getClass() + " into a BigDecimal.");
             }
+        }
+        return ret;
+    }
+
+    public static int getInt(Object value) {
+        int ret = 0;
+        if (value == null) {
+            ret = 0;
+        } else if (value instanceof BigDecimal) {
+            ret = ((BigDecimal) value).intValue();
+        } else if (value instanceof String) {
+            ret = Integer.parseInt((String) value);
+        } else if (value instanceof BigInteger) {
+            ret = ((BigInteger) value).intValue();
+        } else if (value instanceof Number) {
+            ret = ((Number) value).intValue();
+        } else if (value instanceof Long) {
+            ret = ((Long) value).intValue();
+        } else {
+            throw new ClassCastException("Not possible to coerce [" + value + "] from class " + value.getClass() + " into a BigDecimal.");
         }
         return ret;
     }

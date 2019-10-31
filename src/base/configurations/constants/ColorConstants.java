@@ -5,6 +5,8 @@
  */
 package base.configurations.constants;
 
+import java.awt.Color;
+
 /**
  *
  * @author Khang
@@ -18,6 +20,6 @@ public class ColorConstants {
      public static final String SILVER_LIGHT="#F3F7FB";
      public static final String APP_PRIMARY_COLOR="#248DC1";
      public static final String APP_COLOR="#639BB7";
-    
+     public static final String HIGHLIGHT_COLOR = "#000080";
      
 }

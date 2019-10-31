@@ -17,26 +17,34 @@ import javax.swing.ListSelectionModel;
  */
 public class TableCustom extends javax.swing.JTable {
 
+    boolean isDisableEdit = true;
     /** Creates new form TableCustom */
     public TableCustom() {
         initComponents();
-       this.getTableHeader().setFont(new Font("Segoe UI",Font.BOLD,12));
+       this.getTableHeader().setFont(new Font("Segoe UI",Font.BOLD,14));
        this.getTableHeader().setOpaque(false);
        this.setSelectionBackground(Color.decode(ColorConstants.SILVER_LIGHT));
        this.setSelectionForeground(Color.decode(ColorConstants.BLACK));
        this.getTableHeader().setForeground(Color.WHITE);
        this.getTableHeader().setBackground(Color.decode(ColorConstants.TABLE_HEADER_BACKGROUND));
        
-       this.setRowHeight(25);
+       this.setRowHeight(28);
        this.setFillsViewportHeight(true);
        this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);  
         
     }
 
     @Override
-    public boolean isCellEditable(int row, int column) {                
-                return false;               
+    public boolean isCellEditable(int row, int column) {     
+        if(!isDisableEdit){
+            return super.isCellEditable(row, column);
+        }       
+        return false;               
     };
+    
+    public void setDisableEdit(boolean isDisableEdit){
+        this.isDisableEdit = isDisableEdit;
+    }
     
     
     /** This method is called from within the constructor to

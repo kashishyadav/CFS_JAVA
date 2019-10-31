@@ -6,7 +6,9 @@
 package app.core.trade.guis.products;
 
 import app.core.trade.dtos.products.ProductEntity;
+import base.configurations.constants.ColorConstants;
 import base.configurations.constants.SystemConstants;
+import base.infrastructures.systems.AppContext;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Image;
@@ -20,9 +22,7 @@ import ultilities.helpers.Helper;
  * @author Khang
  */
 public class ProductCellRenderer extends JLabel implements ListCellRenderer {
-
-    private static final Color HIGHLIGHT_COLOR = new Color(0, 0, 128);
-
+  
     public ProductCellRenderer() {
         setOpaque(true);
         setIconTextGap(12);
@@ -37,14 +37,19 @@ public class ProductCellRenderer extends JLabel implements ListCellRenderer {
             String title = new StringBuilder(code).append(" - ").append(name).toString();
 
             Image img = null;
-            if (entry.getImage() != null) {
-                img = Helper.ResizeImage(new StringBuilder(SystemConstants.DOMAIN_FOLDER).append(entry.getImage()).toString(), 400, 400);
+            if (entry.getImage() != null && !entry.getImage().isEmpty()) {
+                img = Helper.ResizeImage(new StringBuilder(SystemConstants.DOMAIN_FOLDER)
+                        .append(entry.getImage()).toString(), SystemConstants.IMG_ICON_LG_WIDTH, SystemConstants.IMG_ICON_LG_HEIGHT);
+                setIcon(Helper.convertImageToImageIcon(img));
+            } else {
+                
+                setIcon(AppContext.getInstance().getNoImageIcon());
             }
 
             setText(title);
-            setIcon(Helper.convertImageToImageIcon(img));
+
             if (isSelected) {
-                setBackground(HIGHLIGHT_COLOR);
+                setBackground(Color.decode(ColorConstants.HIGHLIGHT_COLOR));
                 setForeground(Color.white);
             } else {
                 setBackground(Color.white);

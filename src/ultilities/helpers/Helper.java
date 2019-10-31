@@ -18,7 +18,7 @@ public class Helper {
         if (imagePath != null && !imagePath.isEmpty()) {
             ImageIcon MyImage = new ImageIcon(imagePath);
             Image img = MyImage.getImage();
-            Image newImg = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+            Image newImg = img.getScaledInstance(width-5, height-5, Image.SCALE_SMOOTH);
             //ImageIcon image = new ImageIcon(newImg);
             return newImg;
         }

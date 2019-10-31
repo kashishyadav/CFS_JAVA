@@ -6,39 +6,37 @@
 package app.common.controls;
 
 import base.guis.controls.core.BaseFormattedField;
+import java.awt.ComponentOrientation;
 import java.text.ParseException;
 import ultilities.helpers.FormatHelper;
-
 
 /**
  *
  * @author Khang
  */
-public class DecimalInput extends BaseFormattedField  {
+public class DecimalInput extends BaseFormattedField {
+
     /**
      * Creates new form MoneyInput
      */
     boolean isNegative = false;
-    
+
     public DecimalInput() throws ParseException {
         super(FormatHelper.getCurrencyFormat());
         initComponents();
-        this.setText("0");      
-        
-      }
-           
-    public boolean getIsNegative(){
+        this.setText("0");
+        this.setValue(0);
+        this.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+    }
+
+    public boolean getIsNegative() {
         return this.isNegative;
     }
-    public void setIsNegative(boolean isNegative){
-        this.isNegative=isNegative;
+
+    public void setIsNegative(boolean isNegative) {
+        this.isNegative = isNegative;
     }
 
-
-
-   
-   
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,8 +46,6 @@ public class DecimalInput extends BaseFormattedField  {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
     }// </editor-fold>//GEN-END:initComponents
-
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

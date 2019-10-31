@@ -47,6 +47,7 @@ public class DataTable extends BaseComponent implements ActionListener, IDataTab
     }
 
     public DataTable() {
+        super();
         initComponents();
         lbPageNumber.setHorizontalAlignment(SwingConstants.CENTER);
         lbPageNumber.setText(strPageNumber);
@@ -119,7 +120,8 @@ public class DataTable extends BaseComponent implements ActionListener, IDataTab
     protected MouseAdapter _onMouseAdapter() {
         return new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                if (isEnableRowClick) {
+                try{
+                    if (isEnableRowClick) {
                     if (!isFetching) {
                         isFetching = true;
                         int row = getTable().getSelectedRow();
@@ -135,6 +137,10 @@ public class DataTable extends BaseComponent implements ActionListener, IDataTab
                         isFetching = false;
                     }
                 }
+                }catch(Exception ex){
+                    
+                }
+                       
             }
         };
     }

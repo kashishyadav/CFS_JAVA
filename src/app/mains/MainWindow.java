@@ -1,5 +1,7 @@
 package app.mains;
 
+import app.core.purchases.guis.goods.GoodsGUI;
+import app.core.purchases.guis.goodsCategories.GoodsCategoryGUI;
 import app.core.trade.guis.employees.EmployeeGUI;
 import app.core.trade.guis.orders.OrderGUI;
 import app.core.trade.guis.productCategories.ProductCategoryGUI;
@@ -14,9 +16,18 @@ public class MainWindow extends BaseFrame {
     ProductGUI productGUI;
     ProductCategoryGUI productCategoryGUI;
     EmployeeGUI employeeGUI;
+    GoodsGUI goodsGUI;
+    GoodsCategoryGUI goodsCategoryGUI;
     OrderGUI orderGUI;
 
-    public MainWindow() throws InstantiationException, IllegalAccessException {
+    private static MainWindow _instance;
+    public static MainWindow getInstance(){
+        if(_instance==null){
+            _instance = new MainWindow();
+        }
+        return _instance;
+    }
+    private MainWindow(){
 
         productGUI = new ProductGUI();
         productGUI.setVisible(true);
@@ -29,6 +40,12 @@ public class MainWindow extends BaseFrame {
 
         orderGUI = new OrderGUI();
         orderGUI.setVisible(true);
+        
+        goodsGUI = new GoodsGUI();
+        goodsGUI.setVisible(true);
+        
+        goodsCategoryGUI = new GoodsCategoryGUI();
+        goodsCategoryGUI.setVisible(true);
         
         this.setTitle("MainWindow");
         this.setContentPane(orderGUI);

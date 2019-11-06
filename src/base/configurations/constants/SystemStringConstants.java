@@ -5,6 +5,9 @@
  */
 package base.configurations.constants;
 
+import base.infrastructures.systems.AppContext;
+
+
 /**
  *
  * @author Khang
@@ -19,4 +22,14 @@ public class SystemStringConstants {
 
     public static final String STR_NULL = "-- NULL --";
     public static final String STR_ERROR_EMPTY_LIST = "Danh sách rỗng";
+    public static final String STR_ERROR_EMPTY_ID = "Mã không được rỗng";
+    
+    public static final String STR_ERROR_PASSWORD_INVALID = String.format("Mật khẩu không hợp lệ,"
+            + " không được rỗng và có ít nhất %s ký tự",AppContext.getInstance().getRequiredPasswordLength());
+
+    public static final String STR_ERROR_USERNAME_INVALID =  String.format( "Tên đăng nhập không hợp lệ. Tên đăng nhập bắt buộc không rỗng, "
+            + "lớn hơn %s ký tự, và không có ký tự đặc biệt", AppContext.getInstance().getRequiredUserNameLength());
+            
+      public static final String STR_ERROR_LOGIN = "Đăng nhập thất bại";      
+    
 }

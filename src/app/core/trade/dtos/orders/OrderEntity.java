@@ -23,6 +23,8 @@ public class OrderEntity extends FullAuditEntity {
         this.discountPercent = BigDecimal.ZERO;
         this.fee = BigDecimal.ZERO;
         details = new ArrayList<OrderDetailEntity>();
+        
+        this.status = "D";
     }
     private String code;
     private String name;

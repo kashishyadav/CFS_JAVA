@@ -15,20 +15,28 @@ import java.awt.event.ActionListener;
  *
  * @author Khang
  */
-public class AppCrudToolBar extends BaseComponent  implements ActionListener{
+public class AppCrudToolBar extends BaseComponent implements ActionListener {
 
     /**
      * Creates new form AppCrudToolBar
      */
     BaseEditPanel editPanelFunctions;
+
     public AppCrudToolBar() {
         initComponents();
     }
-    public void setEditPanelUI(BaseEditPanel editPanelFunctions){
+
+    public void setEditPanelUI(BaseEditPanel editPanelFunctions) {
         this.editPanelFunctions = editPanelFunctions;
         btnRefresh.addActionListener(this);
         btnSave.addActionListener(this);
         btnDelete.addActionListener(this);
+    }
+
+    public void setVisibleButtons(boolean isVisibleRefresh, boolean isVisibleSave, boolean isVisibleDelete) {
+        this.btnRefresh.setVisible(isVisibleRefresh);
+        this.btnSave.setVisible(isVisibleSave);
+        this.btnDelete.setVisible(isVisibleDelete);
     }
 
     /**
@@ -79,25 +87,25 @@ public class AppCrudToolBar extends BaseComponent  implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        try{
+        try {
             btnSave.setEnabled(false);
-             if(e.getSource()==btnRefresh){
+            if (e.getSource() == btnRefresh) {
                 this.editPanelFunctions.refreshEditForm();
-             }else if (e.getSource()==btnSave){
+            } else if (e.getSource() == btnSave) {
                 this.editPanelFunctions.bindingViewToModel();
                 this.editPanelFunctions.save();
                 this.editPanelFunctions.search();
-              }else if (e.getSource()==btnDelete){
+            } else if (e.getSource() == btnDelete) {
                 this.editPanelFunctions.bindingViewToModel();
-                ((FullAuditEntity)this.editPanelFunctions.getCurrentObj()).setDeleted(true);
+                ((FullAuditEntity) this.editPanelFunctions.getCurrentObj()).setDeleted(true);
                 this.editPanelFunctions.delete();
                 this.editPanelFunctions.search();
-              }
-        }catch(Exception ex){
+            }
+        } catch (Exception ex) {
             ex.printStackTrace();
-        }finally{
-              btnSave.setEnabled(true);
+        } finally {
+            btnSave.setEnabled(true);
         }
-      
+
     }
 }

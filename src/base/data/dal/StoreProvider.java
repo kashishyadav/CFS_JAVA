@@ -3,7 +3,7 @@ package base.data.dal;
 import base.data.dtos.PagedDto;
 import base.data.dtos.ResultDto;
 import base.data.entities.EntitySearchBase;
-import ultilities.helpers.ReflectionExHelper;
+import base.ultilities.helpers.ReflectionExHelper;
 
 import java.lang.reflect.InvocationTargetException;
 import java.sql.*;

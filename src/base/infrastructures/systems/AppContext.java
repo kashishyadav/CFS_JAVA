@@ -5,10 +5,14 @@
  */
 package base.infrastructures.systems;
 
+import app.core.systems.dtos.roles.RoleEntity;
+import app.core.systems.dtos.users.UserEntity;
+import base.configurations.constants.AppStringConstants;
 import base.configurations.constants.SystemConstants;
 import java.awt.Image;
 import javax.swing.ImageIcon;
-import ultilities.helpers.Helper;
+import base.ultilities.helpers.Helper;
+import java.util.List;
 
 /**
  *
@@ -17,6 +21,28 @@ import ultilities.helpers.Helper;
 public class AppContext {
 
     private static AppContext _instance;
+    
+    private List<RoleEntity> appRoles;
+    private UserEntity currentUser;
+
+    public List<RoleEntity> getAppRoles() {
+        return appRoles;
+    }
+
+    public void setAppRoles(List<RoleEntity> appRoles) {
+        this.appRoles = appRoles;
+    }
+
+    public UserEntity getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(UserEntity currentUser) {
+        this.currentUser = currentUser;
+    }
+    
+    
+    
 
     public static AppContext getInstance() {
         if (_instance == null) {
@@ -37,4 +63,15 @@ public class AppContext {
         return Helper.convertImageToImageIcon(getNoImage());
     }
     
+    public String getAddressBranch(){
+        return AppStringConstants.STR_ADDRESS_DEFAULT;
+    }
+    
+    public int getRequiredPasswordLength(){
+        return AppStringConstants.PWD_LENGTH_REQUIRED;
+    }
+    
+    public int getRequiredUserNameLength(){
+        return AppStringConstants.USERNAME_LENGTH_REQUIRED;
+    }
 }

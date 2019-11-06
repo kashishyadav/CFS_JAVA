@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
-import ultilities.utils.TextUtils;
+import base.ultilities.utils.TextUtils;
 
 /**
  *
@@ -64,6 +64,15 @@ public class Selector extends BaseCombobox implements ItemListener {
         this._strValueMember = valueName;
     }
 
+    public String getDisplayMember() {
+        return _strDisplayMember;
+    }
+
+    public String getValueMember() {
+        return _strValueMember;
+    }
+    
+    
     public void setNullableDisplay(boolean isNullableDisplay) {
         this.isNullableDisplay = isNullableDisplay;
     }

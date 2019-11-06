@@ -46,12 +46,41 @@ public class StoreConstants {
             = "call GOODSCATEGORY_INSORUPD(:id,:code,:name,:description,:isDeleted, :createdDate, :createdBy, "
             + ":updatedDate, :updatedBy)";
     public static final String GOODSCATEGORY_BYID = "call GOODSCATEGORY_ById(:id)";
-    
-     public static final String ORDER_SEARCH
+
+    public static final String ORDER_SEARCH
             = "call ORDER_SEARCH(:keyword,:offset,:pageSize,:sorting,!totalCount)";
     public static final String ORDER_INSORUPD
             = "call ORDER_INSORUPD(:id,:code,:name,:price, :totalPrice, :discountPercent,:fee, "
             + ":strOrderDetails, :note, :status,:isDeleted, :createdDate, :createdBy, "
             + ":updatedDate, :updatedBy)";
     public static final String ORDER_BYID = "call ORDER_BYID(:id)";
+
+    public static final String ORDERDETAIL_SEARCH
+            = "call ORDERDETAIL_SEARCH(:keyword,:offset,:pageSize,:sorting,!totalCount)";
+
+    public static final String ORDERDETAIL_BYID = "call ORDERDETAIL_BYID(:id)";
+
+    //system
+    public static final String ALLCODE_SEARCH = "call ALLCODE_Search(:keyword,:offset,:pageSize,:sorting,!totalCount)";
+
+    public static final String ALLCODE_BYID = "call ALLCODE_ById(:id)";
+
+    public static final String ALLCODE_INSORUPD
+            = "call ALLCODE_InsOrUpd(:id, :cdName, :cdValue, :content, :cdType)";
+    
+    public static final String ROLE_SEARCH = "call ROLE_Search(:keyword,:offset,:pageSize,:sorting,!totalCount)";
+
+    public static final String ROLE_BYID = "call ROLE_ById(:id)";
+
+    public static final String ROLE_INSORUPD
+            = "call ROLE_InsOrUpd(:id, :code, :name, :isDeleted, :createdDate, :createdBy, :updatedDate, :updatedBy)";
+    
+    public static final String USER_SEARCH = "call USER_Search(:keyword,:offset,:pageSize,:sorting,!totalCount)";
+
+    public static final String USER_BYID = "call USER_ById(:id)";
+
+    public static final String USER_INSORUPD
+            = "call USER_InsOrUpd(:id, :code, :userName, :password, :employeeId, :roleId, :isDeleted, :createdDate, :createdBy, :updatedDate, :updatedBy)";
+   
+    public static final String USER_LOGIN = "call USER_Login(:userName, :password)";
 }

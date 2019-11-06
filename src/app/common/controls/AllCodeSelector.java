@@ -8,7 +8,7 @@ package app.common.controls;
 import app.core.modules.constants.StoreConstants;
 import app.core.systems.dtos.allcodes.AllCodeEntity;
 import base.data.dal.StoreProvider;
-import base.infrastructures.ComponentRunnable;
+import base.infrastructures.manipulations.ComponentRunnable;
 import java.util.List;
 
 import java.util.Map;
@@ -28,8 +28,8 @@ public class AllCodeSelector extends Selector {
         initComponents();
         this._strDisplayMember="content";
         this._strValueMember="cdValue";
-    }
-
+    }   
+    
     public void loadListByCode(String cdName){
         new Thread(new ComponentRunnable(this){       
 

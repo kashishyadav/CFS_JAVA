@@ -14,6 +14,7 @@ import app.mains.MainWindow;
 import base.configurations.constants.SystemStringConstants;
 import base.data.dal.StoreProvider;
 import base.guis.controls.BaseComponent;
+import base.infrastructures.systems.AppContext;
 import com.google.gson.Gson;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,9 +27,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.table.TableColumnModel;
-import ultilities.helpers.NumberRendererHelper;
-import ultilities.utils.MathUtils;
-import ultilities.utils.MessageUtils;
+import base.ultilities.helpers.NumberRendererHelper;
+import base.ultilities.utils.MathUtils;
+import base.ultilities.utils.MessageUtils;
 
 /**
  *
@@ -59,7 +60,7 @@ public class OrderGUI extends BaseComponent implements ActionListener {
         initTableDetail();
 
         //curItems = new ArrayList<OrderDetailEntity>();
-        this.btnGetProducts.addActionListener(this);
+        this.productListComponent1.getBtnSelect().addActionListener(this);
 
         this.editTable1.setVisibleButtonAdd(false);
         this.editTable1.getButtonDelete().addActionListener(this);
@@ -67,6 +68,8 @@ public class OrderGUI extends BaseComponent implements ActionListener {
         this.btnCalculate.addActionListener(this);
         this.btnSubmit.addActionListener(this);
 
+        this.gbInfo.setTittle(PageConstants.ORDER);
+        this.lbAddress.setText(AppContext.getInstance().getAddressBranch());
 //        FocusAdapter focus = new ComponentFocusAdapter(this) {
 //            @Override
 //            public void focusLost(FocusEvent e) {
@@ -79,9 +82,10 @@ public class OrderGUI extends BaseComponent implements ActionListener {
 //        this.txtFee.addFocusListener(focus);
     }
 
-    public void initTableDetail() {       
-        this.editTable1.setColumns("STT", "Mã SP", "Tên SP", "Gía", "Số lượng", "Thành tiền");
+    public void initTableDetail() {
+        this.editTable1.setColumns("STT",  "Mã SP", "Tên SP", "Gía", "Số lượng", "Thành tiền");
         TableColumnModel colModel = this.editTable1.getTable().getColumnModel();
+      
         colModel.getColumn(3).setCellRenderer(NumberRendererHelper.getCurrencyRenderer());
         colModel.getColumn(4).setCellRenderer(NumberRendererHelper.getIntegerRenderer());
         colModel.getColumn(5).setCellRenderer(NumberRendererHelper.getCurrencyRenderer());
@@ -96,12 +100,12 @@ public class OrderGUI extends BaseComponent implements ActionListener {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lvProducts = new app.core.trade.guis.products.ProductListComponent();
-        groupBox1 = new app.common.controls.GroupBox();
+        productListComponent1 = new app.core.trade.guis.products.ProductListComponent();
+        gbInfo = new app.common.controls.GroupBox();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lbAddress = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         try {
             txtTotalValue = new app.common.controls.DecimalInput();
@@ -119,7 +123,6 @@ public class OrderGUI extends BaseComponent implements ActionListener {
         btnCalculate = new javax.swing.JButton();
         btnSubmit = new javax.swing.JButton();
         editTable1 = new app.common.controls.EditTable();
-        btnGetProducts = new javax.swing.JButton();
 
         jLabel1.setText("Số phiếu:");
 
@@ -127,7 +130,7 @@ public class OrderGUI extends BaseComponent implements ActionListener {
 
         jLabel3.setText("Địa chỉ chi nhánh:");
 
-        jLabel4.setText("Số 123, phố Wall, quận Thủ Đức, HCM");
+        lbAddress.setText("address");
 
         jLabel5.setText("Tổng giá trị thanh toán:");
 
@@ -137,26 +140,26 @@ public class OrderGUI extends BaseComponent implements ActionListener {
 
         btnCalculate.setText("Tính");
 
-        javax.swing.GroupLayout groupBox1Layout = new javax.swing.GroupLayout(groupBox1);
-        groupBox1.setLayout(groupBox1Layout);
-        groupBox1Layout.setHorizontalGroup(
-            groupBox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(groupBox1Layout.createSequentialGroup()
+        javax.swing.GroupLayout gbInfoLayout = new javax.swing.GroupLayout(gbInfo);
+        gbInfo.setLayout(gbInfoLayout);
+        gbInfoLayout.setHorizontalGroup(
+            gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gbInfoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(groupBox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
-                    .addGroup(groupBox1Layout.createSequentialGroup()
+                    .addGroup(gbInfoLayout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4))
-                    .addGroup(groupBox1Layout.createSequentialGroup()
-                        .addGroup(groupBox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lbAddress))
+                    .addGroup(gbInfoLayout.createSequentialGroup()
+                        .addGroup(gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
                             .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(groupBox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtTotalValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtFee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtDiscount, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
@@ -164,28 +167,28 @@ public class OrderGUI extends BaseComponent implements ActionListener {
                         .addComponent(btnCalculate, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        groupBox1Layout.setVerticalGroup(
-            groupBox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(groupBox1Layout.createSequentialGroup()
+        gbInfoLayout.setVerticalGroup(
+            gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gbInfoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(groupBox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(groupBox1Layout.createSequentialGroup()
-                        .addGroup(groupBox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(gbInfoLayout.createSequentialGroup()
+                        .addGroup(gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel4))
+                            .addComponent(lbAddress))
                         .addGap(18, 18, 18)
-                        .addGroup(groupBox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(txtFee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7))
                     .addComponent(txtDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(groupBox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(gbInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtTotalValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCalculate))
@@ -194,22 +197,18 @@ public class OrderGUI extends BaseComponent implements ActionListener {
 
         btnSubmit.setText("Lưu thông tin");
 
-        btnGetProducts.setText("Chọn ");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lvProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGetProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(productListComponent1, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(editTable1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
                     .addComponent(btnSubmit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(groupBox1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(gbInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -217,16 +216,13 @@ public class OrderGUI extends BaseComponent implements ActionListener {
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(productListComponent1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(groupBox1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(gbInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(editTable1, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lvProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnGetProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -234,18 +230,17 @@ public class OrderGUI extends BaseComponent implements ActionListener {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCalculate;
-    private javax.swing.JButton btnGetProducts;
     private javax.swing.JButton btnSubmit;
     private app.common.controls.EditTable editTable1;
-    private app.common.controls.GroupBox groupBox1;
+    private app.common.controls.GroupBox gbInfo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private app.core.trade.guis.products.ProductListComponent lvProducts;
+    private javax.swing.JLabel lbAddress;
+    private app.core.trade.guis.products.ProductListComponent productListComponent1;
     private app.common.controls.JPercentField txtDiscount;
     private app.common.controls.DecimalInput txtFee;
     private app.common.controls.DecimalInput txtTotalValue;
@@ -253,8 +248,8 @@ public class OrderGUI extends BaseComponent implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == btnGetProducts) {
-            onGetItems(this.lvProducts.getSelectedItems());
+        if (e.getSource() == this.productListComponent1.getBtnSelect()) {
+            onGetItems();
         } else if (e.getSource() == this.editTable1.getButtonDelete()) {
             onDeleteItem();
         } else if (e.getSource() == this.editTable1.getButtonEdit()) {
@@ -267,13 +262,15 @@ public class OrderGUI extends BaseComponent implements ActionListener {
     }
 
     public void onSubmit() {
+
         if (this.curOrder.getDetails() != null && this.curOrder.getDetails().size() > 0) {
             this.onResetPrice();
-            this.curOrder.setStrOrderDetails(gson.toJson(this.curOrder.getDetails()));       
+            this.curOrder.setStrOrderDetails(gson.toJson(this.curOrder.getDetails()));
             System.out.println(this.curOrder.getStrOrderDetails());
             Map<String, Object> results = storeProvider.executeToMap(StoreConstants.ORDER_INSORUPD, this.curOrder);
-            
+
             if (!results.get("Result").equals("0")) {
+                onRefreshhForm();
                 MessageUtils.showSuccessMessage(this, SystemStringConstants.STR_SAVE_SUCCESS);
             } else {
                 MessageUtils.showErrorMessage(this, (String) results.get("ErrorDesc"));
@@ -287,16 +284,12 @@ public class OrderGUI extends BaseComponent implements ActionListener {
         this.txtTotalValue.setValue(BigDecimal.ZERO);
         this.txtFee.setValue(BigDecimal.ZERO);
         this.txtDiscount.setValue(BigDecimal.ZERO);
-        if(this.curOrder.getDetails()!=null &&this.curOrder.getDetails().size()>0){
-            for(int i =0; i<this.curOrder.getDetails().size();i++){
-                 this.editTable1.getTableModel().removeRow(i);
-                this.curOrder.getDetails().remove(i);
-            }
+        if (this.curOrder.getDetails() != null && this.curOrder.getDetails().size() > 0) {
+            this.editTable1.removeAll();
+            this.curOrder.getDetails().removeAll(this.curOrder.getDetails());
         }
-        
+
         //this.curOrder.getDetails().removeAll(this.curOrder.getDetails());
-       
-        this.onResetPrice();
     }
 
     public void onEditItem() {
@@ -333,8 +326,9 @@ public class OrderGUI extends BaseComponent implements ActionListener {
         this.onResetPrice();
     }
 
-    public void onGetItems(List<ProductEntity> items) {
-        //this.curOrder.getDetails().removeAll(this.curOrder.getDetails());
+    public void onGetItems() {
+        
+        List<ProductEntity> items = this.productListComponent1.getSelectedItems();
         if (items != null && items.size() > 0) {
             //this.editTable1.getTableModel().addRow(rowData);  
             int curIndex = this.curOrder.getDetails().size() + 1;
@@ -378,16 +372,16 @@ public class OrderGUI extends BaseComponent implements ActionListener {
         if (this.curOrder.getDetails() != null) {
             for (int i = 0; i < this.curOrder.getDetails().size(); i++) {
                 BigDecimal itemTotalPrice = this.curOrder.getDetails().get(i).getTotalPrice();
-                this.curOrder.setTotalPrice( this.curOrder.getTotalPrice().add(itemTotalPrice));
-               // totalValue = totalValue.add(itemTotalPrice);
+                this.curOrder.setTotalPrice(this.curOrder.getTotalPrice().add(itemTotalPrice));
+                // totalValue = totalValue.add(itemTotalPrice);
                 this.editTable1.getTableModel().setValueAt(itemTotalPrice, i, 5);
                 this.editTable1.getTableModel().setValueAt(this.curOrder.getDetails().get(i).getQuantity(), i, 4);
             }
         }
 
         this.curOrder.setPrice(this.curOrder.getTotalPrice());
-        this.curOrder.setTotalPrice( this.curOrder.getTotalPrice().add(this.curOrder.getFee()));
-       // totalValue = totalValue.add(fee);
+        this.curOrder.setTotalPrice(this.curOrder.getTotalPrice().add(this.curOrder.getFee()));
+        // totalValue = totalValue.add(fee);
         BigDecimal amortValue = this.curOrder.getTotalPrice().multiply(this.curOrder.getDiscountPercent());
         this.curOrder.setTotalPrice(this.curOrder.getTotalPrice().subtract(amortValue));
         //totalValue = totalValue.subtract(amortValue);

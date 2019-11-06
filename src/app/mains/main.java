@@ -1,6 +1,7 @@
 package app.mains;
 
 import app.mains.MainWindow;
+import app.mains.navigations.AppNavigator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,9 +14,8 @@ public class main {
             java.awt.EventQueue.invokeLater(new Runnable(){            
                 public void run(){
                     try {
-                        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                        MainWindow mainWindow = MainWindow.getInstance();
-                        mainWindow.setVisible(true);
+                        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());   
+                        AppNavigator.getInstance().initScreen();
                     } catch (Exception ex) {
                         Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
                     } 

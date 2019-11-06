@@ -1,16 +1,18 @@
 package base.guis.controls;
 
 import app.common.controls.DatePickerControl;
+import app.common.controls.DecimalInput;
 import base.applications.intfs.IBaseService;
 import base.data.entities.EntityBase;
 import app.common.controls.GroupBox;
 import app.common.controls.ImagePicker;
+import app.common.controls.NumberInput;
 import base.applications.imps.BaseService;
 import base.applications.intfs.IDataTableDisplayMethod;
 import base.configurations.constants.SystemStringConstants;
 import base.data.entities.EntitySearchBase;
 import base.guis.infs.IEditPanelUI;
-import base.infrastructures.ComponentRunnable;
+import base.infrastructures.manipulations.ComponentRunnable;
 import java.awt.Component;
 import java.util.Map;
 import java.util.logging.Level;
@@ -18,7 +20,7 @@ import java.util.logging.Logger;
 import javax.swing.JComponent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.JTextComponent;
-import ultilities.utils.MessageUtils;
+import base.ultilities.utils.MessageUtils;
 
 public abstract class BaseEditPanel<T, TDisplay> extends BaseComponent implements IEditPanelUI {
 
@@ -45,6 +47,10 @@ public abstract class BaseEditPanel<T, TDisplay> extends BaseComponent implement
     protected IBaseService<T, TDisplay> appService;
 
     private GroupBox groupInfomation;
+
+    public String strIsValid() {
+        return this.getEmptyText();
+    }
 
     public void setIsAutoGenKey(boolean isAutoGenKey) {
         this.isAutoGenKey = isAutoGenKey;
@@ -130,18 +136,27 @@ public abstract class BaseEditPanel<T, TDisplay> extends BaseComponent implement
         } else {
             this.setEnableIdControl(false);
         }
-        this.groupInfomation.setEditStatusTitle(SystemStringConstants.STR_ADD);
-        Component[] components = this.groupInfomation.getComponents();
-        for (Component c : components) {
-            if (c instanceof JTextComponent) {
-                JTextComponent textfield = (JTextComponent) c;
-                textfield.setText(this.getEmptyText());
-            } else if (c instanceof DatePickerControl) {                
-                ((DatePickerControl)c).setValue(null);
-            } else if (c instanceof ImagePicker){
-                ((ImagePicker) c).setValue(null);
+        
+        if (this.groupInfomation != null) {
+            this.groupInfomation.setEditStatusTitle(SystemStringConstants.STR_ADD);
+
+            Component[] components = this.groupInfomation.getComponents();
+            for (Component c : components) {
+                if (c instanceof JTextComponent) {
+                    JTextComponent textfield = (JTextComponent) c;
+                    textfield.setText(this.getEmptyText());
+                } else if (c instanceof DatePickerControl) {
+                    ((DatePickerControl) c).setValue(null);
+                } else if (c instanceof ImagePicker) {
+                    ((ImagePicker) c).setValue(null);
+                } else if (c instanceof DecimalInput) {
+                    ((DecimalInput) c).setValue(0);
+                } else if (c instanceof NumberInput) {
+                    ((NumberInput) c).setValue(0);
+                }
             }
         }
+
     }
 
     public void setTableModel(DefaultTableModel tableModel) {
@@ -183,6 +198,12 @@ public abstract class BaseEditPanel<T, TDisplay> extends BaseComponent implement
     }
 
     public void save() {
+        String strValid = this.strIsValid();
+        if (!strValid.equals(this.getEmptyText())) {
+            MessageUtils.showErrorMessage(this, strValid);
+            return;
+        }
+
         Map<String, Object> result = this.appService.save(this.sp_insOrUpd, this.currentObj);
         if (!result.get("Result").equals("1")) {
             MessageUtils.showErrorMessage(this, (String) result.get("ErrorDesc"));
@@ -201,7 +222,9 @@ public abstract class BaseEditPanel<T, TDisplay> extends BaseComponent implement
     }
 
     public T getById(int id) {
+        this.refreshEditForm();
         ((EntityBase) this.getCurrentObj()).setId(id);
         return (T) appService.getById(sp_getById, this.currentObj);
     }
+
 }

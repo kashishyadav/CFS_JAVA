@@ -15,7 +15,7 @@ import java.awt.Image;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
-import ultilities.helpers.Helper;
+import base.ultilities.helpers.Helper;
 
 /**
  *

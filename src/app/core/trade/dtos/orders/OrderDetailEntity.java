@@ -7,6 +7,7 @@ package app.core.trade.dtos.orders;
 
 import app.core.trade.dtos.products.ProductEntity;
 import base.data.entities.FullAuditEntity;
+import base.ultilities.utils.MathUtils;
 import java.math.BigDecimal;
 import java.util.Vector;
 
@@ -47,7 +48,7 @@ public class OrderDetailEntity extends FullAuditEntity {
     }
 
     public void calTotalPrice() {
-        setTotalPrice(getPrice().multiply(new BigDecimal(getQuantity())));
+        setTotalPrice(getPrice().multiply(MathUtils.getBigDecimal(getQuantity())));
     }
 
     public int getOrderId() {

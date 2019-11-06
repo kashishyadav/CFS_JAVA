@@ -9,7 +9,7 @@ import app.core.trade.dtos.orders.OrderDetailEntity;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JDialog;
-import ultilities.utils.MathUtils;
+import base.ultilities.utils.MathUtils;
 
 /**
  *

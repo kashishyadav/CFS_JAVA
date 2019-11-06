@@ -23,7 +23,7 @@ import javax.swing.text.NavigationFilter;
 import javax.swing.text.NumberFormatter;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.Position.Bias;
-import ultilities.utils.MathUtils;
+import base.ultilities.utils.MathUtils;
 
 public class JPercentField extends JComponent {
 
@@ -42,7 +42,7 @@ public class JPercentField extends JComponent {
     }
 
     public BigDecimal getValue() {
-        return MathUtils.getBigDecimal(this.getPercent());
+        return MathUtils.getBigDecimal(spinner.getValue());
     }
 
     public void setValue(BigDecimal value) {

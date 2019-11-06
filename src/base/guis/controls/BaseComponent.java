@@ -9,7 +9,7 @@ import java.awt.Component;
 import java.time.LocalDate;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
-import ultilities.factories.DateTimeFactory;
+import base.ultilities.factories.DateTimeFactory;
 
 public class BaseComponent extends JPanel {
     public BaseComponent(){
@@ -35,6 +35,15 @@ public class BaseComponent extends JPanel {
             }
         }        
         return false;
+    }
+      public void initComponentDialog(Component component,JDialog jd){
+       // JDialog jd = new JDialog(MainWindow.getInstance(), PageConstants.EDIT_DETAIL);
+            jd.add(component);
+            jd.setModal(true);
+            jd.setResizable(false);
+            jd.setBounds(SystemConstants.CENTER_POSX + SystemConstants.ClientSize.width / 4,
+                    SystemConstants.CENTER_POSY + SystemConstants.ClientSize.height / 4, 479, 329);
+            jd.setVisible(false);
     }
     
     public void showComponentDialog(Component component,JDialog jd){

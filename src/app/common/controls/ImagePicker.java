@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import ultilities.helpers.FileHelper;
+import base.ultilities.helpers.FileHelper;
 
 /**
  *

@@ -138,7 +138,7 @@ public class DataTable extends BaseComponent implements ActionListener, IDataTab
                     }
                 }
                 }catch(Exception ex){
-                    
+                    throw ex;
                 }
                        
             }

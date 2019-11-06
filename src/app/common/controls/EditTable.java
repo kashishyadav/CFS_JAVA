@@ -78,6 +78,18 @@ public class EditTable extends BaseTable {
     public void setVisibleButtonAdd(boolean isVisible) {
         this.btnAdd.setVisible(isVisible);
     }
+    
+    public void hideColumnAt(int index) {
+        tableCustom1.getColumnModel().getColumn(index).setMinWidth(0);
+        tableCustom1.getColumnModel().getColumn(index).setMaxWidth(0);
+        tableCustom1.getColumnModel().getColumn(index).setWidth(0);
+    }
+    
+    public void removeAll(){
+        this.tableModel.getDataVector().removeAllElements();
+        this.tableModel.fireTableDataChanged();
+        //this.tableModel.getDataVector().removeAllElements();    
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

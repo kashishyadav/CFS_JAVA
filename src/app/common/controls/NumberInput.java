@@ -7,7 +7,7 @@ package app.common.controls;
 
 import base.guis.controls.core.BaseFormattedField;
 import java.awt.ComponentOrientation;
-import ultilities.helpers.FormatHelper;
+import base.ultilities.helpers.FormatHelper;
 
 /**
  *

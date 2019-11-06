@@ -6,9 +6,11 @@
             <file>file:/E:/WORK/Java/CFS_JAVA/src/app/core/reports/dtos/ReportDto.java</file>
             <file>file:/E:/WORK/Java/CFS_JAVA/src/app/mains/guis/logins/LoginGUI.java</file>
             <file>file:/E:/WORK/Java/CFS_JAVA/src/app/mains/MainWindow.java</file>
+            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/core/trade/guis/orders/OrderGUI.java</file>
             <file>file:/E:/WORK/Java/CFS_JAVA/src/app/core/trade/dtos/orders/OrderReportEntity.java</file>
             <file>file:/E:/WORK/Java/CFS_JAVA/src/base/applications/imps/ReportService.java</file>
             <file>file:/E:/WORK/Java/CFS_JAVA/src/base/guis/controls/BaseReportPanel.java</file>
+            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/core/trade/guis/orders/OrderUpdateGUI.java</file>
             <file>file:/E:/WORK/Java/CFS_JAVA/src/app/core/reports/guis/orders/RptOrderRevenueGUI.java</file>
         </group>
     </open-files>

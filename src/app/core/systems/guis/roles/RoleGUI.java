@@ -5,7 +5,7 @@
  */
 package app.core.systems.guis.roles;
 
-import app.core.modules.constants.StoreConstants;
+import app.common.modules.constants.StoreConstants;
 import app.core.systems.dtos.roles.RoleDisplayDto;
 import app.core.systems.dtos.roles.RoleEntity;
 

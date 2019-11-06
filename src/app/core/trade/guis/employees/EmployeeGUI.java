@@ -5,8 +5,8 @@
  */
 package app.core.trade.guis.employees;
 
-import app.core.modules.constants.PageConstants;
-import app.core.modules.constants.StoreConstants;
+import app.common.modules.constants.PageConstants;
+import app.common.modules.constants.StoreConstants;
 import app.core.trade.dtos.employees.EmployeeDisplayDto;
 import app.core.trade.dtos.employees.EmployeeEntity;
 import base.applications.imps.BaseService;

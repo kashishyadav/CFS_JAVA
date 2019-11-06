@@ -6,8 +6,8 @@
 package app.core.purchases.guis.goods;
 
 import app.common.controls.Selector;
-import app.core.modules.constants.PageConstants;
-import app.core.modules.constants.StoreConstants;
+import app.common.modules.constants.PageConstants;
+import app.common.modules.constants.StoreConstants;
 import app.core.purchases.dtos.goodsCategories.GoodsCategoryEntity;
 import app.core.purchases.dtos.goods.GoodsDisplayDto;
 import app.core.purchases.dtos.goods.GoodsEntity;

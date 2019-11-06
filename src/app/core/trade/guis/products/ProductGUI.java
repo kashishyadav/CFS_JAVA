@@ -6,8 +6,8 @@
 package app.core.trade.guis.products;
 
 import app.common.controls.Selector;
-import app.core.modules.constants.PageConstants;
-import app.core.modules.constants.StoreConstants;
+import app.common.modules.constants.PageConstants;
+import app.common.modules.constants.StoreConstants;
 import app.core.trade.dtos.productCategories.ProductCategoryEntity;
 import app.core.trade.dtos.products.ProductDisplayDto;
 import app.core.trade.dtos.products.ProductEntity;

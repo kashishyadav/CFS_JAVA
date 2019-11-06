@@ -1,7 +1,7 @@
 package base.guis.controls;
 
 
-import app.core.modules.constants.PageConstants;
+import app.common.modules.constants.PageConstants;
 import app.core.trade.guis.orders.OrderDetailEditPanel;
 import app.mains.MainWindow;
 import base.configurations.constants.SystemConstants;

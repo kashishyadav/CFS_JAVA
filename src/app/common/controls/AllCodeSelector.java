@@ -5,7 +5,7 @@
  */
 package app.common.controls;
 
-import app.core.modules.constants.StoreConstants;
+import app.common.modules.constants.StoreConstants;
 import app.core.systems.dtos.allcodes.AllCodeEntity;
 import base.data.dal.StoreProvider;
 import base.infrastructures.manipulations.ComponentRunnable;

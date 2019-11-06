@@ -5,8 +5,8 @@
  */
 package app.core.trade.guis.orders;
 
-import app.core.modules.constants.PageConstants;
-import app.core.modules.constants.StoreConstants;
+import app.common.modules.constants.PageConstants;
+import app.common.modules.constants.StoreConstants;
 import app.core.trade.dtos.orders.OrderDetailEntity;
 import app.core.trade.dtos.orders.OrderEntity;
 import app.core.trade.dtos.products.ProductEntity;

@@ -5,7 +5,7 @@
  */
 package app.common.controls;
 
-import app.core.modules.constants.PageConstants;
+import app.common.modules.constants.PageConstants;
 import base.guis.controls.BaseTable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

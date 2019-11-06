@@ -5,8 +5,8 @@
  */
 package app.core.trade.guis.productCategories;
 
-import app.core.modules.constants.PageConstants;
-import app.core.modules.constants.StoreConstants;
+import app.common.modules.constants.PageConstants;
+import app.common.modules.constants.StoreConstants;
 import app.core.trade.dtos.productCategories.ProductCategoryDisplayDto;
 import app.core.trade.dtos.productCategories.ProductCategoryEntity;
 import base.applications.imps.BaseService;

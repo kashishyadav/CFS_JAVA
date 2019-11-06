@@ -5,7 +5,7 @@
  */
 package app.mains.navigations;
 
-import app.core.modules.constants.StoreConstants;
+import app.common.modules.constants.StoreConstants;
 import app.core.systems.dtos.users.UserEntity;
 import app.mains.MainWindow;
 import app.mains.guis.logins.LoginFrame;

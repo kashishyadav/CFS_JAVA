@@ -6,8 +6,8 @@
 package app.core.systems.guis.users;
 
 import app.common.controls.Selector;
-import app.core.modules.constants.PageConstants;
-import app.core.modules.constants.StoreConstants;
+import app.common.modules.constants.PageConstants;
+import app.common.modules.constants.StoreConstants;
 import app.core.systems.dtos.roles.RoleEntity;
 import app.core.systems.dtos.users.UserDisplayDto;
 import app.core.systems.dtos.users.UserEntity;

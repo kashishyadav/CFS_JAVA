@@ -6,7 +6,7 @@
 package app.common.appControls.productModals;
 
 import app.common.interfaces.modals.IModalEvent;
-import app.core.modules.constants.PageConstants;
+import app.common.modules.constants.PageConstants;
 import app.core.trade.dtos.products.ProductEntity;
 import app.core.trade.guis.products.ProductListComponent;
 import app.mains.MainWindow;

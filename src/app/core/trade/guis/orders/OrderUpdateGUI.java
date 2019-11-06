@@ -7,8 +7,8 @@ package app.core.trade.guis.orders;
 
 import app.common.appControls.productModals.ProductListModal;
 import app.common.interfaces.modals.IModalEvent;
-import app.core.modules.constants.PageConstants;
-import app.core.modules.constants.StoreConstants;
+import app.common.modules.constants.PageConstants;
+import app.common.modules.constants.StoreConstants;
 import app.core.trade.dtos.orders.OrderDetailDisplayDto;
 import app.core.trade.dtos.orders.OrderDetailEntity;
 import app.core.trade.dtos.orders.OrderDisplayDto;

@@ -5,7 +5,7 @@
  */
 package app.core.trade.guis.products;
 
-import app.core.modules.constants.StoreConstants;
+import app.common.modules.constants.StoreConstants;
 import app.core.trade.dtos.products.ProductEntity;
 import base.data.dal.StoreProvider;
 import base.guis.controls.BaseComponent;

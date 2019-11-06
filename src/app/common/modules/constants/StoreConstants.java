@@ -1,4 +1,4 @@
-package app.core.modules.constants;
+package app.common.modules.constants;
 
 public class StoreConstants {
 

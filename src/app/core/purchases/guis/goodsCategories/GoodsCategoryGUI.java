@@ -5,8 +5,8 @@
  */
 package app.core.purchases.guis.goodsCategories;
 
-import app.core.modules.constants.PageConstants;
-import app.core.modules.constants.StoreConstants;
+import app.common.modules.constants.PageConstants;
+import app.common.modules.constants.StoreConstants;
 import app.core.purchases.dtos.goodsCategories.GoodsCategoryDisplayDto;
 import app.core.purchases.dtos.goodsCategories.GoodsCategoryEntity;
 import app.core.purchases.dtos.goodsCategories.GoodsCategoryDisplayDto;

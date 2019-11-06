@@ -5,7 +5,7 @@
  */
 package app.core.systems.guis.allcodes;
 
-import app.core.modules.constants.StoreConstants;
+import app.common.modules.constants.StoreConstants;
 import app.core.systems.dtos.allcodes.AllCodeDisplayDto;
 import app.core.systems.dtos.allcodes.AllCodeEntity;
 import base.applications.imps.BaseService;

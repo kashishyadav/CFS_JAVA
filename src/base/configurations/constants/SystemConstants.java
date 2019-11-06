@@ -23,6 +23,7 @@ public class SystemConstants {
     public static final String DOMAIN_FOLDER = Paths.get("").toAbsolutePath().toString();
     public static final String DATA_SOURCE_FOLDER = new StringBuilder("/dataSource").toString();
     public static final String IMG_SOURCE_FOLDER = new StringBuilder("/dataSource/images").toString();
+    public static final String EXCEL_SOURCE_FOLDER = new StringBuilder("/dataSource/excels").toString();
     public static final String HOME_FOLDER_PATH = new StringBuilder(System.getProperty("user.home")).toString();
     public static final String DESKTOP_FOLDER_PATH = new StringBuilder(HOME_FOLDER_PATH).append("/Desktop").toString();
 

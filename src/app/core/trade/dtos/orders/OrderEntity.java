@@ -38,6 +38,7 @@ public class OrderEntity extends FullAuditEntity {
     private List<OrderDetailEntity> details;
     
     
+    
     public String getCode() {
         return code;
     }

@@ -32,6 +32,10 @@ public class GroupBox extends javax.swing.JPanel {
      
     }
 
+    public void setDefaultTitle(String title){
+         setTitleBorderBox(title);
+    }
+    
     public void setTittle(String title){
         StringBuilder sb = new StringBuilder();
         sb.append(strPreTitle).append(" ").append(title.toUpperCase());
@@ -56,6 +60,8 @@ public class GroupBox extends javax.swing.JPanel {
         this.setBorder(BorderFactory.createTitledBorder(title));
         System.gc();
     }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

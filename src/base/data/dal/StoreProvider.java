@@ -1,9 +1,11 @@
 package base.data.dal;
 
+import app.core.reports.dtos.ReportDto;
 import base.data.dtos.PagedDto;
 import base.data.dtos.ResultDto;
 import base.data.entities.EntitySearchBase;
 import base.ultilities.helpers.ReflectionExHelper;
+import com.aspose.cells.Worksheet;
 
 import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
@@ -25,8 +27,8 @@ public class StoreProvider<T> {
 
     }
 
-    public StoreProvider(Class<T> tclass){
-        
+    public StoreProvider(Class<T> tclass) {
+
         try {
             this.tclass = tclass;
             try {
@@ -45,7 +47,6 @@ public class StoreProvider<T> {
         } catch (InvocationTargetException ex) {
             Logger.getLogger(StoreProvider.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
 
     }
 
@@ -93,21 +94,39 @@ public class StoreProvider<T> {
         return objResult;
     }
 
-    public List<T> executeToList(String sp_name, Object parametersObj) throws Exception {
+    public List<T> executeToList(String sp_name, Object parametersObj) {
         List<T> list = new ArrayList<T>();
         try (Connection conn = ConnectionFactory.Instance().getConnection()) {
             Map<String, Object> map = ReflectionExHelper.reflectObjectToMap(parametersObj);
             try (CallableStatement cstmt = ConnectionFactory.Instance().buildProcedureCallableStatement(conn, sp_name, map)) {
                 ResultSet resultSet = cstmt.executeQuery();
                 while (resultSet.next()) {
-                    T item = (T) this.tObject.getClass().getDeclaredConstructor().newInstance();
-                    ReflectionExHelper.loadResultSetIntoObject(resultSet, item);
-                    list.add(item);
+                    T item;
+                    try {
+                        item = (T) this.tObject.getClass().getDeclaredConstructor().newInstance();
+                        ReflectionExHelper.loadResultSetIntoObject(resultSet, item);
+                        list.add(item);
+                    } catch (NoSuchMethodException ex) {
+                        Logger.getLogger(StoreProvider.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SecurityException ex) {
+                        Logger.getLogger(StoreProvider.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
                 }
                 ConnectionFactory.Instance().closeCStmt(cstmt);
+            } catch (InstantiationException ex) {
+                Logger.getLogger(StoreProvider.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IllegalAccessException ex) {
+                Logger.getLogger(StoreProvider.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IllegalArgumentException ex) {
+                Logger.getLogger(StoreProvider.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InvocationTargetException ex) {
+                Logger.getLogger(StoreProvider.class.getName()).log(Level.SEVERE, null, ex);
             }
             ConnectionFactory.Instance().closeConn(conn);
             System.gc();
+        } catch (SQLException ex) {
+            Logger.getLogger(StoreProvider.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
     }
@@ -132,7 +151,7 @@ public class StoreProvider<T> {
         return list;
     }
 
-    public ResultSet executeToResultSet(String sp_name, Object parametersObj) throws Exception {
+    public ResultSet executeToResultSet(String sp_name, Object parametersObj) {
         ResultSet resultSet = null;
         try (Connection conn = ConnectionFactory.Instance().getConnection()) {
             Map<String, Object> map = ReflectionExHelper.reflectObjectToMap(parametersObj);
@@ -142,11 +161,33 @@ public class StoreProvider<T> {
             }
             ConnectionFactory.Instance().closeConn(conn);
             System.gc();
+        } catch (SQLException ex) {
+            Logger.getLogger(StoreProvider.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return resultSet;
     }
 
+    public void excuteToWorksheet(String sp_name, Object parametersObj, Worksheet worksheet,ReportDto reportDto){
+         Worksheet ws = worksheet;
+         ResultSet resultSet = null;
+        try (Connection conn = ConnectionFactory.Instance().getConnection()) {
+            Map<String, Object> map = ReflectionExHelper.reflectObjectToMap(parametersObj);
+            try (CallableStatement cstmt = ConnectionFactory.Instance().buildProcedureCallableStatement(conn, sp_name, map)) {
+                resultSet = cstmt.executeQuery();
+                ws.getCells().importResultSet(resultSet, reportDto.rowOffSet, reportDto.ITO);
+                ConnectionFactory.Instance().closeCStmt(cstmt);
+            } catch (Exception ex) {
+                 Logger.getLogger(StoreProvider.class.getName()).log(Level.SEVERE, null, ex);
+             }
+            ConnectionFactory.Instance().closeConn(conn);
+            System.gc();
+        } catch (SQLException ex) {
+            Logger.getLogger(StoreProvider.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+       // return ws;
+    }
     public PagedDto<T> executeToPagedDto(String sp_name, Object parametersObj) throws Exception {
         PagedDto<T> pagedDto = new PagedDto<T>();
         try (Connection conn = ConnectionFactory.Instance().getConnection()) {

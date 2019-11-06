@@ -7,6 +7,7 @@ package app.mains;
 
 import app.core.purchases.guis.goods.GoodsGUI;
 import app.core.purchases.guis.goodsCategories.GoodsCategoryGUI;
+import app.core.reports.guis.orders.RptOrderRevenueGUI;
 import app.core.systems.dtos.users.UserEntity;
 import app.core.systems.guis.allcodes.AllCodeGUI;
 import app.core.systems.guis.roles.RoleGUI;
@@ -21,24 +22,21 @@ import app.mains.navigations.AppNavigator;
 import base.configurations.constants.SystemConstants;
 import base.guis.controls.BaseFrame;
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Khang
  */
-public class MainWindow extends BaseFrame implements ActionListener {
+public class MainWindow extends BaseFrame implements ActionListener  {
 
-    /**
+     /**
      * Creates new form MainWindow1
      */
     //main
@@ -55,6 +53,11 @@ public class MainWindow extends BaseFrame implements ActionListener {
     OrderGUI orderGUI;
     OrderUpdateGUI orderUpdateGUI;
 
+    //common
+    
+    //report
+    RptOrderRevenueGUI rptOrderRevenueGUI;
+    
     //system
     AllCodeGUI allCodeGUI;
     RoleGUI roleGUI;
@@ -98,14 +101,13 @@ public class MainWindow extends BaseFrame implements ActionListener {
         mItemProductCategory.addActionListener(this);
         mItemUser.addActionListener(this);
         mItemRole.addActionListener(this);
-        mItemAllCode.addActionListener(this);
+        menuCommon.addActionListener(this);
 
         //statistics
         mItemRevenueReport.addActionListener(this);
 
         //system
-        mItemUserInfo.addActionListener(this);
-        mItemAppInfo.addActionListener(this);
+      
         mItemExit.addActionListener(this);
     }
 
@@ -181,16 +183,21 @@ public class MainWindow extends BaseFrame implements ActionListener {
             this.addScreenToPanel(getSubScreen(userGUI, UserGUI.class));
         } else if (e.getSource() == mItemRole) {
             this.addScreenToPanel(getSubScreen(roleGUI, RoleGUI.class));
-        } else if (e.getSource() == mItemAllCode) {
+        } else if (e.getSource() == menuCommon) {
             this.addScreenToPanel(getSubScreen(allCodeGUI, AllCodeGUI.class));
         }
 
         //stastistics
+        if(e.getSource()== mItemRevenueReport){
+             this.addScreenToPanel(getSubScreen(rptOrderRevenueGUI, RptOrderRevenueGUI.class));
+        }
+        
         //system
         if (e.getSource() == mItemExit) {
-            System.exit(1);
+            System.exit(0);
         }
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -204,21 +211,21 @@ public class MainWindow extends BaseFrame implements ActionListener {
         paneMain = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuHome = new javax.swing.JMenu();
+        mItemHome = new javax.swing.JMenuItem();
         menuTrade = new javax.swing.JMenu();
         mItemOrder = new javax.swing.JMenuItem();
         mItemOrderUpdate = new javax.swing.JMenuItem();
         menuCommon = new javax.swing.JMenu();
-        mItemEmployee = new javax.swing.JMenuItem();
         mItemProduct = new javax.swing.JMenuItem();
         mItemProductCategory = new javax.swing.JMenuItem();
+        mItemEmployee = new javax.swing.JMenuItem();
         mItemUser = new javax.swing.JMenuItem();
         mItemRole = new javax.swing.JMenuItem();
-        mItemAllCode = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         menuReport = new javax.swing.JMenu();
         mItemRevenueReport = new javax.swing.JMenuItem();
         menuSystem = new javax.swing.JMenu();
-        mItemUserInfo = new javax.swing.JMenuItem();
-        mItemAppInfo = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
         mItemExit = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -227,30 +234,36 @@ public class MainWindow extends BaseFrame implements ActionListener {
         paneMain.setLayout(paneMainLayout);
         paneMainLayout.setHorizontalGroup(
             paneMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 614, Short.MAX_VALUE)
+            .addGap(0, 620, Short.MAX_VALUE)
         );
         paneMainLayout.setVerticalGroup(
             paneMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 417, Short.MAX_VALUE)
+            .addGap(0, 352, Short.MAX_VALUE)
         );
 
-        menuHome.setText("Trang chính");
+        menuHome.setText("Trang chủ");
+
+        mItemHome.setText("Trang chính");
+        menuHome.add(mItemHome);
+
         jMenuBar1.add(menuHome);
 
         menuTrade.setText("Bán hàng");
 
-        mItemOrder.setText("Lập phiếu đặt món");
+        mItemOrder.setText("Lập phiếu gọi món");
+        mItemOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mItemOrderActionPerformed(evt);
+            }
+        });
         menuTrade.add(mItemOrder);
 
-        mItemOrderUpdate.setText("Cập nhật phiếu đặt món");
+        mItemOrderUpdate.setText("Cập nhật thông tin đặt món");
         menuTrade.add(mItemOrderUpdate);
 
         jMenuBar1.add(menuTrade);
 
         menuCommon.setText("Quản lý chung");
-
-        mItemEmployee.setText("Nhân viên");
-        menuCommon.add(mItemEmployee);
 
         mItemProduct.setText("Sản phẩm");
         menuCommon.add(mItemProduct);
@@ -258,31 +271,31 @@ public class MainWindow extends BaseFrame implements ActionListener {
         mItemProductCategory.setText("Loại sản phẩm");
         menuCommon.add(mItemProductCategory);
 
+        mItemEmployee.setText("Nhân viên");
+        menuCommon.add(mItemEmployee);
+
         mItemUser.setText("Người dùng");
         menuCommon.add(mItemUser);
 
-        mItemRole.setText("Quyền");
+        mItemRole.setText("Quyền ");
         menuCommon.add(mItemRole);
 
-        mItemAllCode.setText("Trường giao dịch");
-        menuCommon.add(mItemAllCode);
+        jMenuItem1.setText("Các trường giao dịch");
+        menuCommon.add(jMenuItem1);
 
         jMenuBar1.add(menuCommon);
 
-        menuReport.setText("Báo cáo thống kê");
+        menuReport.setText("Báo cáo");
 
-        mItemRevenueReport.setText("Báo cáo doanh thu");
+        mItemRevenueReport.setText("Thống kê doanh thu");
         menuReport.add(mItemRevenueReport);
 
         jMenuBar1.add(menuReport);
 
         menuSystem.setText("Hệ thống");
 
-        mItemUserInfo.setText("Thông tin đăng nhập");
-        menuSystem.add(mItemUserInfo);
-
-        mItemAppInfo.setText("Thông tin phần mềm");
-        menuSystem.add(mItemAppInfo);
+        jMenuItem10.setText("Thông tin phần mềm");
+        menuSystem.add(jMenuItem10);
 
         mItemExit.setText("Thoát");
         menuSystem.add(mItemExit);
@@ -305,16 +318,18 @@ public class MainWindow extends BaseFrame implements ActionListener {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
+    private void mItemOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemOrderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mItemOrderActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem mItemAllCode;
-    private javax.swing.JMenuItem mItemAppInfo;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem mItemEmployee;
     private javax.swing.JMenuItem mItemExit;
+    private javax.swing.JMenuItem mItemHome;
     private javax.swing.JMenuItem mItemOrder;
     private javax.swing.JMenuItem mItemOrderUpdate;
     private javax.swing.JMenuItem mItemProduct;
@@ -322,7 +337,6 @@ public class MainWindow extends BaseFrame implements ActionListener {
     private javax.swing.JMenuItem mItemRevenueReport;
     private javax.swing.JMenuItem mItemRole;
     private javax.swing.JMenuItem mItemUser;
-    private javax.swing.JMenuItem mItemUserInfo;
     private javax.swing.JMenu menuCommon;
     private javax.swing.JMenu menuHome;
     private javax.swing.JMenu menuReport;
@@ -330,5 +344,4 @@ public class MainWindow extends BaseFrame implements ActionListener {
     private javax.swing.JMenu menuTrade;
     private javax.swing.JPanel paneMain;
     // End of variables declaration//GEN-END:variables
-
 }

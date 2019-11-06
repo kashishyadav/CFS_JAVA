@@ -3,28 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/mains/main.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/guis/controls/BaseEditPanel.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/common/controls/DataTable.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/common/controls/AllCodeSelector.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/configurations/constants/SystemStringConstants.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/configurations/enums/EditStatus.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/common/controls/DecimalInput.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/configurations/constants/SystemConstants.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/guis/infs/IEditPanelUI.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/common/controls/AppCrudToolBar.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/data/dal/ConnectionFactory.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/core/trade/dtos/products/ProductEntity.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/core/trade/guis/productCategories/ProductCategoryGUI.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/infrastructures/ComponentRunnable.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/guis/controls/BaseComponent.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/common/controls/NumberInput.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/core/systems/dtos/allcodes/AllCodeEntity.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/data/dal/StoreProvider.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/common/controls/Selector.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/core/trade/guis/products/ProductGUI.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/core/modules/constants/PageConstants.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/common/controls/GroupBox.java</file>
+            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/core/reports/dtos/ReportDto.java</file>
+            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/mains/guis/logins/LoginGUI.java</file>
+            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/mains/MainWindow.java</file>
+            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/core/trade/dtos/orders/OrderReportEntity.java</file>
+            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/applications/imps/ReportService.java</file>
+            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/guis/controls/BaseReportPanel.java</file>
+            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/core/reports/guis/orders/RptOrderRevenueGUI.java</file>
         </group>
     </open-files>
 </project-private>

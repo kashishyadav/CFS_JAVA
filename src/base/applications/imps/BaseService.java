@@ -3,6 +3,7 @@ package base.applications.imps;
 import base.applications.intfs.IBaseService;
 import base.data.dal.StoreProvider;
 import base.data.entities.FullAuditEntity;
+import base.infrastructures.systems.AppContext;
 import base.ultilities.factories.DateTimeFactory;
 
 import java.sql.Date;
@@ -38,12 +39,15 @@ public class BaseService<T, TDisplay> implements IBaseService {
         Date curDate = DateTimeFactory.Instance().getCurrentDate();
         entity.setCreatedDate(curDate);
         entity.setUpdatedDate(curDate);
+        entity.setCreatedBy(AppContext.getInstance().getCurrentUser().getUserName());
+        entity.setUpdatedBy(AppContext.getInstance().getCurrentUser().getUserName());
     }
 
     @Override
     public void setUpdAudit(FullAuditEntity entity) {
         Date curDate = DateTimeFactory.Instance().getCurrentDate();
         entity.setUpdatedDate(curDate);
+        entity.setUpdatedBy(AppContext.getInstance().getCurrentUser().getUserName());
     }
 
     @Override

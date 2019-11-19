@@ -126,7 +126,7 @@ public class ProductListComponent extends BaseComponent implements ActionListene
             ProductEntity searchDto = new ProductEntity();
             searchDto.setKeyword(txtKeyword.getText());
             searchDto.setOffset(-1);
-            ds = productProvider.executeToList(StoreConstants.PRODUCT_SEARCH, searchDto);
+            ds = productProvider.executeToList(StoreConstants.PRODUCT_ACTIVELST, searchDto);
             completableFuture.complete(ds);
             return ds;
         });

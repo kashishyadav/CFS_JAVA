@@ -5,7 +5,7 @@ public class StoreConstants {
     public static final String ALLCODE_LSTBYCODE = "call ALLCODE_LstByCode(:cdName)";
 
     public static final String PRODUCT_SEARCH = "call PRODUCT_Search(:keyword,:offset,:pageSize,:sorting,!totalCount)";
-
+    public static final String PRODUCT_ACTIVELST = "call PRODUCT_ACTIVELST(:keyword)";
     public static final String PRODUCT_BYID = "call PRODUCT_ById(:id)";
 
     public static final String PRODUCT_INSORUPD
@@ -50,7 +50,7 @@ public class StoreConstants {
     public static final String ORDER_SEARCH
             = "call ORDER_SEARCH(:keyword,:offset,:pageSize,:sorting,!totalCount)";
     public static final String ORDER_INSORUPD
-            = "call ORDER_INSORUPD(:id,:code,:name,:price, :totalPrice, :discountPercent,:fee, "
+            = "call ORDER_INSORUPD(:id,:code,:name,:price, :totalPrice, :discountPercent,:fee, :employeeId, "
             + ":strOrderDetails, :note, :status,:isDeleted, :createdDate, :createdBy, "
             + ":updatedDate, :updatedBy)";
     public static final String ORDER_BYID = "call ORDER_BYID(:id)";

@@ -6,6 +6,7 @@
 package app.core.trade.dtos.orders;
 
 import base.data.entities.FullAuditEntity;
+import base.ultilities.factories.DateTimeFactory;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,8 @@ public class OrderEntity extends FullAuditEntity {
         this.fee = BigDecimal.ZERO;
         details = new ArrayList<OrderDetailEntity>();
         
+        this.createdDate = DateTimeFactory.Instance().getCurrentDate();
+        this.updatedDate = DateTimeFactory.Instance().getCurrentDate();
         this.status = "D";
     }
     private String code;
@@ -32,6 +35,7 @@ public class OrderEntity extends FullAuditEntity {
     private BigDecimal totalPrice;
     private BigDecimal discountPercent;
     private BigDecimal fee;
+    private int employeeId;
     private String strOrderDetails;
     private String note;
     private String status;
@@ -89,6 +93,14 @@ public class OrderEntity extends FullAuditEntity {
 
     public String getStrOrderDetails() {
         return strOrderDetails;
+    }
+
+    public int getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
     }
 
     public void setStrOrderDetails(String strOrderDetails) {

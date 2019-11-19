@@ -31,6 +31,9 @@ import base.ultilities.helpers.NumberRendererHelper;
 import base.ultilities.utils.MathUtils;
 import base.ultilities.utils.MessageUtils;
 
+import base.infrastructures.systems.AppContext;
+import java.sql.Date;
+
 /**
  *
  * @author Khang
@@ -98,11 +101,14 @@ public class OrderGUI extends BaseComponent implements ActionListener {
     }
 
     public void onSubmit() {
-        
 
         if (this.curOrder.getDetails() != null && this.curOrder.getDetails().size() > 0) {
             this.onResetPrice();
             this.curOrder.setName(txtName.getText());
+            this.curOrder.setEmployeeId(AppContext.getInstance().getCurrentUser().getEmployeeId());
+            this.curOrder.setCreatedBy(AppContext.getInstance().getCurrentUser().getUserName());
+            this.curOrder.setUpdatedBy(AppContext.getInstance().getCurrentUser().getUserName());
+
             this.curOrder.setStrOrderDetails(gson.toJson(this.curOrder.getDetails()));
             System.out.println(this.curOrder.getStrOrderDetails());
             Map<String, Object> results = storeProvider.executeToMap(StoreConstants.ORDER_INSORUPD, this.curOrder);
@@ -217,10 +223,10 @@ public class OrderGUI extends BaseComponent implements ActionListener {
                 this.editTable1.getTableModel().setValueAt(this.curOrder.getDetails().get(i).getQuantity(), i, 4);
             }
         }
-      
-        this.curOrder.setTotalPrice(this.curOrder.getPrice().add(this.curOrder.getFee()));      
+
+        this.curOrder.setTotalPrice(this.curOrder.getPrice().add(this.curOrder.getFee()));
         BigDecimal amortValue = this.curOrder.getTotalPrice().multiply(this.curOrder.getDiscountPercent());
-        this.curOrder.setTotalPrice(this.curOrder.getTotalPrice().subtract(amortValue));     
+        this.curOrder.setTotalPrice(this.curOrder.getTotalPrice().subtract(amortValue));
         if (this.curOrder.getTotalPrice().intValue() < 0) {
             this.curOrder.setTotalPrice(BigDecimal.ZERO);
             this.curOrder.setPrice(BigDecimal.ZERO);

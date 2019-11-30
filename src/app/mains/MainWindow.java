@@ -101,7 +101,7 @@ public class MainWindow extends BaseFrame implements ActionListener  {
         mItemProductCategory.addActionListener(this);
         mItemUser.addActionListener(this);
         mItemRole.addActionListener(this);
-        menuCommon.addActionListener(this);
+        mItemAllCode.addActionListener(this);
 
         //statistics
         mItemRevenueReport.addActionListener(this);
@@ -183,7 +183,7 @@ public class MainWindow extends BaseFrame implements ActionListener  {
             this.addScreenToPanel(getSubScreen(userGUI, UserGUI.class));
         } else if (e.getSource() == mItemRole) {
             this.addScreenToPanel(getSubScreen(roleGUI, RoleGUI.class));
-        } else if (e.getSource() == menuCommon) {
+        } else if (e.getSource() == mItemAllCode) {
             this.addScreenToPanel(getSubScreen(allCodeGUI, AllCodeGUI.class));
         }
 
@@ -221,7 +221,7 @@ public class MainWindow extends BaseFrame implements ActionListener  {
         mItemEmployee = new javax.swing.JMenuItem();
         mItemUser = new javax.swing.JMenuItem();
         mItemRole = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        mItemAllCode = new javax.swing.JMenuItem();
         menuReport = new javax.swing.JMenu();
         mItemRevenueReport = new javax.swing.JMenuItem();
         menuSystem = new javax.swing.JMenu();
@@ -280,8 +280,8 @@ public class MainWindow extends BaseFrame implements ActionListener  {
         mItemRole.setText("Quyền ");
         menuCommon.add(mItemRole);
 
-        jMenuItem1.setText("Các trường giao dịch");
-        menuCommon.add(jMenuItem1);
+        mItemAllCode.setText("Các trường giao dịch");
+        menuCommon.add(mItemAllCode);
 
         jMenuBar1.add(menuCommon);
 
@@ -325,8 +325,8 @@ public class MainWindow extends BaseFrame implements ActionListener  {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem mItemAllCode;
     private javax.swing.JMenuItem mItemEmployee;
     private javax.swing.JMenuItem mItemExit;
     private javax.swing.JMenuItem mItemHome;

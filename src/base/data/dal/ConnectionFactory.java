@@ -57,45 +57,6 @@ public class ConnectionFactory {
      * Call Procedure(One only Out Parameter)
      * **********************************************************
      */
-//    public int CallProcedure(String sql, List<CallableParameter> binds) throws Exception{
-//        CallableStatement cStmt = null;
-//        try{
-//            if (conn == null) {
-//                conn = getConnection();
-//            }
-//
-//            cStmt = conn.prepareCall(sql);
-//            int retIdx = 0;
-//            if (binds != null) {
-//                for (int i = 1; i<= binds.size(); i++) {
-//                    if (binds.get(i - 1).getType() == CallableType.IN){
-//                        cStmt.setObject(i, binds.get(i - 1).getValue());
-//                    }else{
-//                        retIdx = i;
-//                        cStmt.registerOutParameter(i, binds.get(i - 1).getOutValueType());
-//                    }
-//
-//                }
-//            }
-//
-//            int ret = cStmt.executeUpdate();
-//
-//            if (conn != null && IsTransaction == false) {
-//                conn.commit();
-//            }
-//
-//            if (retIdx != 0){
-//                binds.get(retIdx).setValue(cStmt.getObject(retIdx));
-//            }
-//
-//            return ret;
-//        }catch(SQLException e){
-//            System.out.println(e.toString());
-//            throw e;
-//        }finally {
-//            CloseConn(cStmt);
-//        }
-//    }
     public CallableStatement buildProcedureCallableStatement(Connection conn, String sql, Map<String, Object> pmap) {
         CallableStatement cs = null;
         try {
@@ -179,11 +140,9 @@ public class ConnectionFactory {
                 index++;
             }
             if (outParams.size() > 0) {
-
                 for (CallableParameter cp : outParams) {
                     cs.registerOutParameter(cp.getName(), cp.getOutValueType());
                 }
-
             }
 
         } catch (SQLException e) {
@@ -192,70 +151,7 @@ public class ConnectionFactory {
             return cs;
         }
     }
-//    private  void PreparedStmtSetValue(PreparedStatement pStmt, int idx, Object obj) throws SQLException{
-//        if (obj instanceof String) {
-//            pStmt.setString(idx, (String) obj);
-//        } else if(obj instanceof Integer){
-//            pStmt.setInt(idx, (Integer) obj);
-//        } else if(obj instanceof BigDecimal){
-//            pStmt.setBigDecimal(idx, (BigDecimal) obj);
-//        } else if(obj instanceof Double){
-//            pStmt.setDouble(idx, (Double) obj);
-//        } else if(obj instanceof Date){
-//            pStmt.setDate(idx, (Date) obj);
-//        } else if(obj instanceof byte[]){
-//            pStmt.setBytes(idx, (byte[]) obj);
-//        } else{
-//            pStmt.setObject(idx, obj);
-//        }
-//    }
 
-//    private  void CallableStmtSetValue(CallableStatement cStmt, int idx, Object obj) throws SQLException {
-//        if (obj instanceof String) {
-//            callableStatement.setString(idx, (String) obj);
-//             callableStatement.setInt(idx, (Integer) obj);
-//        } else if(obj instanceof BigDecimal){
-//            callableStatement.setBigDecimal(idx, (BigDecimal) obj);
-//        } else if(obj instanceof Double){
-//            callableStatement.setDouble(idx, (Double) obj);
-//        } else if(obj instanceof Date){
-//            callableStatement.setDate(idx, (Date) obj);
-//        } else if(obj instanceof byte[]){
-//            callableStatement.setBytes(idx, (byte[]) obj);
-//        } else{
-//            callableStatement.setObject(idx, obj);
-//        }
-//        } else if(obj instanceof Integer){
-//   }
-//    public void CloseConn(PreparedStatement pStmt) {
-//        try{
-//            if(pStmt != null) {
-//                pStmt.close();
-//            }
-//            if (conn != null && IsTransaction == false) {
-//                conn.commit();
-//                conn.close();
-//                conn = null;
-//            }
-//        }catch(Exception e){
-//            System.out.println(e.toString());
-//        }
-//    }
-//    public void closeConn(CallableStatement cStmt) {
-//        try{
-//            if(cStmt != null) {
-//                cStmt.close();
-//                cStmt=null;
-//            }
-//            if (conn != null ) {
-//                conn.close();
-//                conn = null;
-//                System.out.println("Close Connection Successfully");
-//            }
-//        }catch(Exception e){
-//           System.out.println(e.toString());
-//        }
-//    }
     public void closeConn(Connection conn) {
         try {
 

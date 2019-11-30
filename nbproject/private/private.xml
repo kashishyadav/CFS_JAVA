@@ -3,23 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/mains/main.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/mains/guis/logins/LoginGUI.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/mains/MainWindow.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/core/trade/dtos/orders/OrderReportEntity.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/applications/imps/ReportService.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/core/trade/guis/products/ProductCellRenderer.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/guis/controls/BaseReportPanel.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/core/trade/guis/products/ProductListComponent.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/core/reports/dtos/ReportDto.java</file>
             <file>file:/E:/WORK/Java/CFS_JAVA/src/app/common/modules/constants/StoreConstants.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/applications/imps/BaseService.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/core/trade/guis/orders/OrderGUI.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/core/trade/dtos/orders/OrderDetailEntity.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/core/trade/guis/products/ProductGUI.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/core/trade/dtos/orders/OrderDisplayDto.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/core/trade/guis/orders/OrderUpdateGUI.java</file>
-            <file>file:/E:/WORK/Java/CFS_JAVA/src/app/core/reports/guis/orders/RptOrderRevenueGUI.java</file>
+            <file>file:/E:/WORK/Java/CFS_JAVA/src/base/guis/controls/core/TableCustom.java</file>
         </group>
     </open-files>
 </project-private>

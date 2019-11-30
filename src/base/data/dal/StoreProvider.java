@@ -211,6 +211,41 @@ public class StoreProvider<T> {
         return pagedDto;
     }
 
+     public void executeIntoTableModel(String sp_name, Object parametersObj, Object dislayDto, DefaultTableModel tableModel) {
+       try{
+         try (Connection conn = ConnectionFactory.Instance().getConnection()) {
+            if (tableModel.getRowCount() > 0) {
+                for (int i = tableModel.getRowCount() - 1; i > -1; i--) {
+                    tableModel.removeRow(i);
+                }
+            }
+
+            Map<String, Object> map = ReflectionExHelper.reflectObjectToMap(parametersObj);
+            try (CallableStatement cstmt = ConnectionFactory.Instance().buildProcedureCallableStatement(conn, sp_name, map)) {
+                ResultSet resultSet = cstmt.executeQuery();
+                 int counter = 0;
+                  while (resultSet.next()) {
+                    List rowData = new ArrayList();
+                    rowData.add((counter + 1));
+                    ReflectionExHelper.loadResultSetIntoRowData(resultSet, dislayDto, rowData);
+                    tableModel.addRow(rowData.toArray());
+                    counter++;
+                }
+
+                ConnectionFactory.Instance().closeCStmt(cstmt);
+
+            }
+            ConnectionFactory.Instance().closeConn(conn);
+            System.gc();
+        }
+       }catch(Exception ex){
+           try {
+               throw ex;
+           } catch (Exception ex1) {
+               Logger.getLogger(StoreProvider.class.getName()).log(Level.SEVERE, null, ex1);
+           }
+       }
+    }
     //storeName, filterParams, ObjectDislayInJTable, tableModel
     public void executeIntoDataTablePaging(String sp_name, Object parametersObj, Object dislayDto, DefaultTableModel tableModel) throws Exception {
         try (Connection conn = ConnectionFactory.Instance().getConnection()) {

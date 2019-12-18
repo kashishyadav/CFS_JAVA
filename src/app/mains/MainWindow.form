@@ -90,9 +90,14 @@
             <Property name="text" type="java.lang.String" value="H&#x1ec7; th&#x1ed1;ng"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem10">
+            <MenuItem class="javax.swing.JMenuItem" name="mitemSysInfo">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Th&#xf4;ng tin ph&#x1ea7;n m&#x1ec1;m"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mItemSysError">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="C&#xe1;c l&#x1ed7;i h&#x1ec7; th&#x1ed1;ng"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mItemExit">

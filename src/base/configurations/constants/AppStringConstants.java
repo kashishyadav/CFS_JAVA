@@ -11,6 +11,7 @@ package base.configurations.constants;
  */
 public class AppStringConstants {
 
+    public static final String APP_TITLE = "ADC Cuisine";
     public static final String GROUP_BOX_PRETITLE = "THÔNG TIN";
     public static final String NO_IMAGE_TEXT = "No Image";
     public static final String STR_ADDRESS_DEFAULT = "ADC Cuisine, 21 khu phố 6, phuongf Linh Trung, quận Thủ Đức, HCM";

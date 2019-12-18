@@ -10,7 +10,9 @@ import app.core.purchases.guis.goodsCategories.GoodsCategoryGUI;
 import app.core.reports.guis.orders.RptOrderRevenueGUI;
 import app.core.systems.dtos.users.UserEntity;
 import app.core.systems.guis.allcodes.AllCodeGUI;
+import app.core.systems.guis.errors.ErrorGUI;
 import app.core.systems.guis.roles.RoleGUI;
+import app.core.systems.guis.softwares.SoftwareInfoGUI;
 import app.core.systems.guis.users.UserGUI;
 import app.core.trade.guis.employees.EmployeeGUI;
 import app.core.trade.guis.orders.OrderGUI;
@@ -52,6 +54,8 @@ public class MainWindow extends BaseFrame implements ActionListener  {
     ProductCategoryGUI productCategoryGUI;
     OrderGUI orderGUI;
     OrderUpdateGUI orderUpdateGUI;
+     ErrorGUI errorGUI;
+     SoftwareInfoGUI softwareInfoGUI;
 
     //common
     
@@ -102,7 +106,8 @@ public class MainWindow extends BaseFrame implements ActionListener  {
         mItemUser.addActionListener(this);
         mItemRole.addActionListener(this);
         mItemAllCode.addActionListener(this);
-
+        mitemSysInfo.addActionListener(this);
+        mItemSysError.addActionListener(this);
         //statistics
         mItemRevenueReport.addActionListener(this);
 
@@ -185,6 +190,10 @@ public class MainWindow extends BaseFrame implements ActionListener  {
             this.addScreenToPanel(getSubScreen(roleGUI, RoleGUI.class));
         } else if (e.getSource() == mItemAllCode) {
             this.addScreenToPanel(getSubScreen(allCodeGUI, AllCodeGUI.class));
+        }else if (e.getSource() == mitemSysInfo) {
+             this.addScreenToPanel(getSubScreen(softwareInfoGUI, SoftwareInfoGUI.class));
+        }else if (e.getSource() == mItemSysError) {
+            this.addScreenToPanel(getSubScreen(errorGUI, ErrorGUI.class));
         }
 
         //stastistics
@@ -225,7 +234,8 @@ public class MainWindow extends BaseFrame implements ActionListener  {
         menuReport = new javax.swing.JMenu();
         mItemRevenueReport = new javax.swing.JMenuItem();
         menuSystem = new javax.swing.JMenu();
-        jMenuItem10 = new javax.swing.JMenuItem();
+        mitemSysInfo = new javax.swing.JMenuItem();
+        mItemSysError = new javax.swing.JMenuItem();
         mItemExit = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -294,8 +304,11 @@ public class MainWindow extends BaseFrame implements ActionListener  {
 
         menuSystem.setText("Hệ thống");
 
-        jMenuItem10.setText("Thông tin phần mềm");
-        menuSystem.add(jMenuItem10);
+        mitemSysInfo.setText("Thông tin phần mềm");
+        menuSystem.add(mitemSysInfo);
+
+        mItemSysError.setText("Các lỗi hệ thống");
+        menuSystem.add(mItemSysError);
 
         mItemExit.setText("Thoát");
         menuSystem.add(mItemExit);
@@ -325,7 +338,6 @@ public class MainWindow extends BaseFrame implements ActionListener  {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem mItemAllCode;
     private javax.swing.JMenuItem mItemEmployee;
     private javax.swing.JMenuItem mItemExit;
@@ -336,12 +348,14 @@ public class MainWindow extends BaseFrame implements ActionListener  {
     private javax.swing.JMenuItem mItemProductCategory;
     private javax.swing.JMenuItem mItemRevenueReport;
     private javax.swing.JMenuItem mItemRole;
+    private javax.swing.JMenuItem mItemSysError;
     private javax.swing.JMenuItem mItemUser;
     private javax.swing.JMenu menuCommon;
     private javax.swing.JMenu menuHome;
     private javax.swing.JMenu menuReport;
     private javax.swing.JMenu menuSystem;
     private javax.swing.JMenu menuTrade;
+    private javax.swing.JMenuItem mitemSysInfo;
     private javax.swing.JPanel paneMain;
     // End of variables declaration//GEN-END:variables
 }

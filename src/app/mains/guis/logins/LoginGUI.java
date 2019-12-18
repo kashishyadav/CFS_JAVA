@@ -5,6 +5,7 @@
  */
 package app.mains.guis.logins;
 
+import base.configurations.constants.AppStringConstants;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -25,6 +26,7 @@ public class LoginGUI extends javax.swing.JPanel {
     }
 
     private void init() {
+        this.appTitle.setText(AppStringConstants.APP_TITLE); 
 //        this.appTitle.setHorizontalAlignment(SwingConstants.CENTER);
 //        this.appTitle.setLocation(this.appTitle.getLocation().x - 50, this.appTitle.getLocation().y);
     }

@@ -83,4 +83,12 @@ public class StoreConstants {
             = "call USER_InsOrUpd(:id, :code, :userName, :password, :employeeId, :roleId, :isDeleted, :createdDate, :createdBy, :updatedDate, :updatedBy)";
    
     public static final String USER_LOGIN = "call USER_Login(:userName, :password)";
+    
+    public static final String ERROR_SEARCH = "call SYS_ERROR_Search(:keyword,:offset,:pageSize,:sorting,!totalCount)";
+
+    public static final String ERROR_BYID = "call SYS_ERROR_ById(:id)";
+
+    public static final String ERROR_INSORUPD
+            = "call SYS_ERROR_InsOrUpd(:id, :code, :description, :form)";
+   
 }

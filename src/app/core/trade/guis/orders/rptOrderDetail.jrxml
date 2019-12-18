@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="81765314-bf29-47d9-b577-06fbcbad5d29">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="p_order_id" class="java.lang.Integer"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     A.`id` AS order_id,
+     A.`code` AS order_code,
+     A.`name` AS order_name,
+     A.`price` AS order_price,
+     A.`totalPrice` AS order_totalPrice,
+     A.`discountPercent` AS order_discountPercent,
+     A.`fee` AS order_fee,
+     A.`note` AS order_note,
+     A.`status` AS order_status,
+     A.`isDeleted` AS order_isDeleted,
+     A.`createdDate` AS order_createdDate,
+     A.`createdBy` AS order_createdBy,
+     A.`updatedDate` AS order_updatedDate,
+     A.`updatedBy` AS order_updatedBy,
+     A.`tableId` AS order_tableId,
+     A.`employeeId` AS order_employeeId,
+     orderdetail.`id` AS orderdetail_id,
+     orderdetail.`orderId` AS orderdetail_orderId,
+     orderdetail.`productId` AS orderdetail_productId,
+     orderdetail.`price` AS orderdetail_price,
+     orderdetail.`quantity` AS orderdetail_quantity,
+     orderdetail.`totalPrice` AS orderdetail_totalPrice,
+     orderdetail.`note` AS orderdetail_note,
+     orderdetail.`status` AS orderdetail_status,
+     orderdetail.`isDeleted` AS orderdetail_isDeleted,
+     orderdetail.`createdDate` AS orderdetail_createdDate,
+     orderdetail.`createdBy` AS orderdetail_createdBy,
+     orderdetail.`updatedDate` AS orderdetail_updatedDate,
+     orderdetail.`updatedBy` AS orderdetail_updatedBy,
+     product.`id` AS product_id,
+     product.`code` AS product_code,
+     product.`name` AS product_name,
+     product.`price` AS product_price,
+     product.`categoryId` AS product_categoryId,
+     product.`description` AS product_description,
+     product.`image` AS product_image,
+     product.`thumbnail` AS product_thumbnail,
+     product.`note` AS product_note,
+     product.`status` AS product_status,
+     product.`isDeleted` AS product_isDeleted,
+     product.`createdDate` AS product_createdDate,
+     product.`createdBy` AS product_createdBy,
+     product.`updatedDate` AS product_updatedDate,
+     product.`updatedBy` AS product_updatedBy
+FROM
+     `order` A 
+     LEFT JOIN `orderdetail` orderdetail ON A.`id` = orderdetail.`orderId`
+     LEFT JOIN `product` product ON orderdetail.`productId` = product.`id`
+WHERE A.`id` = $P{p_order_id}]]>
+	</queryString>
+	<field name="order_id" class="java.lang.Integer"/>
+	<field name="order_code" class="java.lang.String"/>
+	<field name="order_name" class="java.lang.String"/>
+	<field name="order_price" class="java.math.BigDecimal"/>
+	<field name="order_totalPrice" class="java.math.BigDecimal"/>
+	<field name="order_discountPercent" class="java.math.BigDecimal"/>
+	<field name="order_fee" class="java.math.BigDecimal"/>
+	<field name="orderdetail_id" class="java.lang.Integer"/>
+	<field name="orderdetail_orderId" class="java.lang.Integer"/>
+	<field name="orderdetail_productId" class="java.lang.Integer"/>
+	<field name="orderdetail_price" class="java.math.BigDecimal"/>
+	<field name="orderdetail_quantity" class="java.lang.Integer"/>
+	<field name="orderdetail_totalPrice" class="java.math.BigDecimal"/>
+	<field name="product_code" class="java.lang.String"/>
+	<field name="product_id" class="java.lang.Integer"/>
+	<field name="product_name" class="java.lang.String"/>
+	<field name="product_price" class="java.math.BigDecimal"/>
+	<field name="order_createdDate" class="java.sql.Timestamp"/>
+	<variable name="Sum_Money" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{orderdetail_totalPrice}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="73" splitType="Stretch">
+			<staticText>
+				<reportElement x="236" y="18" width="100" height="24" uuid="a9be36db-9dfb-47ab-b21d-5cc42c6ae2a8"/>
+				<textElement textAlignment="Center">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HÓA ĐƠN]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="74" splitType="Stretch">
+			<staticText>
+				<reportElement x="32" y="17" width="80" height="20" uuid="19afda7c-fe57-4bd8-91e5-91cf357d68e4"/>
+				<text><![CDATA[Thông tin đơn:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="32" y="37" width="80" height="20" uuid="f0e76462-7e66-4870-a973-4218a1554743"/>
+				<text><![CDATA[Số hóa đơn:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="426" y="17" width="52" height="20" uuid="5411ed76-40d0-4977-aefa-9e5597975f4a"/>
+				<text><![CDATA[Số bàn:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="426" y="37" width="52" height="20" uuid="3091fd1c-fd14-482f-9616-3f9ff4eaab01"/>
+				<text><![CDATA[Ngày tạo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="112" y="37" width="100" height="20" uuid="a0c4c298-93a9-4b43-a6a8-c73e40da52bd"/>
+				<textFieldExpression><![CDATA[$F{order_code}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="478" y="17" width="87" height="20" uuid="dacfd06f-b8a1-46c3-a0bf-eea407fa3d60"/>
+				<textFieldExpression><![CDATA[$F{order_name}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="478" y="37" width="87" height="20" uuid="210aa681-1062-4cfd-8422-01059938baea"/>
+				<textFieldExpression><![CDATA[$F{order_createdDate}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="53" splitType="Stretch">
+			<staticText>
+				<reportElement x="15" y="21" width="97" height="20" uuid="c5cb91cb-4780-4254-bf87-41dd0fa82dac"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mã sản phẩm]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="134" y="21" width="116" height="20" uuid="a2da4d96-2d46-4b5f-ac9b-0901aa68841f"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tên sản phẩm]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="263" y="21" width="99" height="20" uuid="30612ad1-99ca-46b8-ab01-3f9f7e0dbe3c"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Đơn giá]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="379" y="21" width="77" height="20" uuid="c6ea5891-93b1-48eb-9fab-c40c4717fd2a"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Số lượng]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="468" y="21" width="94" height="20" uuid="c8e9de04-bcd3-4997-8793-86d1f6915244"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Thành tiền]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="572" height="1" uuid="1c0f3bb6-a391-4e54-8016-27af957f61cb"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="37" splitType="Stretch">
+			<textField>
+				<reportElement x="15" y="10" width="97" height="20" uuid="927d843e-b9b2-4485-9aaf-56022925a2d1"/>
+				<textFieldExpression><![CDATA[$F{product_code}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="134" y="10" width="116" height="20" uuid="a3516b93-e52d-4427-a9a6-b33f6979bfcd"/>
+				<textFieldExpression><![CDATA[$F{product_name}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="263" y="10" width="99" height="20" uuid="15c7d4c7-9648-4284-9307-be4fdf152214"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{orderdetail_price}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="379" y="10" width="77" height="20" uuid="8a227dc1-fb09-4e59-a316-ff566f29e7a8"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{orderdetail_quantity}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="468" y="10" width="94" height="20" uuid="27a595de-b00b-48aa-b332-4724a1812e2d"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{orderdetail_totalPrice}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="18" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="131" splitType="Stretch">
+			<staticText>
+				<reportElement x="62" y="57" width="456" height="18" uuid="93c76cd8-ce70-4c32-9b83-f11b205043ae"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ADC Cuisine, 21 khu phố 6, phường Linh Trung, quận Thủ Đức, HCM - 0962. 556 664]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="224" y="77" width="128" height="18" uuid="79dd5917-44cd-4d96-897b-291ec28c4f00"/>
+				<textElement>
+					<font size="11" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Hẹn gặp lại quý khách]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="213" splitType="Stretch">
+			<staticText>
+				<reportElement x="379" y="27" width="77" height="20" uuid="b2c87008-75ec-4aa5-8276-f351bb6ef0a0"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Tổng  tiền:]]></text>
+			</staticText>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="468" y="27" width="94" height="20" uuid="2b4527ef-3693-4454-a0da-84d0e74edab9"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{Sum_Money}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="376" y="169" width="80" height="20" uuid="961c4863-02f3-41fc-9073-a472eacb42b6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tổng cộng:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="379" y="59" width="77" height="20" uuid="6b38c69d-c0aa-4666-8edf-d24e9c2ec9c0"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Phí vận chuyển:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="376" y="95" width="80" height="20" uuid="0d69b150-11d6-4fe0-9ba5-4b24f9784cc2"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Giảm giá(%):]]></text>
+			</staticText>
+			<textField pattern="#,##0">
+				<reportElement x="468" y="169" width="94" height="20" uuid="67935a2e-788a-407e-8ba7-109e2ed5d7b8"/>
+				<textElement textAlignment="Right">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{order_totalPrice}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="468" y="59" width="94" height="20" uuid="7e807501-1e81-4c2a-80a8-b0a297be24c3"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{order_fee}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00 %">
+				<reportElement x="468" y="95" width="94" height="20" uuid="f2911e13-a219-422b-9419-b787a07a937c"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{order_discountPercent}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="309" y="146" width="263" height="1" uuid="454ec1c9-458d-41be-a94c-f704572960ca"/>
+			</line>
+			<line>
+				<reportElement x="350" y="16" width="224" height="1" uuid="83e6f7f4-8767-489e-adb9-55b247e1bfe3"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

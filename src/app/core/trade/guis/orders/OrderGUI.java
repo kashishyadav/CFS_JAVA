@@ -12,6 +12,7 @@ import app.core.trade.dtos.orders.OrderEntity;
 import app.core.trade.dtos.products.ProductEntity;
 import app.mains.MainWindow;
 import base.configurations.constants.SystemStringConstants;
+import base.data.dal.ConnectionFactory;
 import base.data.dal.StoreProvider;
 import base.guis.controls.BaseComponent;
 import base.infrastructures.systems.AppContext;
@@ -32,7 +33,15 @@ import base.ultilities.utils.MathUtils;
 import base.ultilities.utils.MessageUtils;
 
 import base.infrastructures.systems.AppContext;
+import java.sql.Connection;
 import java.sql.Date;
+import java.util.HashMap;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -101,7 +110,6 @@ public class OrderGUI extends BaseComponent implements ActionListener {
     }
 
     public void onSubmit() {
-
         if (this.curOrder.getDetails() != null && this.curOrder.getDetails().size() > 0) {
             this.onResetPrice();
             this.curOrder.setName(txtName.getText());
@@ -115,7 +123,8 @@ public class OrderGUI extends BaseComponent implements ActionListener {
 
             if (!results.get("Result").equals("0")) {
                 onRefreshhForm();
-                MessageUtils.showSuccessMessage(this, SystemStringConstants.STR_SAVE_SUCCESS);
+                createReport((int)results.get("Id"));
+                //MessageUtils.showSuccessMessage(this, SystemStringConstants.STR_SAVE_SUCCESS);
             } else {
                 MessageUtils.showErrorMessage(this, (String) results.get("ErrorDesc"));
             }
@@ -234,6 +243,22 @@ public class OrderGUI extends BaseComponent implements ActionListener {
         this.txtTotalValue.setValue(this.curOrder.getTotalPrice());
     }
 
+    void createReport(int id){
+        Connection conn = null;
+        try {
+            conn = ConnectionFactory.Instance().getConnection();
+            Map<String,Object> parameters = new HashMap<String,Object>();
+            parameters.put("p_order_id", id);
+            JasperReport jreport = JasperCompileManager.compileReport("E:\\WORKPLACE\\UNI COURSE\\Java\\CFS_JAVA\\App\\CFS_JAVA\\src\\app\\core\\trade\\guis\\orders\\rptOrderDetail.jrxml");
+            JasperPrint jprint = JasperFillManager.fillReport(jreport, parameters, conn);
+            JasperViewer.viewReport(jprint,false );
+          
+        } catch (JRException ex) {
+            Logger.getLogger(OrderGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+                  ConnectionFactory.Instance().closeConn(conn);
+       }        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

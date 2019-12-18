@@ -11,7 +11,7 @@ public class SystemConstants {
     public final static int DEFAULT_FIRSTROW = 0;
     public final static int DEFAULT_LASTROW = 0;
     public final static int DEFAULT_SCREEN_WIDTH = 1200;
-    public final static int DEFAULT_SCREEN_HEIGHT = 800;
+    public final static int DEFAULT_SCREEN_HEIGHT = 900;
     public final static Dimension ClientSize = Toolkit.getDefaultToolkit().getScreenSize();
     public final static int CENTER_POSX = ClientSize.width / 2 - DEFAULT_SCREEN_WIDTH / 2;
     public final static int CENTER_POSY = ClientSize.height / 2 - DEFAULT_SCREEN_HEIGHT / 2;

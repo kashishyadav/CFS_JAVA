@@ -1,13 +1,13 @@
--- MySQL dump 10.13  Distrib 5.7.27, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: coffeeshopdb
+-- Host: localhost    Database: coffeeshopdb
 -- ------------------------------------------------------
 -- Server version	5.5.5-10.4.8-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -21,7 +21,7 @@
 
 DROP TABLE IF EXISTS `allcode`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `allcode` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cdName` varchar(100) DEFAULT NULL,
@@ -49,7 +49,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cm_table`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cm_table` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(100) DEFAULT NULL,
@@ -80,7 +80,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `employee`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `employee` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(100) DEFAULT NULL,
@@ -114,7 +114,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `goods`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `goods` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(100) DEFAULT NULL,
@@ -148,7 +148,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `goodscategory`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `goodscategory` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(100) DEFAULT NULL,
@@ -179,7 +179,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `order`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `order` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(100) DEFAULT NULL,
@@ -198,7 +198,7 @@ CREATE TABLE `order` (
   `tableId` int(11) DEFAULT NULL,
   `employeeId` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -207,7 +207,7 @@ CREATE TABLE `order` (
 
 LOCK TABLES `order` WRITE;
 /*!40000 ALTER TABLE `order` DISABLE KEYS */;
-INSERT INTO `order` VALUES (27,'ORD000000000001','1',0.00,706500.00,0.10,25000.00,'','D',0,'2019-11-02 00:00:00','','2019-11-03 00:00:00',NULL,NULL,NULL),(28,'ORD000000000002','30',0.00,0.00,0.00,0.00,'Khangth, 2/11/2019\nHủy phiếu đặt do hệ thông phát sinh lỗi.\nKhông thêm được dữ liệu chi tiết, giai đoạn kiểm thử 01','C',0,'2019-11-02 00:00:00','','2019-11-02 00:00:00',NULL,NULL,NULL),(29,'ORD000000000003','10',0.00,432000.00,0.00,20000.00,'','D',0,'2019-11-02 00:00:00','','2019-11-02 00:00:00',NULL,NULL,NULL),(30,'ORD000000000004','4',0.00,850000.00,0.00,0.00,'Khach hang khong lien lac duoc','C',0,'2019-11-05 00:00:00','','2019-11-06 00:00:00',NULL,NULL,NULL),(31,'ORD000000000005','5',0.00,855000.00,0.10,50000.00,'','D',0,'2019-11-06 00:00:00','','2019-11-06 00:00:00',NULL,NULL,NULL),(32,'ORD000000000006','',198000.00,196200.00,0.10,20000.00,'','D',0,'2019-11-06 00:00:00','','2019-11-06 00:00:00',NULL,NULL,NULL),(33,'ORD000000000007','4',462000.00,512000.00,0.00,50000.00,'','D',0,'2019-11-06 00:00:00','','2019-11-06 00:00:00',NULL,NULL,NULL),(34,'ORD000000000008','12',1012000.00,1112000.00,0.00,100000.00,'','D',0,'2019-11-16 00:00:00','admin','2019-11-16 00:00:00','admin',NULL,1);
+INSERT INTO `order` VALUES (27,'ORD000000000001','1',0.00,706500.00,0.10,25000.00,'','D',0,'2019-11-02 00:00:00','','2019-11-03 00:00:00',NULL,NULL,NULL),(28,'ORD000000000002','30',0.00,0.00,0.00,0.00,'Khangth, 2/11/2019\nHủy phiếu đặt do hệ thông phát sinh lỗi.\nKhông thêm được dữ liệu chi tiết, giai đoạn kiểm thử 01','C',0,'2019-11-02 00:00:00','','2019-11-02 00:00:00',NULL,NULL,NULL),(29,'ORD000000000003','10',0.00,432000.00,0.00,20000.00,'','D',0,'2019-11-02 00:00:00','','2019-11-02 00:00:00',NULL,NULL,NULL),(30,'ORD000000000004','4',0.00,850000.00,0.00,0.00,'Khach hang khong lien lac duoc','C',0,'2019-11-05 00:00:00','','2019-11-06 00:00:00',NULL,NULL,NULL),(31,'ORD000000000005','5',1400000.00,3285000.00,0.10,2250000.00,'cacel','C',0,'2019-11-06 00:00:00','','2019-12-14 00:00:00','admin',NULL,NULL),(32,'ORD000000000006','',198000.00,196200.00,0.10,20000.00,'','D',0,'2019-11-06 00:00:00','','2019-11-06 00:00:00',NULL,NULL,NULL),(33,'ORD000000000007','4',462000.00,512000.00,0.00,50000.00,'','D',0,'2019-11-06 00:00:00','','2019-11-06 00:00:00',NULL,NULL,NULL),(34,'ORD000000000008','12',1012000.00,1112000.00,0.00,100000.00,'','D',0,'2019-11-16 00:00:00','admin','2019-11-16 00:00:00','admin',NULL,1),(35,'ORD000000000009','',36000.00,61000.00,0.00,25000.00,'KHACH HUY 123','C',0,'2019-12-14 00:00:00','admin','2019-12-14 00:00:00','admin',NULL,1),(36,'ORD000000000010','12',286000.00,286000.00,0.00,0.00,'','D',0,'2019-12-14 00:00:00','admin','2019-12-14 00:00:00','admin',NULL,1),(37,'ORD000000000011','',12000.00,12000.00,0.00,0.00,'','D',0,'2019-12-14 00:00:00','admin','2019-12-14 00:00:00','admin',NULL,1),(38,'ORD000000000012','',262000.00,262000.00,0.00,0.00,'','D',0,'2019-12-15 00:00:00','admin','2019-12-15 00:00:00','admin',NULL,1),(39,'ORD000000000013','2',262000.00,258300.00,0.10,25000.00,'','D',0,'2019-12-15 00:00:00','admin','2019-12-15 00:00:00','admin',NULL,1),(40,'ORD000000000014','6',762000.00,762000.00,0.00,0.00,'','D',0,'2019-12-18 00:00:00','admin','2019-12-18 00:00:00','admin',NULL,1),(41,'ORD000000000015','13',262000.00,251520.04,0.04,0.04,'','D',0,'2019-12-18 00:00:00','admin','2019-12-18 00:00:00','admin',NULL,1),(42,'ORD000000000016','11',450000.00,495000.00,0.10,100000.00,'','D',0,'2019-12-18 00:00:00','admin','2019-12-18 00:00:00','admin',NULL,1);
 /*!40000 ALTER TABLE `order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -217,7 +217,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `orderdetail`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `orderdetail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `orderId` int(11) NOT NULL,
@@ -233,7 +233,7 @@ CREATE TABLE `orderdetail` (
   `updatedDate` datetime DEFAULT NULL,
   `updatedBy` varchar(256) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -242,7 +242,7 @@ CREATE TABLE `orderdetail` (
 
 LOCK TABLES `orderdetail` WRITE;
 /*!40000 ALTER TABLE `orderdetail` DISABLE KEYS */;
-INSERT INTO `orderdetail` VALUES (21,29,19,12000.00,1,12000.00,NULL,NULL,0,'2019-11-02 00:00:00','','2019-11-02 00:00:00',NULL),(22,29,17,150000.00,1,150000.00,NULL,NULL,0,'2019-11-02 00:00:00','','2019-11-02 00:00:00',NULL),(23,29,18,250000.00,1,250000.00,NULL,NULL,0,'2019-11-02 00:00:00','','2019-11-02 00:00:00',NULL),(24,27,17,150000.00,3,450000.00,NULL,NULL,0,'2019-11-02 00:00:00','','2019-11-03 00:00:00',NULL),(25,27,18,250000.00,1,250000.00,NULL,NULL,0,'2019-11-02 00:00:00','','2019-11-03 00:00:00',NULL),(26,27,19,12000.00,5,60000.00,NULL,NULL,0,'2019-11-02 00:00:00','','2019-11-03 00:00:00',NULL),(33,32,19,12000.00,4,48000.00,NULL,NULL,0,'2019-11-06 00:00:00','','2019-11-06 00:00:00',NULL),(34,32,17,150000.00,1,150000.00,NULL,NULL,0,'2019-11-06 00:00:00','','2019-11-06 00:00:00',NULL),(35,31,17,150000.00,1,150000.00,NULL,NULL,0,'2019-11-06 00:00:00','','2019-11-06 00:00:00',NULL),(36,31,18,250000.00,3,750000.00,NULL,NULL,0,'2019-11-06 00:00:00','','2019-11-06 00:00:00',NULL),(37,30,17,150000.00,4,600000.00,NULL,NULL,0,'2019-11-05 00:00:00','','2019-11-06 00:00:00',NULL),(38,30,18,250000.00,1,250000.00,NULL,NULL,0,'2019-11-05 00:00:00','','2019-11-06 00:00:00',NULL),(43,33,19,12000.00,1,12000.00,NULL,NULL,0,'2019-11-06 00:00:00','','2019-11-06 00:00:00',NULL),(44,33,17,150000.00,3,450000.00,NULL,NULL,0,'2019-11-06 00:00:00','','2019-11-06 00:00:00',NULL),(45,34,19,12000.00,1,12000.00,NULL,NULL,0,'2019-11-16 00:00:00','admin','2019-11-16 00:00:00','admin'),(46,34,17,150000.00,5,750000.00,NULL,NULL,0,'2019-11-16 00:00:00','admin','2019-11-16 00:00:00','admin'),(47,34,18,250000.00,1,250000.00,NULL,NULL,0,'2019-11-16 00:00:00','admin','2019-11-16 00:00:00','admin');
+INSERT INTO `orderdetail` VALUES (21,29,19,12000.00,1,12000.00,NULL,NULL,0,'2019-11-02 00:00:00','','2019-11-02 00:00:00',NULL),(22,29,17,150000.00,1,150000.00,NULL,NULL,0,'2019-11-02 00:00:00','','2019-11-02 00:00:00',NULL),(23,29,18,250000.00,1,250000.00,NULL,NULL,0,'2019-11-02 00:00:00','','2019-11-02 00:00:00',NULL),(24,27,17,150000.00,3,450000.00,NULL,NULL,0,'2019-11-02 00:00:00','','2019-11-03 00:00:00',NULL),(25,27,18,250000.00,1,250000.00,NULL,NULL,0,'2019-11-02 00:00:00','','2019-11-03 00:00:00',NULL),(26,27,19,12000.00,5,60000.00,NULL,NULL,0,'2019-11-02 00:00:00','','2019-11-03 00:00:00',NULL),(33,32,19,12000.00,4,48000.00,NULL,NULL,0,'2019-11-06 00:00:00','','2019-11-06 00:00:00',NULL),(34,32,17,150000.00,1,150000.00,NULL,NULL,0,'2019-11-06 00:00:00','','2019-11-06 00:00:00',NULL),(37,30,17,150000.00,4,600000.00,NULL,NULL,0,'2019-11-05 00:00:00','','2019-11-06 00:00:00',NULL),(38,30,18,250000.00,1,250000.00,NULL,NULL,0,'2019-11-05 00:00:00','','2019-11-06 00:00:00',NULL),(43,33,19,12000.00,1,12000.00,NULL,NULL,0,'2019-11-06 00:00:00','','2019-11-06 00:00:00',NULL),(44,33,17,150000.00,3,450000.00,NULL,NULL,0,'2019-11-06 00:00:00','','2019-11-06 00:00:00',NULL),(45,34,19,12000.00,1,12000.00,NULL,NULL,0,'2019-11-16 00:00:00','admin','2019-11-16 00:00:00','admin'),(46,34,17,150000.00,5,750000.00,NULL,NULL,0,'2019-11-16 00:00:00','admin','2019-11-16 00:00:00','admin'),(47,34,18,250000.00,1,250000.00,NULL,NULL,0,'2019-11-16 00:00:00','admin','2019-11-16 00:00:00','admin'),(49,35,19,12000.00,3,36000.00,NULL,NULL,0,'2019-12-14 00:00:00','admin','2019-12-14 00:00:00','admin'),(50,36,18,250000.00,1,250000.00,NULL,NULL,0,'2019-12-14 00:00:00','admin','2019-12-14 00:00:00','admin'),(51,36,19,12000.00,3,36000.00,NULL,NULL,0,'2019-12-14 00:00:00','admin','2019-12-14 00:00:00','admin'),(52,37,19,12000.00,1,12000.00,NULL,NULL,0,'2019-12-14 00:00:00','admin','2019-12-14 00:00:00','admin'),(57,31,17,150000.00,1,150000.00,NULL,NULL,0,'2019-11-06 00:00:00','','2019-12-14 00:00:00','admin'),(58,31,18,250000.00,5,1250000.00,NULL,NULL,0,'2019-11-06 00:00:00','','2019-12-14 00:00:00','admin'),(61,38,18,250000.00,1,250000.00,NULL,NULL,0,'2019-12-15 00:00:00','admin','2019-12-15 00:00:00','admin'),(62,38,19,12000.00,1,12000.00,NULL,NULL,0,'2019-12-15 00:00:00','admin','2019-12-15 00:00:00','admin'),(63,39,18,250000.00,1,250000.00,NULL,NULL,0,'2019-12-15 00:00:00','admin','2019-12-15 00:00:00','admin'),(64,39,19,12000.00,1,12000.00,NULL,NULL,0,'2019-12-15 00:00:00','admin','2019-12-15 00:00:00','admin'),(69,42,17,150000.00,3,450000.00,NULL,NULL,0,'2019-12-18 00:00:00','admin','2019-12-18 00:00:00','admin'),(72,40,18,250000.00,3,750000.00,NULL,NULL,0,'2019-12-18 00:00:00','admin','2019-12-18 00:00:00','admin'),(73,40,19,12000.00,1,12000.00,NULL,NULL,0,'2019-12-18 00:00:00','admin','2019-12-18 00:00:00','admin'),(74,41,18,250000.00,1,250000.00,NULL,NULL,0,'2019-12-18 00:00:00','admin','2019-12-18 00:00:00','admin'),(75,41,19,12000.00,1,12000.00,NULL,NULL,0,'2019-12-18 00:00:00','admin','2019-12-18 00:00:00','admin');
 /*!40000 ALTER TABLE `orderdetail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -252,7 +252,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `product`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `product` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(100) DEFAULT NULL,
@@ -289,7 +289,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `productcategory`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `productcategory` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(100) DEFAULT NULL,
@@ -322,7 +322,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `role` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(100) DEFAULT NULL,
@@ -352,7 +352,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `sys_codemasters`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sys_codemasters` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `prefix` varchar(10) DEFAULT NULL,
@@ -369,7 +369,7 @@ CREATE TABLE `sys_codemasters` (
 
 LOCK TABLES `sys_codemasters` WRITE;
 /*!40000 ALTER TABLE `sys_codemasters` DISABLE KEYS */;
-INSERT INTO `sys_codemasters` VALUES (1,'ORD',8,NULL,'1'),(10,'EMP',3,NULL,'1'),(11,'GD',5,NULL,'1'),(12,'GDC',3,NULL,'1'),(13,'PRD',3,NULL,'1'),(14,'PRDC',3,NULL,'1'),(15,'USER',3,'','1');
+INSERT INTO `sys_codemasters` VALUES (1,'ORD',16,NULL,'1'),(10,'EMP',3,NULL,'1'),(11,'GD',5,NULL,'1'),(12,'GDC',3,NULL,'1'),(13,'PRD',3,NULL,'1'),(14,'PRDC',3,NULL,'1'),(15,'USER',3,'','1');
 /*!40000 ALTER TABLE `sys_codemasters` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -379,7 +379,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `sys_error`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sys_error` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(100) DEFAULT NULL,
@@ -405,7 +405,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `sys_parameters`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sys_parameters` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(100) DEFAULT NULL,
@@ -417,7 +417,7 @@ CREATE TABLE `sys_parameters` (
   `updatedDate` datetime DEFAULT NULL,
   `updatedBy` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -426,7 +426,7 @@ CREATE TABLE `sys_parameters` (
 
 LOCK TABLES `sys_parameters` WRITE;
 /*!40000 ALTER TABLE `sys_parameters` DISABLE KEYS */;
-INSERT INTO `sys_parameters` VALUES (1,'tblMaxCount','40','Số bàn không được vượt quá số bàn hiện tại trong hệ thống',0,'2019-10-19 00:00:00','admin','2019-10-19 00:00:00','admin');
+INSERT INTO `sys_parameters` VALUES (1,'tblMaxCount','40','Số bàn không được vượt quá số bàn hiện tại trong hệ thống',0,'2019-10-19 00:00:00','admin','2019-10-19 00:00:00','admin'),(2,'shopName','ADC Cuisine, 21 khu phố 6, phuongf Linh Trung, quận Thủ Đức, HCM',NULL,0,'2019-10-19 00:00:00','admin','2019-10-19 00:00:00','admin'),(3,'shopPhoneNumber','0962. 556 664',NULL,0,'2019-10-19 00:00:00','admin','2019-10-19 00:00:00','admin'),(4,'appName','AppName',NULL,0,'2019-10-19 00:00:00','admin','2019-10-19 00:00:00','admin');
 /*!40000 ALTER TABLE `sys_parameters` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -436,7 +436,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `sys_prefix`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sys_prefix` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(100) DEFAULT NULL,
@@ -462,7 +462,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(100) DEFAULT NULL,
@@ -492,23 +492,6 @@ UNLOCK TABLES;
 --
 -- Dumping routines for database 'coffeeshopdb'
 --
-/*!50003 DROP FUNCTION IF EXISTS `fn_SYS_CodeMasters_Gen` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `fn_SYS_CodeMasters_Gen`(`p_Kind` varchar(100),  `p_KeyGen` varchar(15)) RETURNS int(11)
-RETURN  `p_KeyGen`; ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `ALLCODE_ById` */;
 ALTER DATABASE `coffeeshopdb` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -518,7 +501,7 @@ ALTER DATABASE `coffeeshopdb` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ALLCODE_ById`(
 	`p_Id` INT 
@@ -542,7 +525,7 @@ ALTER DATABASE `coffeeshopdb` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ALLCODE_InsOrUpd`(
 	`p_Id` INT,
@@ -599,7 +582,7 @@ ALTER DATABASE `coffeeshopdb` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ALLCODE_LstByCode`(
 IN `p_CdName` NVARCHAR(100)
@@ -622,7 +605,7 @@ ALTER DATABASE `coffeeshopdb` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ALLCODE_Search`(
 IN `p_Keyword` nvarchar(100),
@@ -663,7 +646,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `CM_TABLE_ById`(
 	`p_Id` INT 
@@ -686,7 +669,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `CM_TABLE_InsOrUpd`(
 	`p_Id` INT,
@@ -768,7 +751,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `CM_TABLE_Search`(
 IN `p_Keyword` nvarchar(100),
@@ -813,7 +796,7 @@ ALTER DATABASE `coffeeshopdb` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `CUSTOMER_ById`(
 	`p_Id` INT 
@@ -838,7 +821,7 @@ ALTER DATABASE `coffeeshopdb` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `CUSTOMER_InsOrUpd`(
 	`p_Id` INT,
@@ -929,7 +912,7 @@ ALTER DATABASE `coffeeshopdb` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `CUSTOMER_Search`(
 IN `p_Keyword` nvarchar(100),
@@ -966,7 +949,7 @@ ALTER DATABASE `coffeeshopdb` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `EMPLOYEE_ById`(
 	`p_Id` INT 
@@ -989,7 +972,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `EMPLOYEE_InsOrUpd`(
 	`p_Id` INT,
@@ -1079,7 +1062,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `EMPLOYEE_Search`(
 IN `p_Keyword` nvarchar(100),
@@ -1123,7 +1106,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `GOODSCATEGORY_ById`(
 	`p_Id` INT 
@@ -1146,7 +1129,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `GOODSCATEGORY_InsOrUpd`(
 	`p_Id` INT,
@@ -1232,7 +1215,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `GOODSCATEGORY_Search`(
 IN `p_Keyword` nvarchar(100),
@@ -1276,7 +1259,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `GOODS_ById`(
 	`p_Id` INT 
@@ -1299,7 +1282,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `GOODS_InsOrUpd`(
 	`p_Id` INT,
@@ -1391,7 +1374,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `GOODS_Search`(
 IN `p_Keyword` nvarchar(100),
@@ -1435,7 +1418,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ORDERDETAIL_ById`(
 	`p_Id` INT 
@@ -1465,7 +1448,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ORDERDETAIL_Search`(
 IN `p_Keyword` nvarchar(100),
@@ -1510,7 +1493,7 @@ ALTER DATABASE `coffeeshopdb` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ORDER_ById`(
 	`p_Id` INT 
@@ -1534,7 +1517,7 @@ ALTER DATABASE `coffeeshopdb` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ORDER_InsOrUpd`(
 `p_Id` INT,
@@ -1666,7 +1649,7 @@ detail_loop:WHILE i < JSON_LENGTH(`p_StrOrderDetails`) DO
         /*SELECT '-1' AS Result, '' `Id`, '' ErrorDesc;*/
 	ELSE		
         COMMIT;        
-        SELECT '1' as Result, `p_Id` `Id`, '' ErrorDesc;
+        SELECT '1' as Result, `p_OrderId` `Id`, '' ErrorDesc;
     END IF;
 END ;;
 DELIMITER ;
@@ -1682,7 +1665,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ORDER_Search`(
 IN `p_Keyword` nvarchar(100),
@@ -1728,7 +1711,7 @@ ALTER DATABASE `coffeeshopdb` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `PRODUCTCATEGORY_ById`(
 	`p_Id` INT 
@@ -1752,7 +1735,7 @@ ALTER DATABASE `coffeeshopdb` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `PRODUCTCATEGORY_InsOrUpd`(
 	`p_Id` INT,
@@ -1841,7 +1824,7 @@ ALTER DATABASE `coffeeshopdb` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `PRODUCTCATEGORY_Lst`()
 proc_label:BEGIN
@@ -1861,7 +1844,7 @@ ALTER DATABASE `coffeeshopdb` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `PRODUCTCATEGORY_Search`(
 IN `p_Keyword` nvarchar(100),
@@ -1905,16 +1888,16 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`` PROCEDURE `PRODUCT_ACTIVELST`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PRODUCT_ACTIVELST`(
 IN `p_Keyword` nvarchar(100)
 )
 proc_label:BEGIN	  
   SELECT A.*
 		FROM `PRODUCT` A  
 		WHERE
-			(A.`name` LIKE CONCAT('%',`p_Keyword`,'%') OR A.`name` IS NULL OR A.`name` = '')
+			(A.`name` LIKE CONCAT('%',`p_Keyword`,'%') OR `p_Keyword` IS NULL OR `p_Keyword` = '')
        		AND (A.`isDeleted` = 0)    
             AND (A.`status` = 'A')
 		ORDER BY 
@@ -1935,7 +1918,7 @@ ALTER DATABASE `coffeeshopdb` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `PRODUCT_ById`(
 	`p_Id` INT 
@@ -1959,7 +1942,7 @@ ALTER DATABASE `coffeeshopdb` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `PRODUCT_InsOrUpd`(
 	`p_Id` INT,
@@ -2055,7 +2038,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `PRODUCT_Search`(
 IN `p_Keyword` nvarchar(100),
@@ -2103,9 +2086,9 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`` PROCEDURE `ROLE_ById`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ROLE_ById`(
 	`p_Id` INT 
 )
 proc_label:BEGIN
@@ -2126,9 +2109,9 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`` PROCEDURE `ROLE_InsOrUpd`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ROLE_InsOrUpd`(
 	`p_Id` INT,
 `p_Code` varchar(100),
 `p_Name` nvarchar(256),
@@ -2206,9 +2189,9 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`` PROCEDURE `ROLE_Search`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ROLE_Search`(
 IN `p_Keyword` nvarchar(100),
 IN `p_Offset` int,
 IN `p_PageSize` int,
@@ -2250,9 +2233,9 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`` PROCEDURE `rpt_ORDER_REVENUE`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `rpt_ORDER_REVENUE`(
 	`p_FromDate` datetime,
     `p_ToDate` datetime
 )
@@ -2280,7 +2263,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spt_WhileLoopDoTest`(
 IN `p_Offset` INT,
@@ -2308,7 +2291,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_fn_SYS_CodeMasters_Gen`(
 `p_Kind` varchar(100),  
@@ -2383,7 +2366,7 @@ ALTER DATABASE `coffeeshopdb` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SYS_ERROR_ById`(
 	`p_Id` INT 
@@ -2407,7 +2390,7 @@ ALTER DATABASE `coffeeshopdb` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SYS_ERROR_InsOrUpd`(
 	`p_Id` INT,
@@ -2479,7 +2462,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SYS_ERROR_Search`(
 IN `p_Keyword` nvarchar(100),
@@ -2490,8 +2473,7 @@ OUT `p_TotalCount` int
 )
 proc_label:BEGIN	  
 	SELECT COUNT(*) INTO `p_TotalCount` FROM `SYS_ERROR` A WHERE
-		(A.`name` LIKE CONCAT('%',`p_Keyword`,'%') OR A.`name` IS NULL OR A.`name` = '')
-        AND (A.`isDeleted` = 0);   
+		(A.`description` LIKE CONCAT('%',`p_Keyword`,'%') OR A.`description` IS NULL OR A.`description` = ''); 
         
 	IF(`p_Offset` = -1)
 	THEN
@@ -2502,10 +2484,7 @@ proc_label:BEGIN
 		SELECT A.*
 		FROM `SYS_ERROR` A  
 		WHERE
-			(A.`name` LIKE CONCAT('%',`p_Keyword`,'%') OR A.`name` IS NULL OR A.`name` = '')
-       		AND (A.`isDeleted` = 0)    
-		ORDER BY 
-		A.`CreatedDate` DESC
+			(A.`description` LIKE CONCAT('%',`p_Keyword`,'%') OR A.`description` IS NULL OR A.`description` = '')
 	LIMIT `p_OFFSET`, `p_PageSize`;
 	END IF;
     	
@@ -2523,7 +2502,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SYS_PARAMETERS_Search`(
 IN `p_Keyword` nvarchar(100),
@@ -2567,7 +2546,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `test_query`()
 BEGIN
@@ -2588,9 +2567,9 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`` PROCEDURE `USER_ById`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `USER_ById`(
 	`p_Id` INT 
 )
 proc_label:BEGIN
@@ -2611,7 +2590,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `USER_InsOrUpd`(
 `p_Id` INT,
@@ -2714,7 +2693,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`` PROCEDURE `USER_Login`(
 	`p_UserName` NVARCHAR(100),
@@ -2745,7 +2724,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `USER_Search`(
 IN `p_Keyword` nvarchar(100),
@@ -2800,7 +2779,7 @@ ALTER DATABASE `coffeeshopdb` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `VOUCHER_ById`(
 	`p_Id` INT 
@@ -2825,7 +2804,7 @@ ALTER DATABASE `coffeeshopdb` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `VOUCHER_InsOrUpd`(
 	`p_Id` INT,
@@ -2912,7 +2891,7 @@ ALTER DATABASE `coffeeshopdb` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `VOUCHER_Search`(
 IN `p_Keyword` nvarchar(100),
@@ -2949,7 +2928,7 @@ ALTER DATABASE `coffeeshopdb` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `WhileLoopDoTest`(
 IN `p_Offset` INT,
@@ -2979,4 +2958,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-19 16:21:33
+-- Dump completed on 2019-12-18 14:37:52

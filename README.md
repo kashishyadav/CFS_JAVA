@@ -8,7 +8,9 @@ Requirements:
 - XAMPP (update database MariaDB 10.4.8 in mysql folder), 
   read this: https://stackoverflow.com/questions/44027926/update-xampp-from-maria-db-10-1-to-10-2
 <br>
+Software Required: <br>
 IDE: NetBeans <br>
+
 
 
 
